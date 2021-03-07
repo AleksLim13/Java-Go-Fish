@@ -17,9 +17,36 @@ public abstract class Card
     
     /**
      * Students should implement this method for their specific children classes 
-     * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
+     * return values: a String representation of a card. 
+     * Could be an UNO card, a regular playing card etc.
      */
     
+        public enum Suit {HEARTS, CLUBS, SPADES, DIAMONDS, DEFAULT};
+        public enum Value{ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, DEFAULT};
+        protected Suit suit;
+        protected Value value;
+        
+        //Default Constructor:
+        public Card(){
+            suit = Suit.DEFAULT;
+            value = Value.DEFAULT;
+        }//End C:*
+        
+        public Card(Suit s, Value gVal)
+        {
+           suit =s;
+           value= gVal;
+        }//End C:*
+        
+	public Value getValue() {
+		return this.value;
+	}//End G:*
+
+	
+	public Suit getSuit() {
+		return this.suit;
+        }//End G:*
+        
     @Override
     public abstract String toString();
     

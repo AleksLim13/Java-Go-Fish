@@ -5,6 +5,8 @@
  */
 package ca.sheridancollege.project;
 
+import java.util.*;
+
 /**
  * A class that models each Player in the game. Players have an identifier, which should be unique.
  * @author dancye, 2018
@@ -45,4 +47,27 @@ public abstract class Player
      */
     public abstract void play();
     
-}
+    private String name;
+    private ArrayList<Card> hand; 
+    
+    public Player(){
+    
+    }
+    
+    public String getName(){
+    return name;
+    }
+    public void setName(String newName){
+    this.name = newName;
+    }
+    
+    public ArrayList<Card> getHand()
+    {
+        return hand; 
+    }
+    
+    public void setHand(ArrayList<Card> newHand){
+    this.hand = newHand; 
+    }
+    
+}//End Class:_________________

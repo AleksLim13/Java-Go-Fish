@@ -3,7 +3,7 @@
  * Students can modify and extend to implement their game.
  * Add your name as a modifier and the date!
  */
-package ca.sheridancollege.project;
+package ca.sheridancollege.project.Cards;
 
 /**
  * A class to be used as the base Card class for the project. Must be general
@@ -25,6 +25,8 @@ public abstract class Card
         public enum Value{ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, DEFAULT};
         protected Suit suit;
         protected Value value;
+        private Suit[] suitList; 
+        private Value[] valueList; 
         
         //Default Constructor:
         public Card(){
@@ -46,6 +48,30 @@ public abstract class Card
 	public Suit getSuit() {
 		return this.suit;
         }//End G:*
+        
+        //Extract values and add them field var list
+        public void setSuitList(){
+            //A:
+            this.suitList = Suit.values();
+            
+        }
+        
+        //Make this var normal array of card values 
+        public void setValueList(){
+            //A: 
+           this.valueList = Value.values();
+       
+        }
+        
+        //Return value of list 
+        public Suit[] getSuitList(){
+        return suitList;
+        }
+        
+        //Return value of list
+        public Value[] getValueList(){
+            return valueList;
+        }
         
     @Override
     public abstract String toString();

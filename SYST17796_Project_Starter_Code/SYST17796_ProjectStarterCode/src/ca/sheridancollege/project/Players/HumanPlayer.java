@@ -5,11 +5,24 @@
  */
 package ca.sheridancollege.project.Players;
 
+//Imports:__________________________
+
+import ca.sheridancollege.project.Cards.Card;
+import java.util.*;
+
 /**
  *
  * @author aleks
  */
 public class HumanPlayer extends Player{
+    
+    public HumanPlayer(){
+        super();
+    }//End C:*
+    
+    public HumanPlayer(String name, ArrayList<Card> hand){
+        super(name, hand);
+    }//End C:*
 
     @Override
     public void play() {

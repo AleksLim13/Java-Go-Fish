@@ -12,7 +12,7 @@ import java.util.*;
 
 /**
  *
- * @author aleks
+ * @author alllyCat13 @ Sheridan High 2021
  */
 public class HumanPlayer extends Player{
     

@@ -3,7 +3,8 @@
  * Students can modify and extend to implement their game.
  * Add your name as a modifier and the date!
  */
-package ca.sheridancollege.project;
+package ca.sheridancollege.project.Start;
+import ca.sheridancollege.project.Players.Player;
 
 import java.util.ArrayList;
 

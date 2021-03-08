@@ -5,6 +5,7 @@ package ca.sheridancollege.project.Start;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Turns.Dealer;
 import ca.sheridancollege.project.Turns.TurnSwitcher;
+import ca.sheridancollege.project.Utility.Printer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,6 +22,7 @@ public class GoFish extends Game {
     private Player human;
     private Player computer;
     private TurnSwitcher turnController;
+    private Printer printer; 
             
     public GoFish() {
         super("Go Fish");

@@ -1,15 +1,16 @@
+
+package ca.sheridancollege.project.Turns;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca.sheridancollege.project.Turns;
+
 
 //Imports:__________________________________
 
 import ca.sheridancollege.project.Cards.Card;
-
-import ca.sheridancollege.project.Cards.GoFishCard;
 import java.util.ArrayList;
 
 /**
@@ -18,11 +19,17 @@ import java.util.ArrayList;
  */
 public class Dealer {
 
+    //Field Variables:_____________________
+    
     private Deck deck;
     private ArrayList<Card> hand;
   
+    //Constructors:_____________________
+    
+    
     public Dealer() {
-
+     this.deck = new Deck();
+     this.hand = new ArrayList<>();
     }//End C:*
     
     //I hate null pointer exception!
@@ -30,25 +37,42 @@ public class Dealer {
         this.deck = deck;
         this.hand = hand; 
     }//End C:*
+    
+    //Getters & Setters:__________________________
+    
+    
+    public Deck getDeck() {
+        return deck;
+    }//End G:*
 
-    public void deckSetup(Card card, ArrayList<Card> blank) {
-      //deck.initDI(new ArrayList<>(), new Suit[4], new Value[15]);
-      //deck.setMyLists();
-      //deck.assignMyLists();
-      //deck.setDeck(deck.initDeck(blank));
-      //deck.setDeck(deck.shuffle(deck.getDeck()));
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }//End S:*
+
+    public ArrayList<Card> getHand() {
+        return hand;
+    }//End G:*
+
+    public void setHand(ArrayList<Card> hand) {
+        this.hand = hand;
+    }//End S:*
+
+    //Methods:_________________________
+    
+    public void deckSetup() {
+        deck.initDeck();
+        deck.shuffle();
     }//End M:*
 
     //Deal first card and simultaneously remove it from deck
     //Like in real life...
     public Card startDeal() {
         Card card;
-        //A: 
-        //card = deck.getDeck().get(0);
+        card = deck.getDeck().get(0);
         //B: 
-        //deck.getDeck().remove(0);
+        deck.getDeck().remove(0);
         //C: 
-        return new GoFishCard();
+        return card;
     }//End M:*
     
     public void createHand(int size) {
@@ -56,9 +80,6 @@ public class Dealer {
            hand.add(this.startDeal());
         }//End F:*
     }//End M:*
-    
-    public ArrayList<Card> getHand(){
-    return hand; 
-    }//End G:*
+
 
 }//End class

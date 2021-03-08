@@ -1,17 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package ca.sheridancollege.project.UserInput;
+
+package ca.sheridancollege.project.Utility;
+
+
+
 
 /**
  *
  * @author Aleks Lim @ Sheridann College 2021
  */
 
-import ca.sheridancollege.project.Cards.Card.Suit;
-import ca.sheridancollege.project.Cards.Card.Value;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

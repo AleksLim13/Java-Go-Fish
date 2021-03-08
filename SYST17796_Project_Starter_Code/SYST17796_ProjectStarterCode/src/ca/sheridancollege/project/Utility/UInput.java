@@ -1,14 +1,12 @@
 
 package ca.sheridancollege.project.Utility;
 
-
-
-
 /**
  *
- * @author Aleks Lim @ Sheridann College 2021
+ * @author AllyCat13 @ Sheridan High 2021
  */
 
+//Imports:_____________________________
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

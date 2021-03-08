@@ -9,7 +9,7 @@ package ca.sheridancollege.project.Cards;
  * A class to be used as the base Card class for the project. Must be general
  * enough to be instantiated for any Card game. Students wishing to add to the code 
  * should remember to add themselves as a modifier.
- * @author dancye, 2018
+ * @author AllyCat13, 2021. 
  */
 public abstract class Card 
 {
@@ -25,8 +25,7 @@ public abstract class Card
         public enum Value{ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, DEFAULT};
         protected Suit suit;
         protected Value value;
-        private Suit[] suitList; 
-        private Value[] valueList; 
+    
         
         //Default Constructor:
         public Card(){
@@ -49,30 +48,7 @@ public abstract class Card
 		return this.suit;
         }//End G:*
         
-        //Extract values and add them field var list
-        public void setSuitList(){
-            //A:
-            this.suitList = Suit.values();
-            
-        }
-        
-        //Make this var normal array of card values 
-        public void setValueList(){
-            //A: 
-           this.valueList = Value.values();
-       
-        }
-        
-        //Return value of list 
-        public Suit[] getSuitList(){
-        return suitList;
-        }
-        
-        //Return value of list
-        public Value[] getValueList(){
-            return valueList;
-        }
-        
+      
     @Override
     public abstract String toString();
     

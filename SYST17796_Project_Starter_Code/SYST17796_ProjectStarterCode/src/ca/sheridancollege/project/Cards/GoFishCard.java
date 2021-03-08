@@ -20,9 +20,8 @@ public class GoFishCard extends Card {
     }//End C:*
 
     @Override
-    public String toString() {
-        throw new UnsupportedOperationException("Not supported yet.");
-        //To change body of generated methods, choose Tools | Templates.
+    public String toString() {   
+     return value + " of " + suit; 
     }//End M:*
 
 }//End Class:__________________+

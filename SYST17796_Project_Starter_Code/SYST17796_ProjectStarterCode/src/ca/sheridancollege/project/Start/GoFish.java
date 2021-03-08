@@ -1,5 +1,11 @@
 package ca.sheridancollege.project.Start;
 
+//Imports:__________________________
+
+import ca.sheridancollege.project.Players.Player;
+import ca.sheridancollege.project.Turns.Dealer;
+import ca.sheridancollege.project.Turns.TurnSwitcher;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,6 +17,11 @@ package ca.sheridancollege.project.Start;
  */
 public class GoFish extends Game {
 
+    private Dealer dealer; 
+    private Player human;
+    private Player computer;
+    private TurnSwitcher turnController;
+            
     public GoFish() {
         super("Go Fish");
     }//End C:*

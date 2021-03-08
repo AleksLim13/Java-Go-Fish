@@ -7,20 +7,22 @@ package ca.sheridancollege.project.Cards;
 
 /**
  *
- * @author aleks
+ * @author AllyCat13 @ Sheridan High 2021
  */
-public class GoFishCard extends Card{
-    
-    public GoFishCard(){
-    super(Suit.DEFAULT, Value.DEFAULT);
+public class GoFishCard extends Card {
+
+    public GoFishCard() {
+        super(Suit.DEFAULT, Value.DEFAULT);
     }//End C:*
-    public GoFishCard(Suit suit, Value value){
-      super(suit, value);
+
+    public GoFishCard(Suit suit, Value value) {
+        super(suit, value);
     }//End C:*
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+        throw new UnsupportedOperationException("Not supported yet.");
+        //To change body of generated methods, choose Tools | Templates.
+    }//End M:*
+
 }//End Class:__________________+

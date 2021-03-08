@@ -63,6 +63,6 @@ public abstract class Player {
     }//End G:*
 
     //Methods:_________________________
-    public abstract void play();
+    public abstract void printStats();
 
 }//End Class:_________________

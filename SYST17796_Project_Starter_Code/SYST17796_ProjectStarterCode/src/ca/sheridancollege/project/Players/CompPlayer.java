@@ -24,10 +24,19 @@ public class CompPlayer extends Player {
         super("Computer", hand);
     }//End C:*
 
+    /*
+    Recall: this is what a Player has.
+    protected String name;
+    protected int playerId;
+    protected ArrayList<Card> hand;
+    protected static int numOfPlayers;
+    */
     @Override
-    public void play() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-        //To change body of generated methods, choose Tools | Templates.
-    }//End M:*
-
+    public void printStats() {    
+        System.out.println(super.name);
+        super.hand.forEach(c -> {
+            System.out.println(c);
+        }); //End F:*
+    }//End C:*
+    
 }//End Class:______________________+

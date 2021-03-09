@@ -316,7 +316,7 @@ public class Dealer {
 
     //This works as a check if card is in opponents hand 
     //so there turn keeps going
-    public boolean goFish(ArrayList<Integer> hand, int card) {
+    public boolean goFish(ArrayList<Card> hand, Card card) {
         boolean shouldKeepGoing = false;
         for (int i = 0; i < hand.size(); i++) {
             if (hand.get(i) == card) {

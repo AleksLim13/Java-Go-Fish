@@ -18,13 +18,16 @@ import java.util.*;
  *
  * @author AllyCat13 @ Sheridan High 2021.
  */
-public abstract class Player {
+public class Player {
 
     //Fields:_______________________
     protected String name;
     protected ArrayList<Card> hand;
     protected static int numOfPlayers; //the unique ID for this player
     protected int playerId;
+    protected HashMap<Card.Value, Integer> scoreBoard;
+    protected HashMap<Card.Value, Integer> books;
+    protected ArrayList<Card> desirableList;
 
     //Constructors:______________________________
     public Player() {
@@ -32,6 +35,9 @@ public abstract class Player {
         hand = new ArrayList<>();
         numOfPlayers++;
         playerId = numOfPlayers;
+        this.scoreBoard = new HashMap<>();
+        this.books = new HashMap<>();
+        this.desirableList = new ArrayList<>();
     }//End C:*
 
     public Player(String name, ArrayList<Card> hand) {
@@ -62,7 +68,61 @@ public abstract class Player {
         return playerId;
     }//End G:*
 
+    public static int getNumOfPlayers() {
+        return numOfPlayers;
+    }
+
+    public static void setNumOfPlayers(int numOfPlayers) {
+        Player.numOfPlayers = numOfPlayers;
+    }
+
+    public int getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
+    }
+
+    public HashMap<Card.Value, Integer> getScoreBoard() {
+        return scoreBoard;
+    }
+
+    public void setScoreBoard(HashMap<Card.Value, Integer> scoreBoard) {
+        this.scoreBoard = scoreBoard;
+    }
+
+    public HashMap<Card.Value, Integer> getBooks() {
+        return books;
+    }
+
+    public void setBooks(HashMap<Card.Value, Integer> books) {
+        this.books = books;
+    }
+
+    public ArrayList<Card> getDesirableList() {
+        return desirableList;
+    }
+
+    public void setDesirableList(ArrayList<Card> desirableList) {
+        this.desirableList = desirableList;
+    }
+    
+    
+
     //Methods:_________________________
-    public abstract void printStats();
+    public void printStats(){
+    
+    }//End M:*
+    
+    public HashMap<Card.Value, Integer> createScoreBoard() {
+        //array_name[row_index][column_index] = value;
+       Card.Value[] values = Card.Value.values();
+        //scoreBoard = new int[values.length][2];
+        for (int i = 0; i < values.length; i++) {
+            //scoreBoard[i][0] = values[i];
+        }//End F:*
+        return null;
+    }//End M:*
 
 }//End Class:_________________

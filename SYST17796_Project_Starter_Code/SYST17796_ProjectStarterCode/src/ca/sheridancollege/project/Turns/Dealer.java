@@ -174,16 +174,14 @@ public class Dealer {
         return cardHand;
     }//End M:*
     
-    //This method takes the score board previously had tallies
-    //incremented every time a duplicate card value was seen.
-    //Now it will take card values with more than 1 duplicate into
-    //a array list and return it so it can be used elsewhere to
+  
     //simulate asking a player for a card.
-    public ArrayList<Integer> cardDecision(int[][] scoreBoard, ArrayList<Integer> dupesHolder) {
+    public Card.Value[] cardDecision(HashMap<Card.Value, Integer> scoreBoard, Card.Value[] dupesHolder) {
+        Card.Value[] values = Card.Value.values();
         //Rows [i] and columns [j]
-        for (int i = 0; i < 13; i++) {
-            if (scoreBoard[i][1] > 1) {
-                dupesHolder.add(scoreBoard[i][0]);
+        for (int i = 0; i < values.length; i++) {
+            if (scoreBoard.get(values[i]) > 1) {
+                dupesHolder[i] = values[i];
             }//End I:*
         }//End F:*
         return dupesHolder;
@@ -249,11 +247,11 @@ public class Dealer {
     //Adds a value passed to it's card hand list also passed to it 
     //To simulate receiving the card from your opponent and
     //Putting it in your hand. 
-    public ArrayList<Integer> addCard(ArrayList<Integer> cardHand, int value) {
+    public ArrayList<Card> addCard(ArrayList<Card> cardHand, Card card) {
 
-        cardHand.add(value);
+        cardHand.add(card);
         return cardHand;
-    }
+    }//End M:*
 
     //Takes as parameter a hash map with left key as card number and
     //right value is just the 4 amount value to indicate a book was made. 

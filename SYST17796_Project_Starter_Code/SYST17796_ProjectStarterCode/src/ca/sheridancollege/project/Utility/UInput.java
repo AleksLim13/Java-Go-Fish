@@ -11,7 +11,7 @@ package ca.sheridancollege.project.Utility;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class UInput {
+public final class UInput {
 
     private static Scanner input; 
 
@@ -28,8 +28,6 @@ public class UInput {
         return input;
     }
     
-    
-
     public static double promptDoubleUser() {
         boolean continueInput = true;
         double userNum = 0.0;

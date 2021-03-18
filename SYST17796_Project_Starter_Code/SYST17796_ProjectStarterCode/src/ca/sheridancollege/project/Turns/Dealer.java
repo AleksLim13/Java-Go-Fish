@@ -73,9 +73,15 @@ public class Dealer {
     }//End M:*
 
     public void createHand(int size) {
-        for (int i = 0; i < size; i++) {
-            hand.add(this.startDeal());
-        }//End F:*
+        if (hand.size() > 0) {
+            hand.clear();
+        }//End I:*
+        else {
+            for (int i = 0; i < size; i++) {
+                hand.add(this.startDeal());
+            }//End F:*
+        }//End E:*
+
     }//End M:*
 
     //public enum Value{ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, DEFAULT};
@@ -154,19 +160,19 @@ public class Dealer {
 
     //Define: behavior for taking random card from deck after told to go fish. 
     private GoFishCard randShuffle() {
-        
+
         //A: create ranges for random number to map against. 
         Card.Value[] values = Card.Value.values();
         Card.Suit[] suits = Card.Suit.values();
-        
+
         //B: Create the random numbers modelling suit and values. 
         int valPossible = (int) (Math.random() * values.length) + 1;
         int suitPossible = (int) (Math.random() * suits.length) + 1;
-        
+
         //C: asssign the values determined by a random number
         Card.Value randVal = values[valPossible];
         Card.Suit randSuit = suits[suitPossible];
-        
+
         //D: create the card object and copy it. 
         return new GoFishCard(randSuit, randVal);
     }//End M:*
@@ -179,20 +185,20 @@ public class Dealer {
 
     //Define: determine which card to ask for based on players hand having duplicates.
     public Card.Value[] cardDecision(
-                                     HashMap<Card.Value, Integer> scoreBoard, 
-                                     Card.Value[] dupesHolder
-                                    ) {
-        
+            HashMap<Card.Value, Integer> scoreBoard,
+            Card.Value[] dupesHolder
+    ) {
+
         //A: get storage for Cards range of values. 
         Card.Value[] values = Card.Value.values();
-        
+
         //B: repeat. set a list of players duplicate values. 
         for (int i = 0; i < values.length; i++) {
             if (scoreBoard.get(values[i]) > 1) {
                 dupesHolder[i] = values[i];
             }//End I:*
         }//End F:*
-        
+
         //C: Copy the list. 
         return dupesHolder;
     }//End M:*

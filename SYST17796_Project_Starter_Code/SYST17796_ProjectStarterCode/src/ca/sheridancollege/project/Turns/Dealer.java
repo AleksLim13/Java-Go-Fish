@@ -16,13 +16,12 @@ import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Utility.UInput;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 /**
  *
  * @author AllyCat13 @ Sheridan High 2021
  */
-public class Dealer {
+public class Dealer{
 
     //Field Variables:_____________________
     
@@ -87,7 +86,10 @@ public class Dealer {
     }//End M:*
     
     //public enum Value{ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, DEFAULT};
-    public HashMap<Card.Value, Integer> recordTypes(Card.Value card, HashMap<Card.Value, Integer> scoreBoard) {
+    public HashMap<Card.Value, Integer> recordTypes(
+                                                    Card.Value card, 
+                                                    HashMap<Card.Value, Integer> scoreBoard
+                                                   ) {
         
         //A: 
         Card.Value ACE = Card.Value.ACE;
@@ -286,17 +288,17 @@ public class Dealer {
     //a opponent. It has validation for a value from 1-13(deck values)
     //and to make sure it's a number. 
     //Human player will respond to this method directly. 
-    public int askForACard(UInput input) {      
+    public int askForACard() {      
         //Step 1: 
         System.out.println("What card do you want");
-        int target = input.promptIntUser(new Scanner(System.in));     
+        int target = UInput.promptIntUser();     
         // Step 2:
         boolean flag = true;
         if (target < 1 || target > 13) {
             while (flag) {
                 //2.2
                 System.out.println("Notice: Cards in a standard deck range from 1-13");
-                target = input.promptIntUser(new Scanner(System.in));
+                target = UInput.promptIntUser();
                 //2.3 
                 if (target >= 1 && target <= 13) {
                     flag = false;

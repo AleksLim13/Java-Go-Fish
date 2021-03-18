@@ -7,7 +7,6 @@ package ca.sheridancollege.project.Players;
  */
 //Imports:_______________________________
 import ca.sheridancollege.project.Cards.Card;
-import ca.sheridancollege.project.Utility.UInput;
 import java.util.*;
 
 /**
@@ -19,7 +18,7 @@ import java.util.*;
  *
  * @author AllyCat13 @ Sheridan High 2021.
  */
-public class Player {
+public abstract class Player {
 
     //Fields:_______________________
     protected String name;

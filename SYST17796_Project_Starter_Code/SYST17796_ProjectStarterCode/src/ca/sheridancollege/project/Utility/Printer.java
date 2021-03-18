@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author AllyCat13 @ Sheridan High 2021
  */
-public class Printer {
+public final class Printer {
 
     public Printer() {
         
@@ -23,13 +23,13 @@ public class Printer {
 
 
     //Assumed to be set from actions elsewhere
-    public void printDeck(ArrayList<Card> tDeck) {
+    public static void printDeck(ArrayList<Card> tDeck) {
         for (int i = 0; i < tDeck.size(); i++) {
             System.out.println(tDeck.get(i).getValue() + " " + tDeck.get(i).getSuit());
         }//End F:*
     }//End method 
 
-    public void printHand(ArrayList<Card> tHand) {
+    public static void printHand(ArrayList<Card> tHand) {
         for (int i = 0; i < tHand.size(); i++) {
             System.out.println(tHand.get(i).getValue() + " " + tHand.get(i).getSuit());
         }//End F:*

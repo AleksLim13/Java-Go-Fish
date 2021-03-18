@@ -16,8 +16,18 @@ import ca.sheridancollege.project.Cards.Card;
  */
 public class CompPlayer extends Player {
 
-    public CompPlayer() {
-        super();//For visual understanding.
+    public CompPlayer(
+                       String name,
+                       ArrayList<Card> hand,
+                       HashMap<Card.Value, Integer> scoreBoard,
+                       HashMap<Card.Value, Integer> books,
+                       ArrayList<Card> desirableList) {
+        super(        name,
+                      hand,
+                      scoreBoard,
+                      books,
+                      desirableList
+             );//For visual understanding.
     }//End C:*
 
     public CompPlayer(String name, ArrayList<Card> hand) {

@@ -42,7 +42,7 @@ public class Deck {
                 {
                     for(Card.Value values: Card.Value.values())
                     {
-                        deck.add(new GoFishCard(suits,values));                   
+                        deck.add(new GoFishCard(suits, values));                   
                     }//End Inner F:*
                 }//end outter for   
     }//End M:*
@@ -55,7 +55,7 @@ public class Deck {
     public void shuffle() {
         int rando;
         for (int i = 0; i < deck.size(); i++) {
-            rando = (int) (Math.random() * 52) + 1;        
+            rando = (int) (Math.random() * deck.size());        
             Card temp = deck.get(i);
             deck.set(i, deck.get(rando));
             deck.set(rando, temp);         

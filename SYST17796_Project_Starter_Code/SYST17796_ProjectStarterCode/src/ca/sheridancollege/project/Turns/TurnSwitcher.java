@@ -10,7 +10,6 @@ import ca.sheridancollege.project.Players.CompPlayer;
 import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Utility.Printer;
-import ca.sheridancollege.project.Utility.UInput;
 import java.util.ArrayList;
 
 /**
@@ -26,7 +25,6 @@ public class TurnSwitcher {
     private Player inPlay;
     private Player notInPlay;
     private final Printer printStuff;
-    private final UInput inputStuff;
     private ArrayList<Player> inPlayList;
     private String guess;
     private String coinToss;
@@ -40,7 +38,6 @@ public class TurnSwitcher {
         this.inPlay = new Player();
         this.notInPlay = new Player();
         this.printStuff = new Printer();
-        this.inputStuff = new UInput();
         this.inPlayList = new ArrayList<>();
         this.updPlayerList = new ArrayList<>();     
     }//End C:*
@@ -90,9 +87,6 @@ public class TurnSwitcher {
         return printStuff;
     }
 
-    public UInput getInputStuff() {
-        return inputStuff;
-    }
 
     public ArrayList<Player> getInPlayList() {
         return inPlayList;

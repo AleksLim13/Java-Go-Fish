@@ -4,12 +4,7 @@
  * and open the template in the editor.
  */
 package ca.sheridancollege.project.Turns;
-import ca.sheridancollege.project.Cards.Card;
-import ca.sheridancollege.project.Cards.GoFishCard;
-import ca.sheridancollege.project.Players.CompPlayer;
-import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
-import ca.sheridancollege.project.Utility.Printer;
 import java.util.ArrayList;
 
 /**
@@ -19,27 +14,28 @@ import java.util.ArrayList;
 public class TurnSwitcher {
 
     //Field Var's 
-    private final Card cardStuff;
     private Player human;
     private Player computer;
     private Player inPlay;
     private Player notInPlay;
-    private final Printer printStuff;
     private ArrayList<Player> inPlayList;
     private String guess;
     private String coinToss;
     private ArrayList<Player> updPlayerList;
 
     //Constructor 
-    public TurnSwitcher() {
-        this.cardStuff = new GoFishCard();
-        this.human = new HumanPlayer();
-        this.computer = new CompPlayer();
-        this.inPlay = new Player();
-        this.notInPlay = new Player();
-        this.printStuff = new Printer();
-        this.inPlayList = new ArrayList<>();
-        this.updPlayerList = new ArrayList<>();     
+    public TurnSwitcher(Player human,
+                        Player computer,
+                        Player inPlay,
+                        Player notInPlay,
+                        ArrayList<Player> inPlayList,
+                        ArrayList<Player> udpPlayerList) {
+        this.human = human;
+        this.computer = computer;
+        this.inPlay = inPlay;
+        this.notInPlay = notInPlay;
+        this.inPlayList = inPlayList;
+        this.updPlayerList = udpPlayerList;     
     }//End C:*
 
     //Getter 
@@ -62,10 +58,7 @@ public class TurnSwitcher {
         this.notInPlay = newNotInPlay;
     }//End S:*
 
-    public Card getCardStuff() {
-        return cardStuff;
-    }
-
+  
   
     public Player getHuman() {
         return human;
@@ -83,9 +76,6 @@ public class TurnSwitcher {
         this.computer = computer;
     }
 
-    public Printer getPrintStuff() {
-        return printStuff;
-    }
 
 
     public ArrayList<Player> getInPlayList() {

@@ -12,7 +12,7 @@ package ca.sheridancollege.project.Cards;
 public class GoFishCard extends Card {
 
     public GoFishCard() {
-        super(Suit.DEFAULT, Value.DEFAULT);
+        super();
     }//End C:*
 
     public GoFishCard(Suit suit, Value value) {

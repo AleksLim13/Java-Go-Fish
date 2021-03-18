@@ -1,4 +1,3 @@
-
 package ca.sheridancollege.project.Turns;
 
 /*
@@ -6,10 +5,7 @@ package ca.sheridancollege.project.Turns;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 //Imports:__________________________________
-
 import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Cards.GoFishCard;
 import ca.sheridancollege.project.Players.Player;
@@ -21,30 +17,28 @@ import java.util.HashMap;
  *
  * @author AllyCat13 @ Sheridan High 2021
  */
-public class Dealer{
+public class Dealer {
 
     //Field Variables:_____________________
-    
     private Deck deck;
     private ArrayList<Card> hand;
-  
+
     //Constructors:_____________________
-    
-    
     public Dealer() {
-     this.deck = new Deck();
-     this.hand = new ArrayList<>();
+        this.deck = new Deck();
+        this.hand = new ArrayList<>();
+        this.deckSetup();
     }//End C:*
-    
+
     //I hate null pointer exception!
     public Dealer(Deck deck, ArrayList<Card> hand) {
         this.deck = deck;
-        this.hand = hand; 
+        this.hand = hand;
+        this.deckSetup();
+
     }//End C:*
-    
+
     //Getters & Setters:__________________________
-    
-    
     public Deck getDeck() {
         return deck;
     }//End G:*
@@ -62,15 +56,14 @@ public class Dealer{
     }//End S:*
 
     //Methods:_________________________
-    
-    public void deckSetup() {
+    private void deckSetup() {
         deck.initDeck();
         deck.shuffle();
     }//End M:*
 
     //Deal first card and simultaneously remove it from deck
     //Like in real life...
-    public Card startDeal() {
+    private Card startDeal() {
         Card card;
         card = deck.getDeck().get(0);
         //B: 
@@ -78,19 +71,19 @@ public class Dealer{
         //C: 
         return card;
     }//End M:*
-    
+
     public void createHand(int size) {
         for (int i = 0; i < size; i++) {
-           hand.add(this.startDeal());
+            hand.add(this.startDeal());
         }//End F:*
     }//End M:*
-    
+
     //public enum Value{ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, DEFAULT};
     public HashMap<Card.Value, Integer> recordTypes(
-                                                    Card.Value card, 
-                                                    HashMap<Card.Value, Integer> scoreBoard
-                                                   ) {
-        
+            Card.Value card,
+            HashMap<Card.Value, Integer> scoreBoard
+    ) {
+
         //A: 
         Card.Value ACE = Card.Value.ACE;
         Card.Value TWO = Card.Value.TWO;
@@ -105,11 +98,11 @@ public class Dealer{
         Card.Value JACK = Card.Value.JACK;
         Card.Value QUEEN = Card.Value.QUEEN;
         Card.Value KING = Card.Value.KING;
-        
+
         //B:
         switch (card) {
-            case ACE:              
-            scoreBoard.put(ACE, scoreBoard.get(ACE) + 1);
+            case ACE:
+                scoreBoard.put(ACE, scoreBoard.get(ACE) + 1);
                 return scoreBoard;
             case TWO:
                 scoreBoard.put(TWO, scoreBoard.get(TWO) + 1);
@@ -150,60 +143,73 @@ public class Dealer{
         }//End SW:*
         return scoreBoard;
     }//End M:*
-    
-    //Calls record types on each card and ticks the matching tallies in scoreBoard
+
+    //Define: Calls record types on each card and ticks the matching tallies in scoreBoard
     public HashMap<Card.Value, Integer> checkHand(HashMap<Card.Value, Integer> countHolder, ArrayList<Card> cardHand) {
         for (int i = 0; i < cardHand.size(); i++) {
             recordTypes(cardHand.get(i).getValue(), countHolder);
         }//End F:*
         return countHolder;
     }//End M:*
-    
-    public GoFishCard randShuffle() {
+
+    //Define: behavior for taking random card from deck after told to go fish. 
+    private GoFishCard randShuffle() {
+        
+        //A: create ranges for random number to map against. 
         Card.Value[] values = Card.Value.values();
         Card.Suit[] suits = Card.Suit.values();
+        
+        //B: Create the random numbers modelling suit and values. 
         int valPossible = (int) (Math.random() * values.length) + 1;
         int suitPossible = (int) (Math.random() * suits.length) + 1;
-        Card.Value randVal = values[valPossible]; 
+        
+        //C: asssign the values determined by a random number
+        Card.Value randVal = values[valPossible];
         Card.Suit randSuit = suits[suitPossible];
+        
+        //D: create the card object and copy it. 
         return new GoFishCard(randSuit, randVal);
     }//End M:*
-    
-    //This just adds a possible 1-13 value to the players hand
-    //Meant to be a "go fish" or "sorry don't have that card dude." 
+
+    //Define: "sorry don't have that card dude." So, take a card from the deck.  
     public ArrayList<Card> drawCard(ArrayList<Card> cardHand) {
         cardHand.add(randShuffle());
         return cardHand;
     }//End M:*
-    
-  
-    //simulate asking a player for a card.
-    public Card.Value[] cardDecision(HashMap<Card.Value, Integer> scoreBoard, Card.Value[] dupesHolder) {
+
+    //Define: determine which card to ask for based on players hand having duplicates.
+    public Card.Value[] cardDecision(
+                                     HashMap<Card.Value, Integer> scoreBoard, 
+                                     Card.Value[] dupesHolder
+                                    ) {
+        
+        //A: get storage for Cards range of values. 
         Card.Value[] values = Card.Value.values();
-        //Rows [i] and columns [j]
+        
+        //B: repeat. set a list of players duplicate values. 
         for (int i = 0; i < values.length; i++) {
             if (scoreBoard.get(values[i]) > 1) {
                 dupesHolder[i] = values[i];
             }//End I:*
         }//End F:*
+        
+        //C: Copy the list. 
         return dupesHolder;
     }//End M:*
-    
+
     //And uses it to remove the right card from my hand when I have to give the 
     //card to the other player. 
     //It calls another method who knows how to delete cards from a hand
     public ArrayList<Card> checkHandAndRemove(
-                                                 ArrayList<Card> cardHand, 
-                                                 ArrayList<Integer> dupesHolder
-                                                ) {
+            ArrayList<Card> cardHand,
+            ArrayList<Integer> dupesHolder
+    ) {
 
         if (dupesHolder != null) {
             cardHand = deleteCard(cardHand, dupesHolder.get(0));
         }//End I:*
         return cardHand;
     }//End M:*
-    
-    
 
     //Notice: player's hand is assumed to be ordered ascendingly already
     public Player checkBooks(Player player) {
@@ -226,7 +232,7 @@ public class Dealer{
                 posit = findPosit(targetHand, values[i]);
 
                 //C: Remove book values from hand
-                for(int j = 0; j < 4; j++){
+                for (int j = 0; j < 4; j++) {
                     targetHand = deleteCard(targetHand, posit);//Think about it...
                 }//End Inner F:*              
                 //D: Reset players updated hand 
@@ -236,11 +242,10 @@ public class Dealer{
         //Step 3: 
         return player;
     }//End M:*
-    
-    
+
     //Takes value as parameter and uses it to remove that card from 
     //a simulated card hand also passed to it. 
-    public ArrayList<Card> deleteCard(ArrayList<Card> cardHand, int posit) {
+    private ArrayList<Card> deleteCard(ArrayList<Card> cardHand, int posit) {
         ArrayList<Card> resultHand = cardHand;
         resultHand.remove(posit);
         return resultHand;
@@ -288,10 +293,10 @@ public class Dealer{
     //a opponent. It has validation for a value from 1-13(deck values)
     //and to make sure it's a number. 
     //Human player will respond to this method directly. 
-    public int askForACard() {      
+    public int askForACard() {
         //Step 1: 
         System.out.println("What card do you want");
-        int target = UInput.promptIntUser();     
+        int target = UInput.promptIntUser();
         // Step 2:
         boolean flag = true;
         if (target < 1 || target > 13) {
@@ -305,7 +310,7 @@ public class Dealer{
                     return target;
                 }//End Inner I:*
             }//End W:*
-        }  //End Outer I:*      
+        } //End Outer I:*      
         //Step 3: 
         else {
             return target;

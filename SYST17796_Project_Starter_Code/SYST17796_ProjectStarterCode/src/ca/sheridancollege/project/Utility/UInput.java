@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public final class UInput {
 
-    private static Scanner input; 
+    private static Scanner input = new Scanner(System.in); 
 
     public UInput() {
         UInput.input = new Scanner(System.in);

@@ -2,12 +2,15 @@ package ca.sheridancollege.project.Start;
 
 //Imports:__________________________
 
+import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Players.CompPlayer;
 import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Turns.Dealer;
 import ca.sheridancollege.project.Turns.TurnSwitcher;
 import ca.sheridancollege.project.Utility.Printer;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,12 +28,30 @@ public class GoFish extends Game {
     private final Player computer;
     private final TurnSwitcher turnController;
             
-    public GoFish() {
+    public GoFish(     String hName,
+                       ArrayList<Card> hand,
+                       HashMap<Card.Value, Integer> scoreBoard,
+                       HashMap<Card.Value, Integer> books,
+                       ArrayList<Card> desirableList,
+                       String cName,
+                       TurnSwitcher turnController) {
         super("Go Fish");
         this.dealer = new Dealer();
-        this.human = new HumanPlayer();
-        this.computer = new CompPlayer();
-        this.turnController = new TurnSwitcher();
+        this.human = new HumanPlayer(
+                       hName,
+                       hand,
+                       scoreBoard,
+                       books,
+                       desirableList
+                      );
+        this.computer = new CompPlayer(
+                                       cName,
+                                       hand,
+                                       scoreBoard,
+                                       books,
+                                       desirableList
+                                       );
+       this.turnController = turnController; 
         
     }//End C:*
     public GoFish(
@@ -46,6 +67,23 @@ public class GoFish extends Game {
         this.turnController = turnController; 
     }//End C:*
 
+    public Dealer getDealer() {
+        return dealer;
+    }
+
+    public Player getHuman() {
+        return human;
+    }
+
+    public Player getComputer() {
+        return computer;
+    }
+
+    public TurnSwitcher getTurnController() {
+        return turnController;
+    }
+
+    
     @Override
     public void play() {
 
@@ -55,6 +93,12 @@ public class GoFish extends Game {
         this.human.setHand(this.dealer.getHand());
         System.out.println("Printing humans hand");
         Printer.printHand(this.human.getHand());
+        System.out.println("Creating humans scorebord");
+        this.dealer.createScoreBoard();
+        System.out.println("Setting humans scorebord");
+        this.human.setScoreBoard(this.dealer.getScoreBoard());
+        System.out.println("Printing humans scorebord");
+        Printer.printScoreBoard(this.human.getScoreBoard());
         
         System.out.println("Dealer creating a hand");
         this.dealer.createHand(7);
@@ -62,9 +106,13 @@ public class GoFish extends Game {
         this.computer.setHand(this.dealer.getHand());
         System.out.println("Printing computers hand");
         Printer.printHand(this.computer.getHand());
-
+        System.out.println("Creating computers scorebord");
+        this.dealer.createScoreBoard();
+        System.out.println("Setting computers scorebord");
+        this.computer.setScoreBoard(this.dealer.getScoreBoard());
         //To change body of generated methods, choose Tools | Templates.
-        
+        System.out.println("Printing computers scorebord");
+        Printer.printScoreBoard(this.computer.getScoreBoard());
     }//End M:*
 
     @Override

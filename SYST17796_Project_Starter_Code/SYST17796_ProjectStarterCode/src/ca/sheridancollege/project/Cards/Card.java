@@ -21,16 +21,16 @@ public abstract class Card
      * Could be an UNO card, a regular playing card etc.
      */
     
-        public enum Suit {HEARTS, CLUBS, SPADES, DIAMONDS, DEFAULT};
-        public enum Value{ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, DEFAULT};
+        public enum Suit {HEARTS, CLUBS, SPADES, DIAMONDS};
+        public enum Value{ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING};
         protected Suit suit;
         protected Value value;
     
         
         //Default Constructor:
         public Card(){
-            suit = Suit.DEFAULT;
-            value = Value.DEFAULT;
+            suit = Suit.HEARTS;
+            value = Value.ACE;
         }//End C:*
         
         public Card(Suit s, Value gVal)

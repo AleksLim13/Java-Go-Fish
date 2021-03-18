@@ -13,31 +13,45 @@ import java.util.Scanner;
 
 public class UInput {
 
-    public UInput() {
-        // TODO Auto-generated constructor stub
-    }
+    private static Scanner input; 
 
-    public double promptDoubleUser(Scanner input) {
+    public UInput() {
+        UInput.input = new Scanner(System.in);
+    }//End C:*
+    
+    public UInput(Scanner input) {
+        // TODO Auto-generated constructor stub
+        UInput.input = input; 
+    }//End C:*
+
+    public Scanner getInput() {
+        return input;
+    }
+    
+    
+
+    public static double promptDoubleUser() {
         boolean continueInput = true;
         double userNum = 0.0;
 
         do {
             try {
 
-                System.out.println("Enter a double like 3.0");
+                System.out.println("Enter a double like 0.0");
                 userNum = input.nextDouble();
                 continueInput = false;
-            } catch (InputMismatchException ex) {
+            } //End TR:*
+            
+            catch (InputMismatchException ex) {
                 System.out.println("Not a double!");
                 input.nextLine();
-            }
+            }//End CAT:*
 
         } while (continueInput);
-
         return userNum;
-    }
+    }//End M:*
 
-    public int promptIntUser(Scanner input) {
+    public static int promptIntUser() {
         boolean continueInput = true;
         int userNum = 0;
 
@@ -47,64 +61,41 @@ public class UInput {
                 System.out.println("Enter a integer like 3");
                 userNum = input.nextInt();
                 continueInput = false;
-            } catch (InputMismatchException ex) {
+            } //End TR:*
+            catch (InputMismatchException ex) {
                 System.out.println("Not a Integer!");
                 input.nextLine();
-            }
+            }//End CAT:*
 
-        } while (continueInput);
-
+        } //End D:*
+        while (continueInput);
+        
+        //Copy: 
         return userNum;
-    }
+    }//End M:*
 
-    public String promptStringUser(Scanner input) {
+    public static String promptStringUser() {
         boolean continueInput = true;
         String userPrompt = " ";
 
         do {
+            
             try {
 
                 System.out.println("Enter a String: ");
                 userPrompt = input.next();
                 continueInput = false;
-            } catch (InputMismatchException ex) {
+            } //End TR:*
+            
+            catch (InputMismatchException ex) {
                 System.out.println("Not a String!");
                 input.nextLine();
-            }
+            }//End CAT:*
 
-        } while (continueInput);
-
+        } //End D:*
+        while (continueInput);
+        //Copy: 
         return userPrompt;
-    }
+    }//End M:*
 
-    /*
-    public ca.sheridancollege.project.Cards.Card.Suit pickASuit(CardTrick cardTrick){
-        String uSuit = promptStringUser(new Scanner(System.in));
-        Suit tSuit;
-        tSuit = cardTrick.pickASuit(uSuit);
-        return tSuit;
-    }
-    */
-    
-    /*
-    public ca.sheridancollege.project.Cards.Card.Value pickAValue(Scanner input, CardTrick cardTrick){
-        //A: 
-        
-        Value tValue;
-        
-        //B: 
-        System.out.println("Pick a value please");
-        if(input.hasNextInt()){
-            tValue = cardTrick.pickAValue(input.nextInt());
-        }
-        else {
-            tValue = cardTrick.pickAValue(input.next());
-        }
-        
-        //C: 
-        return tValue;
-    }
-    */
-
-
-}//End class
+}//End cl:*

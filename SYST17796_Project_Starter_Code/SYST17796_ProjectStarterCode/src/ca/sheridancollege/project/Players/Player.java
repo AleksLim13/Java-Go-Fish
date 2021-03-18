@@ -7,6 +7,7 @@ package ca.sheridancollege.project.Players;
  */
 //Imports:_______________________________
 import ca.sheridancollege.project.Cards.Card;
+import ca.sheridancollege.project.Utility.UInput;
 import java.util.*;
 
 /**
@@ -30,21 +31,29 @@ public class Player {
     protected ArrayList<Card> desirableList;
 
     //Constructors:______________________________
-    public Player() {
-        name = "default";
-        hand = new ArrayList<>();
-        numOfPlayers++;
-        playerId = numOfPlayers;
-        this.scoreBoard = new HashMap<>();
-        this.books = new HashMap<>();
-        this.desirableList = new ArrayList<>();
-    }//End C:*
-
-    public Player(String name, ArrayList<Card> hand) {
-        this.name = "default";
+    public Player(
+                  String name,
+                  ArrayList<Card> hand,
+                  HashMap<Card.Value, Integer> scoreBoard,
+                  HashMap<Card.Value, Integer> books,
+                  ArrayList<Card> desirableList
+                  ) {
+        this.name = name;
         this.hand = hand;
         numOfPlayers++;
         playerId = numOfPlayers;
+        this.scoreBoard = scoreBoard;
+        this.books = books;
+        this.desirableList = desirableList;
+    }//End C:*
+
+    public Player(String name, ArrayList<Card> hand) {
+        this.name = name;
+        this.hand = hand;
+        numOfPlayers++;
+        playerId = numOfPlayers;
+        this.books = new HashMap<>();
+        this.desirableList = new ArrayList<>();
     }//End C:*
 
     //Getters & Setters:________________________
@@ -115,14 +124,6 @@ public class Player {
     
     }//End M:*
     
-    public HashMap<Card.Value, Integer> createScoreBoard() {
-        //array_name[row_index][column_index] = value;
-       Card.Value[] values = Card.Value.values();
-        //scoreBoard = new int[values.length][2];
-        for (int i = 0; i < values.length; i++) {
-            //scoreBoard[i][0] = values[i];
-        }//End F:*
-        return null;
-    }//End M:*
+    
 
 }//End Class:_________________

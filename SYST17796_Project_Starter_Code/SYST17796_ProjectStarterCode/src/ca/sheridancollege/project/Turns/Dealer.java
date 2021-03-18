@@ -22,6 +22,8 @@ public class Dealer {
     //Field Variables:_____________________
     private Deck deck;
     private ArrayList<Card> hand;
+    private HashMap<Card.Value, Integer> scoreBoard;
+
 
     //Constructors:_____________________
     public Dealer() {
@@ -39,6 +41,16 @@ public class Dealer {
     }//End C:*
 
     //Getters & Setters:__________________________
+
+    public HashMap<Card.Value, Integer> getScoreBoard() {
+        return scoreBoard;
+    }
+
+    public void setScoreBoard(HashMap<Card.Value, Integer> scoreBoard) {
+        this.scoreBoard = scoreBoard;
+    }
+    
+    
     public Deck getDeck() {
         return deck;
     }//End G:*
@@ -350,6 +362,18 @@ public class Dealer {
             }//End I:*
         }//End F:*
         return posit;
+    }//End M:*
+    
+    public HashMap<Card.Value, Integer> createScoreBoard() {
+        //array_name[row_index][column_index] = value;
+        scoreBoard.clear();
+       Card.Value[] values = Card.Value.values();
+        //scoreBoard = new int[values.length][2];
+        for (int i = 0; i < values.length; i++) {
+            //scoreBoard[i][0] = values[i];
+            scoreBoard.put(values[i], 0);
+        }//End F:*
+        return scoreBoard;
     }//End M:*
 
 }//End class

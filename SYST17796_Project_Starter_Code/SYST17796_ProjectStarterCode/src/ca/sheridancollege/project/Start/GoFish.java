@@ -2,6 +2,8 @@ package ca.sheridancollege.project.Start;
 
 //Imports:__________________________
 
+import ca.sheridancollege.project.Players.CompPlayer;
+import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Turns.Dealer;
 import ca.sheridancollege.project.Turns.TurnSwitcher;
@@ -18,20 +20,51 @@ import ca.sheridancollege.project.Utility.Printer;
  */
 public class GoFish extends Game {
 
-    private Dealer dealer; 
-    private Player human;
-    private Player computer;
-    private TurnSwitcher turnController;
-    private Printer printer; 
+    private final Dealer dealer; 
+    private final Player human;
+    private final Player computer;
+    private final TurnSwitcher turnController;
             
     public GoFish() {
         super("Go Fish");
+        this.dealer = new Dealer();
+        this.human = new HumanPlayer();
+        this.computer = new CompPlayer();
+        this.turnController = new TurnSwitcher();
+        
+    }//End C:*
+    public GoFish(
+                  Dealer dealer,
+                  Player human,
+                  Player computer,
+                  TurnSwitcher turnController
+                  ) {
+        super("Go Fish");
+        this.dealer = dealer;
+        this.human = human;
+        this.computer = computer;
+        this.turnController = turnController; 
     }//End C:*
 
     @Override
     public void play() {
 
+        System.out.println("Dealer creating a hand");
+        this.dealer.createHand(7);
+        System.out.println("Dealer setting humans hand");
+        this.human.setHand(this.dealer.getHand());
+        System.out.println("Printing humans hand");
+        Printer.printHand(this.human.getHand());
+        
+        System.out.println("Dealer creating a hand");
+        this.dealer.createHand(7);
+        System.out.println("Dealer setting computers hand");
+        this.computer.setHand(this.dealer.getHand());
+        System.out.println("Printing computers hand");
+        Printer.printHand(this.computer.getHand());
+
         //To change body of generated methods, choose Tools | Templates.
+        
     }//End M:*
 
     @Override

@@ -73,14 +73,15 @@ public class Dealer {
     }//End M:*
 
     public void createHand(int size) {
-        if (hand.size() > 0) {
+      
+        if(hand.size() > 0){
             hand.clear();
-        }//End I:*
-        else {
+        }
+              
             for (int i = 0; i < size; i++) {
                 hand.add(this.startDeal());
             }//End F:*
-        }//End E:*
+       
 
     }//End M:*
 

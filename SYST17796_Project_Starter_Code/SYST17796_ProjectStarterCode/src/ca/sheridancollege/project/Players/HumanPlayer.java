@@ -16,15 +16,7 @@ import java.util.*;
  */
 public class HumanPlayer extends Player{
     
-    /*
-        name = UInput.promptStringUser();
-        hand = new ArrayList<>();
-        numOfPlayers++;
-        playerId = numOfPlayers;
-        this.scoreBoard = new HashMap<>();
-        this.books = new HashMap<>();
-        this.desirableList = new ArrayList<>();
-    */
+ 
     public HumanPlayer(
                        String name,
                        ArrayList<Card> hand,

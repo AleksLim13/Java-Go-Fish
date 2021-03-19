@@ -358,13 +358,12 @@ public class Dealer {
         return posit;
     }//End M:*
     
-    public int[][] createScoreBoard() {
+    public int[][] createScoreBoard(int[][] sb) {
         //array_name[row_index][column_index] = value;
-        scoreBoard = new int[13][2];
-        for (int i = 0; i < 13; i++) {
-            scoreBoard[i][0] = i;
-            scoreBoard[i][1] = 0;
-            
+        scoreBoard = sb;
+        for (int i = 0; i < scoreBoard.length; i++) {
+            scoreBoard[i][0] = i + 1;
+            scoreBoard[i][1] = 0;          
         }//End F:*
         return scoreBoard;
     }//End M:*

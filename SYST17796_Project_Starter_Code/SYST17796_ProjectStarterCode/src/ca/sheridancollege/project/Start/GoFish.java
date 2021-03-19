@@ -27,28 +27,17 @@ public class GoFish extends Game {
     private final Player human;
     private final Player computer;
     private final TurnSwitcher turnController;
-    private int[][] books = new int[4][2];
+   
             
     public GoFish(     String hName,
                        ArrayList<Card> hand,
-                       int[][] books,
                        ArrayList<Card> desirableList,
                        String cName,
                        TurnSwitcher turnController) {
         super("Go Fish");
         this.dealer = new Dealer(new Deck(), new ArrayList<>());
-        this.human = new HumanPlayer(
-                       hName,
-                       hand,
-                       books,
-                       desirableList
-                      );
-        this.computer = new CompPlayer(
-                                       cName,
-                                       hand,
-                                       books,
-                                       desirableList
-                                       );
+        this.human = new HumanPlayer();
+        this.computer = new CompPlayer();
        this.turnController = turnController; 
         
     }//End C:*
@@ -95,15 +84,14 @@ public class GoFish extends Game {
         Printer.printHand(this.human.getHand());
         
         System.out.println("Creating humans scorebord");
-        this.dealer.createScoreBoard();
+        this.dealer.createScoreBoard(new int[13][2]);
         
         System.out.println("Setting humans scorebord");
         this.human.setScoreBoard(this.dealer.getScoreBoard());
         
         System.out.println("Printing humans scorebord");
         Printer.printScoreBoard(this.human.getScoreBoard());
-        
-        
+            
         System.out.println("Dealer creating a hand");
         this.dealer.createHand(7);
         
@@ -114,7 +102,7 @@ public class GoFish extends Game {
         Printer.printHand(this.computer.getHand());
         
         System.out.println("Creating computers scorebord");
-        this.dealer.createScoreBoard();
+        this.dealer.createScoreBoard(new int[13][2]);
         
         System.out.println("Setting computers scorebord");
         this.computer.setScoreBoard(this.dealer.getScoreBoard());

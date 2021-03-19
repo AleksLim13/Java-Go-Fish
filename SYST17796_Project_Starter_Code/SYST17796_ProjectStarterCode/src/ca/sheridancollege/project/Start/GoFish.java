@@ -7,6 +7,7 @@ import ca.sheridancollege.project.Players.CompPlayer;
 import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Turns.Dealer;
+import ca.sheridancollege.project.Turns.Deck;
 import ca.sheridancollege.project.Turns.TurnSwitcher;
 import ca.sheridancollege.project.Utility.Printer;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class GoFish extends Game {
                        String cName,
                        TurnSwitcher turnController) {
         super("Go Fish");
-        this.dealer = new Dealer();
+        this.dealer = new Dealer(new Deck(), new ArrayList<>());
         this.human = new HumanPlayer(
                        hName,
                        hand,

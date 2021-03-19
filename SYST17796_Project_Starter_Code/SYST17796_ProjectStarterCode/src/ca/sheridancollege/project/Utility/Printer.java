@@ -33,9 +33,9 @@ public final class Printer {
         }//End F:*
     }//End method 
 
-    public static void printScoreBoard(HashMap<Card.Value, Integer> scoreBoard) {
-        for (Card.Value i : scoreBoard.keySet()) {
-            System.out.println("key: " + i + " value: " + scoreBoard.get(i));
+    public static void printScoreBoard(int[][] scoreBoard) {
+        for (int i = 0; i < 13; i++) {
+            System.out.println(scoreBoard[i][0] + " " + scoreBoard[1][i]);
         }//End F:*
     }//End method 
 

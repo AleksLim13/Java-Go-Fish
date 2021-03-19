@@ -11,7 +11,6 @@ import ca.sheridancollege.project.Turns.Deck;
 import ca.sheridancollege.project.Turns.TurnSwitcher;
 import ca.sheridancollege.project.Utility.Printer;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -102,7 +101,8 @@ public class GoFish extends Game {
         this.human.setScoreBoard(this.dealer.getScoreBoard());
         
         System.out.println("Printing humans scorebord");
-      
+        Printer.printScoreBoard(this.human.getScoreBoard());
+        
         
         System.out.println("Dealer creating a hand");
         this.dealer.createHand(7);
@@ -121,6 +121,8 @@ public class GoFish extends Game {
         
         //To change body of generated methods, choose Tools | Templates.
         System.out.println("Printing computers scorebord");
+        Printer.printScoreBoard(this.computer.getScoreBoard());
+
        
     }//End M:*
 

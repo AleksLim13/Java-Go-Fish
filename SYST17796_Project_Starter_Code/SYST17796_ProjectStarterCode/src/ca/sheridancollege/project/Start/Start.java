@@ -13,7 +13,6 @@ import ca.sheridancollege.project.Turns.Deck;
 import ca.sheridancollege.project.Turns.TurnSwitcher;
 import ca.sheridancollege.project.Utility.UInput;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  *
@@ -26,18 +25,21 @@ public class Start {
                        HashMap<Card.Value, Integer> scoreBoard,
                        HashMap<Card.Value, Integer> books,
                        ArrayList<Card> desirableList
+    
+    
     */
+    
+    private static int[][] books = new int[4][2];
     public static void main(String[] args){
     
-        Player human = new HumanPlayer(UInput.promptStringUser(),
+        Player human = new HumanPlayer(
+                                             UInput.promptStringUser(),
                                              new ArrayList<>(),
-                                             new HashMap<>(),
-                                             new HashMap<>(),
+                                             books,
                                              new ArrayList<>());
         Player computer = new CompPlayer("Computer",
                                              new ArrayList<>(),
-                                             new HashMap<>(),
-                                             new HashMap<>(),
+                                             books,
                                              new ArrayList<>());
     GoFish game = new GoFish(
                              new Dealer(new Deck(),

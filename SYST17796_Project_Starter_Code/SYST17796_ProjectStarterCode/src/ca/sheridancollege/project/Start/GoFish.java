@@ -28,11 +28,11 @@ public class GoFish extends Game {
     private final Player human;
     private final Player computer;
     private final TurnSwitcher turnController;
+    private int[][] books = new int[4][2];
             
     public GoFish(     String hName,
                        ArrayList<Card> hand,
-                       HashMap<Card.Value, Integer> scoreBoard,
-                       HashMap<Card.Value, Integer> books,
+                       int[][] books,
                        ArrayList<Card> desirableList,
                        String cName,
                        TurnSwitcher turnController) {
@@ -41,14 +41,12 @@ public class GoFish extends Game {
         this.human = new HumanPlayer(
                        hName,
                        hand,
-                       scoreBoard,
                        books,
                        desirableList
                       );
         this.computer = new CompPlayer(
                                        cName,
                                        hand,
-                                       scoreBoard,
                                        books,
                                        desirableList
                                        );
@@ -90,30 +88,40 @@ public class GoFish extends Game {
 
         System.out.println("Dealer creating a hand");
         this.dealer.createHand(7);
+        
         System.out.println("Dealer setting humans hand");
         this.human.setHand(this.dealer.getHand());
+        
         System.out.println("Printing humans hand");
         Printer.printHand(this.human.getHand());
+        
         System.out.println("Creating humans scorebord");
         this.dealer.createScoreBoard();
+        
         System.out.println("Setting humans scorebord");
         this.human.setScoreBoard(this.dealer.getScoreBoard());
+        
         System.out.println("Printing humans scorebord");
-        Printer.printScoreBoard(this.human.getScoreBoard());
+      
         
         System.out.println("Dealer creating a hand");
         this.dealer.createHand(7);
+        
         System.out.println("Dealer setting computers hand");
         this.computer.setHand(this.dealer.getHand());
+        
         System.out.println("Printing computers hand");
         Printer.printHand(this.computer.getHand());
+        
         System.out.println("Creating computers scorebord");
         this.dealer.createScoreBoard();
+        
         System.out.println("Setting computers scorebord");
         this.computer.setScoreBoard(this.dealer.getScoreBoard());
+        
         //To change body of generated methods, choose Tools | Templates.
         System.out.println("Printing computers scorebord");
-        Printer.printScoreBoard(this.computer.getScoreBoard());
+       
     }//End M:*
 
     @Override

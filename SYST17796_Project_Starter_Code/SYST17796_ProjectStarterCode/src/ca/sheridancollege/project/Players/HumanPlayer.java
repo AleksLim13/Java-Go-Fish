@@ -28,14 +28,12 @@ public class HumanPlayer extends Player{
     public HumanPlayer(
                        String name,
                        ArrayList<Card> hand,
-                       HashMap<Card.Value, Integer> scoreBoard,
-                       HashMap<Card.Value, Integer> books,
+                       int[][] books,
                        ArrayList<Card> desirableList
                       ){
         super(
              name,
              hand,
-             scoreBoard,
              books,
              desirableList
               );

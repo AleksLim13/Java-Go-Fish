@@ -8,7 +8,6 @@ package ca.sheridancollege.project.Utility;
 //Imports:______________________
 import ca.sheridancollege.project.Cards.Card;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  *
@@ -34,8 +33,8 @@ public final class Printer {
     }//End method 
 
     public static void printScoreBoard(int[][] scoreBoard) {
-        for (int i = 0; i < 13; i++) {
-            System.out.println(scoreBoard[i][0] + " " + scoreBoard[1][i]);
+        for (int i = 0; i < scoreBoard.length; i++) {
+            System.out.println(scoreBoard[i][0] + " " + scoreBoard[i][1]);
         }//End F:*
     }//End method 
 

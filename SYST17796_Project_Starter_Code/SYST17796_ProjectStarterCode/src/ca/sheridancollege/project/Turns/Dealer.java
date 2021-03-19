@@ -362,7 +362,9 @@ public class Dealer {
         //array_name[row_index][column_index] = value;
         scoreBoard = new int[13][2];
         for (int i = 0; i < 13; i++) {
-            scoreBoard[i][0] = i;           
+            scoreBoard[i][0] = i;
+            scoreBoard[i][1] = 0;
+            
         }//End F:*
         return scoreBoard;
     }//End M:*

@@ -25,23 +25,22 @@ public abstract class Player {
     protected ArrayList<Card> hand;
     protected static int numOfPlayers; //the unique ID for this player
     protected int playerId;
-    protected HashMap<Card.Value, Integer> scoreBoard;
-    protected HashMap<Card.Value, Integer> books;
+    protected int[][] scoreBoard;
+    protected int[][] books;
     protected ArrayList<Card> desirableList;
 
     //Constructors:______________________________
     public Player(
                   String name,
                   ArrayList<Card> hand,
-                  HashMap<Card.Value, Integer> scoreBoard,
-                  HashMap<Card.Value, Integer> books,
+                  int[][] books,
                   ArrayList<Card> desirableList
                   ) {
         this.name = name;
         this.hand = hand;
         numOfPlayers++;
         playerId = numOfPlayers;
-        this.scoreBoard = scoreBoard;
+        this.scoreBoard = new int[13][2];
         this.books = books;
         this.desirableList = desirableList;
     }//End C:*
@@ -51,7 +50,7 @@ public abstract class Player {
         this.hand = hand;
         numOfPlayers++;
         playerId = numOfPlayers;
-        this.books = new HashMap<>();
+        this.books = new int[4][2];
         this.desirableList = new ArrayList<>();
     }//End C:*
 
@@ -92,19 +91,19 @@ public abstract class Player {
         this.playerId = playerId;
     }
 
-    public HashMap<Card.Value, Integer> getScoreBoard() {
+    public int[][] getScoreBoard() {
         return scoreBoard;
     }
 
-    public void setScoreBoard(HashMap<Card.Value, Integer> scoreBoard) {
+    public void setScoreBoard(int[][] scoreBoard) {
         this.scoreBoard = scoreBoard;
     }
 
-    public HashMap<Card.Value, Integer> getBooks() {
+    public int[][] getBooks() {
         return books;
     }
 
-    public void setBooks(HashMap<Card.Value, Integer> books) {
+    public void setBooks(int[][] books) {
         this.books = books;
     }
 

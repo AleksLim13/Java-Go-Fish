@@ -22,7 +22,7 @@ public class Dealer {
     //Field Variables:_____________________
     private Deck deck;
     private ArrayList<Card> hand;
-    private HashMap<Card.Value, Integer> scoreBoard;
+    private int[][] scoreBoard;
 
 
     //Constructors:_____________________
@@ -36,11 +36,11 @@ public class Dealer {
    
     //Getters & Setters:__________________________
 
-    public HashMap<Card.Value, Integer> getScoreBoard() {
+    public int[][] getScoreBoard() {
         return scoreBoard;
     }
 
-    public void setScoreBoard(HashMap<Card.Value, Integer> scoreBoard) {
+    public void setScoreBoard(int[][] scoreBoard) {
         this.scoreBoard = scoreBoard;
     }
     
@@ -230,16 +230,16 @@ public class Dealer {
         //Step 1: 
         ArrayList<Card> targetHand = player.getHand();
         Card.Value[] values = Card.Value.values();
-        HashMap<Card.Value, Integer> targetSB = player.getScoreBoard();
-        HashMap<Card.Value, Integer> books = player.getBooks();
+        int[][] targetSB = player.getScoreBoard();
+        int[][] books = player.getBooks();
         int posit;
 
         //Step 2: 
-        for (int i = 0; i < values.length; i++) {
-            if (targetSB.get(values[i]) >= 4) {
+        for (int i = 0; i < 13; i++) {
+            if (targetSB[i][1] >= 4) {
 
                 //A: Update books var
-                books.put(values[i], targetSB.get(values[i]));
+                books[i][1] = 1; 
 
                 //B: Get card type position
                 posit = findPosit(targetHand, values[i]);
@@ -358,14 +358,11 @@ public class Dealer {
         return posit;
     }//End M:*
     
-    public HashMap<Card.Value, Integer> createScoreBoard() {
+    public int[][] createScoreBoard() {
         //array_name[row_index][column_index] = value;
-        scoreBoard.clear();
-       Card.Value[] values = Card.Value.values();
-        //scoreBoard = new int[values.length][2];
-        for (int i = 0; i < values.length; i++) {
-            //scoreBoard[i][0] = values[i];
-            scoreBoard.put(values[i], 0);
+        scoreBoard = new int[13][2];
+        for (int i = 0; i < 13; i++) {
+            scoreBoard[i][0] = i;           
         }//End F:*
         return scoreBoard;
     }//End M:*

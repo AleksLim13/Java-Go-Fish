@@ -7,8 +7,6 @@ package ca.sheridancollege.project.Players;
 
 //Imports:__________________________
 
-import ca.sheridancollege.project.Cards.Card;
-import java.util.*;
 
 /**
  *
@@ -17,32 +15,11 @@ import java.util.*;
 public class HumanPlayer extends Player{
     
  
-    public HumanPlayer(
-                       String name,
-                       ArrayList<Card> hand,
-                       int[][] books,
-                       ArrayList<Card> desirableList
-                      ){
-        super(
-             name,
-             hand,
-             books,
-             desirableList
-              );
+    public HumanPlayer(){
+        super();
     }//End C:*
     
-    public HumanPlayer(String name, ArrayList<Card> hand){
-        super(name, hand);
-    }//End C:*
-
-    /*
-    Recall: this is what a Player has.
-    protected String name;
-    protected int playerId;
-    protected ArrayList<Card> hand;
-    protected static int numOfPlayers;
-    
-    */
+  
     @Override
     public void printStats() {    
         System.out.println(super.name + " " + super.playerId);

@@ -7,38 +7,16 @@ package ca.sheridancollege.project.Players;
 
 //Imports:________________________________
 
-import java.util.*;
-import ca.sheridancollege.project.Cards.Card;
-
-/**
+/*
  *
  * @author AllyCat13 @ Sheridan High 2021. 
  */
 public class CompPlayer extends Player {
 
-    public CompPlayer(
-                       String name,
-                       ArrayList<Card> hand,
-                       int[][] books,
-                       ArrayList<Card> desirableList) {
-        super(        name,
-                      hand,
-                      books,
-                      desirableList
-             );//For visual understanding.
+    public CompPlayer() {
+        super();//For visual understanding.
     }//End C:*
 
-    public CompPlayer(String name, ArrayList<Card> hand) {
-        super("Computer", hand);
-    }//End C:*
-
-    /*
-    Recall: this is what a Player has.
-    protected String name;
-    protected int playerId;
-    protected ArrayList<Card> hand;
-    protected static int numOfPlayers;
-    */
     @Override
     public void printStats() {    
         System.out.println(super.name);

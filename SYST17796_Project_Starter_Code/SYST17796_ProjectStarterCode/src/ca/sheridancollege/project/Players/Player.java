@@ -30,30 +30,12 @@ public abstract class Player {
     protected ArrayList<Card> desirableList;
 
     //Constructors:______________________________
-    public Player(
-                  String name,
-                  ArrayList<Card> hand,
-                  int[][] books,
-                  ArrayList<Card> desirableList
-                  ) {
-        this.name = name;
-        this.hand = hand;
+    public Player() {
         numOfPlayers++;
         playerId = numOfPlayers;
-        this.scoreBoard = new int[13][2];
-        this.books = books;
-        this.desirableList = desirableList;
     }//End C:*
 
-    public Player(String name, ArrayList<Card> hand) {
-        this.name = name;
-        this.hand = hand;
-        numOfPlayers++;
-        playerId = numOfPlayers;
-        this.books = new int[4][2];
-        this.desirableList = new ArrayList<>();
-    }//End C:*
-
+    
     //Getters & Setters:________________________
     public void setName(String newName) {
         this.name = newName;

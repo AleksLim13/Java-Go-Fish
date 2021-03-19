@@ -26,20 +26,14 @@ public class Dealer {
 
 
     //Constructors:_____________________
-    public Dealer() {
-        this.deck = new Deck();
-        this.hand = new ArrayList<>();
-        this.deckSetup();
-    }//End C:*
-
-    //I hate null pointer exception!
-    public Dealer(Deck deck, ArrayList<Card> hand) {
+    public Dealer(Deck deck,
+                  ArrayList<Card> hand) {
         this.deck = deck;
         this.hand = hand;
         this.deckSetup();
-
     }//End C:*
 
+   
     //Getters & Setters:__________________________
 
     public HashMap<Card.Value, Integer> getScoreBoard() {

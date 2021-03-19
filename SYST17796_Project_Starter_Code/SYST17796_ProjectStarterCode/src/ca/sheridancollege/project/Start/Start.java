@@ -5,11 +5,11 @@
  */
 package ca.sheridancollege.project.Start;
 
-import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Players.CompPlayer;
 import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Turns.Dealer;
+import ca.sheridancollege.project.Turns.Deck;
 import ca.sheridancollege.project.Turns.TurnSwitcher;
 import ca.sheridancollege.project.Utility.UInput;
 import java.util.ArrayList;
@@ -40,7 +40,8 @@ public class Start {
                                              new HashMap<>(),
                                              new ArrayList<>());
     GoFish game = new GoFish(
-                             new Dealer(),
+                             new Dealer(new Deck(),
+                             new ArrayList<>()),
                              human,
                              computer,
                              new TurnSwitcher(human,

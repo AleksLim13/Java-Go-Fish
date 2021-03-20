@@ -66,8 +66,7 @@ public class Dealer {
         deck.shuffle();
     }//End M:*
 
-    //Deal first card and simultaneously remove it from deck
-    //Like in real life...
+    //Deal first card and simultaneously remove it from deck.
     private Card startDeal() {
         Card card;
         card = deck.getDeck().get(0);
@@ -90,15 +89,12 @@ public class Dealer {
 
     }//End M:*
 
-    //public enum Value{ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, DEFAULT};
-    public int[][] recordTypes(
-            Card.Value card,
-            int[][] scoreBoard
-    ) {
-
-
-        //B:
-        switch (card) {
+    //Recall: enum Value{ACE, ..., KING};
+    public int[][] recordTypes(//Note: tally increm.
+            Card.Value card,//Incl: card item. 
+            int[][] scoreBoard//Incl: 2d Arry. 
+                            ) {
+        switch (card) {//Alt: multiple cards.
             case ACE:
                 scoreBoard[0][1] += 1;
                 return scoreBoard;
@@ -169,7 +165,7 @@ public class Dealer {
         return new GoFishCard(randSuit, randVal);
     }//End M:*
 
-    //Define: "sorry don't have that card dude." So, take a card from the deck.  
+    //Define: "sorry don't have that card dude." Allor, take a card from the deck.  
     public ArrayList<Card> drawCard(ArrayList<Card> cardHand) {
         cardHand.add(randShuffle());
         return cardHand;
@@ -177,34 +173,35 @@ public class Dealer {
 
     //Define: determine which card to ask for based on players hand having duplicates.
     public Card.Value[] cardDecision(
-            int[][] scoreBoard,
-            Card.Value[] dupesHolder
-    ) {
+            int[][] scoreBoard,//R:13,J:2 2DAR
+            Card.Value[] dupesHolder//enum 1-13, A-K.
+                                    ) {
 
-        //A: get storage for Cards range of values. 
+        //A: get storage for Cards range of values.  A-K, 13x2
         Card.Value[] values = Card.Value.values();
 
         //B: repeat. set a list of players duplicate values. 
         for (int i = 0; i < scoreBoard.length; i++) {
+            //Eval: right column. top-bottom. 
             if (scoreBoard[i][1] > 1) {
+                //Assi: save right Card value to same type array. 
                 dupesHolder[i] = values[i];
             }//End I:*
         }//End F:*
 
-        //C: Copy the list. 
+        //C: Copy the list. Remember the gist.
         return dupesHolder;
     }//End M:*
+    
+    
 
-    //And uses it to remove the right card from my hand when I have to give the 
-    //card to the other player. 
-    //It calls another method who knows how to delete cards from a hand
+    //Define: ablility to remove target from other players hand. Calls delete method. 
     public ArrayList<Card> checkHandAndRemove(
-            ArrayList<Card> cardHand,
-            ArrayList<Integer> dupesHolder
-    ) {
-
-        if (dupesHolder != null) {
-            cardHand = deleteCard(cardHand, dupesHolder.get(0));
+            ArrayList<Card> cardHand,//Incl: list for C's.
+            ArrayList<Integer> dupesHolder//Incl: list for copies. 
+                                            ) {
+        if (dupesHolder != null) {//Eval: is it empty?
+            cardHand = deleteCard(cardHand, dupesHolder.get(0));//Assi: 
         }//End I:*
         return cardHand;
     }//End M:*
@@ -212,20 +209,20 @@ public class Dealer {
     //Notice: player's hand is assumed to be ordered ascendingly already
     public Player checkBooks(Player player) {
 
-        //Step 1: 
+        //Declare: Assi:  
         ArrayList<Card> targetHand = player.getHand();
         Card.Value[] values = Card.Value.values();
         int[][] targetSB = player.getScoreBoard();
         int[][] books = player.getBooks();
         int posit;
 
-        //Step 2: 
-        for (int i = 0; i < 13; i++) {
+        //Repeat: Step 2:
+        for (int i = 0; i < targetSB.length; i++) {
             if (targetSB[i][1] >= 4) {
-
-                //A: Update books var
+                
+               //A: Update books var
                 books[i][1] = 1; 
-
+                
                 //B: Get card type position
                 posit = findPosit(targetHand, values[i]);
 

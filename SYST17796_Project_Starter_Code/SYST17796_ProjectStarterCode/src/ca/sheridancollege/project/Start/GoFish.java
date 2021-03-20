@@ -91,7 +91,13 @@ public class GoFish extends Game {
         
         System.out.println("Printing humans scorebord");
         Printer.printScoreBoard(this.human.getScoreBoard());
-            
+        
+        System.out.println("Setting updated sb");
+        this.human.setScoreBoard(this.dealer.checkHand(this.human.getScoreBoard(), this.human.getHand()));
+        
+        System.out.println("Printing humans scorebord");
+        Printer.printScoreBoard(this.human.getScoreBoard());
+        
         System.out.println("Dealer creating a hand");
         this.dealer.createHand(7);
         
@@ -110,7 +116,12 @@ public class GoFish extends Game {
         //To change body of generated methods, choose Tools | Templates.
         System.out.println("Printing computers scorebord");
         Printer.printScoreBoard(this.computer.getScoreBoard());
+        
+        System.out.println("Setting computers updated sb");
+        this.computer.setScoreBoard(this.dealer.checkHand(this.computer.getScoreBoard(), this.computer.getHand()));
 
+        System.out.println("Printing computers scorebord");
+        Printer.printScoreBoard(this.computer.getScoreBoard());
        
     }//End M:*
 

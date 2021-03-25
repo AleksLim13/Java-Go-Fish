@@ -23,8 +23,7 @@ public class Dealer {
     private Deck deck;
     private ArrayList<Card> hand;
     private int[][] scoreBoard;
-
-
+    
     //Constructors:_____________________
     public Dealer(Deck deck,
                   ArrayList<Card> hand) {
@@ -32,8 +31,7 @@ public class Dealer {
         this.hand = hand;
         this.deckSetup();
     }//End C:*
-
-   
+    
     //Getters & Setters:__________________________
 
     public int[][] getScoreBoard() {

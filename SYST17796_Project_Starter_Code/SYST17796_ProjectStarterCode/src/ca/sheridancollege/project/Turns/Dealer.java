@@ -11,6 +11,7 @@ import ca.sheridancollege.project.Cards.GoFishCard;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Utility.UInput;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -80,72 +81,14 @@ public class Dealer {
       
         if(hand.size() > 0){
             hand.clear();
-        }
+        }//End I:*
               
             for (int i = 0; i < size; i++) {
                 hand.add(this.startDeal());
-            }//End F:*
-       
+            }//End F:*     
 
     }//End M:*
-
-    //Recall: enum Value{ACE, ..., KING};
-    public int[][] recordTypes(//Note: tally increm.
-            Card.Value card,//Incl: card item. 
-            int[][] scoreBoard//Incl: 2d Arry. 
-                            ) {
-        switch (card) {//Alt: multiple cards.
-            case ACE:
-                scoreBoard[0][1] += 1;
-                return scoreBoard;
-            case TWO:
-                scoreBoard[1][1] += 1;
-                return scoreBoard;
-            case THREE:
-                scoreBoard[2][1] += 1;
-                return scoreBoard;
-            case FOUR:
-                scoreBoard[3][1] += 1;
-                return scoreBoard;
-            case FIVE:
-                scoreBoard[4][1] += 1;
-                return scoreBoard;
-            case SIX:
-                scoreBoard[5][1] += 1;
-                return scoreBoard;
-            case SEVEN:
-                scoreBoard[6][1] += 1;
-                return scoreBoard;
-            case EIGHT:
-                scoreBoard[7][1] += 1;
-                return scoreBoard;
-            case NINE:
-                scoreBoard[8][1] += 1;
-                return scoreBoard;
-            case TEN:
-                scoreBoard[9][1] += 1;
-                return scoreBoard;
-            case JACK:
-                scoreBoard[10][1] += 1;
-                return scoreBoard;
-            case QUEEN:
-                scoreBoard[11][1] += 1;
-                return scoreBoard;
-            case KING:
-                scoreBoard[12][1] += 1;
-                return scoreBoard;
-        }//End SW:*
-        return scoreBoard;
-    }//End M:*
-
-    //Define: Calls record types on each card and ticks the matching tallies in scoreBoard
-    public int[][] checkHand(int[][] countHolder, ArrayList<Card> cardHand) {
-        for (int i = 0; i < cardHand.size(); i++) {
-            recordTypes(cardHand.get(i).getValue(), countHolder);
-        }//End F:*
-        return countHolder;
-    }//End M:*
-
+    
     //Define: behavior for taking random card from deck after told to go fish. 
     private GoFishCard randShuffle() {
 
@@ -171,30 +114,7 @@ public class Dealer {
         return cardHand;
     }//End M:*
 
-    //Define: determine which card to ask for based on players hand having duplicates.
-    public Card.Value[] cardDecision(
-            int[][] scoreBoard,//R:13,J:2 2DAR
-            Card.Value[] dupesHolder//enum 1-13, A-K.
-                                    ) {
-
-        //A: get storage for Cards range of values.  A-K, 13x2
-        Card.Value[] values = Card.Value.values();
-
-        //B: repeat. set a list of players duplicate values. 
-        for (int i = 0; i < scoreBoard.length; i++) {
-            //Eval: right column. top-bottom. 
-            if (scoreBoard[i][1] > 1) {
-                //Assi: save right Card value to same type array. 
-                dupesHolder[i] = values[i];
-            }//End I:*
-        }//End F:*
-
-        //C: Copy the list. Remember the gist.
-        return dupesHolder;
-    }//End M:*
-    
-    
-
+   
     //Define: ablility to remove target from other players hand. Calls delete method. 
     public ArrayList<Card> checkHandAndRemove(
             ArrayList<Card> cardHand,//Incl: list for C's.
@@ -204,38 +124,6 @@ public class Dealer {
             cardHand = deleteCard(cardHand, dupesHolder.get(0));//Assi: 
         }//End I:*
         return cardHand;
-    }//End M:*
-
-    //Notice: player's hand is assumed to be ordered ascendingly already
-    public Player checkBooks(Player player) {
-
-        //Declare: Assi:  
-        ArrayList<Card> targetHand = player.getHand();
-        Card.Value[] values = Card.Value.values();
-        int[][] targetSB = player.getScoreBoard();
-        int[][] books = player.getBooks();
-        int posit;
-
-        //Repeat: Step 2:
-        for (int i = 0; i < targetSB.length; i++) {
-            if (targetSB[i][1] >= 4) {
-                
-               //A: Update books var
-                books[i][1] = 1; 
-                
-                //B: Get card type position
-                posit = findPosit(targetHand, values[i]);
-
-                //C: Remove book values from hand
-                for (int j = 0; j < 4; j++) {
-                    targetHand = deleteCard(targetHand, posit);//Think about it...
-                }//End Inner F:*              
-                //D: Reset players updated hand 
-                player.setHand(targetHand);
-            }//End I:*
-        }//End Outer F:*
-        //Step 3: 
-        return player;
     }//End M:*
 
     //Takes value as parameter and uses it to remove that card from 
@@ -255,20 +143,9 @@ public class Dealer {
     }//End M:*
 
   
-    //Returns the players book
-    public int[][] updateBooks(int[][] books, int[][] scoreBoard) {
-        for (int i = 0; i < scoreBoard.length; i++) {
-            if (scoreBoard[i][1] >= 4) {
-                books[i][1] = 1;
-            }//End I:*
-        }//End F:*
-        return books;
-    }//End M:*
-
     //compares player objects field var books. 
     //Comparison is based on nunber of key value pairs in books 
-    public Player determineWinner() {
-      
+    public Player determineWinner() {   
         return null;
     }//End M:*
 
@@ -329,14 +206,60 @@ public class Dealer {
         return posit;
     }//End M:*
     
-    public int[][] createScoreBoard(int[][] sb) {
-        //array_name[row_index][column_index] = value;
-        scoreBoard = sb;
-        for (int i = 0; i < scoreBoard.length; i++) {
-            scoreBoard[i][0] = i + 1;
-            scoreBoard[i][1] = 0;          
+ //Define: get a list of duplicate cards. 
+    public static void getDupes(List<Integer> hand, List<Integer> dupes, List<Integer> books) {
+
+        //A: main for loop: compare each card to every other card in hand.
+        //------------------
+        for (int i = 0; i < hand.size(); i++) {
+            int lCount = 0;
+            //A.1: par two of compare each card to every other card in hand.
+            //----
+            for (int j = 0; j < hand.size(); j++) {
+                if (hand.get(i) == hand.get(j)) {
+                    //A.1.1: increase counter if they are equal. \
+                    lCount++;
+                }//End I:*
+            }//End F:*
+            //A.2: counter > 1 means theres duplicates.
+            //-----
+            if (lCount > 1) {
+                dupes.add(hand.get(i));
+            }//End I:*
         }//End F:*
-        return scoreBoard;
+    }//End M:*
+
+    public void calcBooks(Integer tNum, List<Integer> dupes,
+            List<Integer> books, List<Integer> hand){
+        
+                //A.3: we want just one copy in duplicate list. 
+                //----
+                int ilCount = 0;
+                for (int i = 0; i < dupes.size(); i++) {                   
+                    //A.3.1: increment counter if already in duplicate list
+                    if (tNum == dupes.get(i)) {
+                        ilCount++;
+                    }//End I:*                    
+                }//End F:*
+                if (ilCount == 4) {  
+                    books.add(tNum);
+                    for (int j = 0; j < 4; j++) {            
+                        hand.remove(findFirstIndex(tNum, hand));
+                    }//End I:*                  
+                }//End I:*
+                //A.4: if not in dupe list already then place inside. 
+                //----          
+    }//End M:*
+    
+    public int findFirstIndex(int tNum, List<Integer> tList){
+         int pos = 0;
+       for(int i = 0; i < tList.size(); i++){
+           if(2 == tList.get(i)){
+              pos = i;
+              return pos;
+           }//End I:*
+       }//End F:*
+       return pos;
     }//End M:*
 
 }//End class

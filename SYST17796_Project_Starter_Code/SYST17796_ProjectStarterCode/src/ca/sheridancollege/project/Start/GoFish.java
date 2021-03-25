@@ -84,7 +84,7 @@ public class GoFish extends Game {
         Printer.printHand(this.human.getHand());
         
         System.out.println("Creating humans scorebord");
-        this.dealer.createScoreBoard(new int[13][2]);
+        //this.dealer.createScoreBoard(new int[13][2]);
         
         System.out.println("Setting humans scorebord");
         this.human.setScoreBoard(this.dealer.getScoreBoard());
@@ -93,7 +93,7 @@ public class GoFish extends Game {
         Printer.printScoreBoard(this.human.getScoreBoard());
         
         System.out.println("Setting updated sb");
-        this.human.setScoreBoard(this.dealer.checkHand(this.human.getScoreBoard(), this.human.getHand()));
+        //this.human.setScoreBoard(this.dealer.checkHand(this.human.getScoreBoard(), this.human.getHand()));
         
         System.out.println("Printing humans scorebord");
         Printer.printScoreBoard(this.human.getScoreBoard());
@@ -108,7 +108,7 @@ public class GoFish extends Game {
         Printer.printHand(this.computer.getHand());
         
         System.out.println("Creating computers scorebord");
-        this.dealer.createScoreBoard(new int[13][2]);
+        //this.dealer.createScoreBoard(new int[13][2]);
         
         System.out.println("Setting computers scorebord");
         this.computer.setScoreBoard(this.dealer.getScoreBoard());
@@ -118,7 +118,7 @@ public class GoFish extends Game {
         Printer.printScoreBoard(this.computer.getScoreBoard());
         
         System.out.println("Setting computers updated sb");
-        this.computer.setScoreBoard(this.dealer.checkHand(this.computer.getScoreBoard(), this.computer.getHand()));
+        //this.computer.setScoreBoard(this.dealer.checkHand(this.computer.getScoreBoard(), this.computer.getHand()));
 
         System.out.println("Printing computers scorebord");
         Printer.printScoreBoard(this.computer.getScoreBoard());

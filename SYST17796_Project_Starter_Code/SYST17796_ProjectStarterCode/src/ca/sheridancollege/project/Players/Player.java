@@ -25,8 +25,7 @@ public abstract class Player {
     protected ArrayList<Card> hand;
     protected static int numOfPlayers; //the unique ID for this player
     protected int playerId;
-    protected int[][] scoreBoard;
-    protected int[][] books;
+    protected Card.Value[] books;
     protected ArrayList<Card> desirableList;
 
     //Constructors:______________________________
@@ -73,31 +72,13 @@ public abstract class Player {
         this.playerId = playerId;
     }
 
-    public int[][] getScoreBoard() {
-        return scoreBoard;
-    }
-
-    public void setScoreBoard(int[][] scoreBoard) {
-        this.scoreBoard = scoreBoard;
-    }
-
-    public int[][] getBooks() {
-        return books;
-    }
-
-    public void setBooks(int[][] books) {
-        this.books = books;
-    }
-
     public ArrayList<Card> getDesirableList() {
         return desirableList;
     }
 
     public void setDesirableList(ArrayList<Card> desirableList) {
         this.desirableList = desirableList;
-    }
-    
-    
+    } 
 
     //Methods:_________________________
     public void printStats(){

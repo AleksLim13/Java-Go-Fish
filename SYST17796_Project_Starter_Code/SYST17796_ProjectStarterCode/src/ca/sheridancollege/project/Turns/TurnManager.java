@@ -6,6 +6,7 @@
 package ca.sheridancollege.project.Turns;
 import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Cards.GoFishCard;
+import ca.sheridancollege.project.Cards.Hand;
 import ca.sheridancollege.project.Cards.PseudoCard;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Utility.UInput;
@@ -31,6 +32,8 @@ public class TurnManager {
     private String coinToss;
     //E: Declare: another list to update back and forth. 
     private ArrayList<Player> updPlayerList;
+    //F: Declare: 
+    private Hand hand;
 
     //Constructor 
     public TurnManager(
@@ -72,51 +75,59 @@ public class TurnManager {
 
     public Player getHuman() {
         return human;
-    }
+    }//End G:*
 
     public void setHuman(Player human) {
         this.human = human;
-    }
+    }//End S:*
 
     public Player getComputer() {
         return computer;
-    }
+    }//End G:*
 
     public void setComputer(Player computer) {
         this.computer = computer;
-    }
+    }//End S:*
     
     public ArrayList<Player> getInPlayList() {
         return inPlayList;
-    }
+    }//End G:*
 
     public void setInPlayList(ArrayList<Player> inPlayList) {
         this.inPlayList = inPlayList;
-    }
+    }//End S:*
 
     public String getGuess() {
         return guess;
-    }
+    }//End G:*
 
     public void setGuess(String guess) {
         this.guess = guess;
-    }
+    }//End S:*
 
     public String getCoinToss() {
         return coinToss;
-    }
+    }//End G:*
 
     public void setCoinToss(String coinToss) {
         this.coinToss = coinToss;
-    }
+    }//End S:*
 
     public ArrayList<Player> getUpdPlayerList() {
         return updPlayerList;
-    }
+    }//End G:*
 
     public void setUpdPlayerList(ArrayList<Player> updPlayerList) {
         this.updPlayerList = updPlayerList;
     }
+
+    public Hand getHand() {
+        return hand;
+    }//End G:*
+
+    public void setHand(Hand hand) {
+        this.hand = hand;
+    }//End S:*
    
     //Start Normal Methods 
     public Player turnSwitcher(Player inPlay, Player notInPlay) {
@@ -148,11 +159,24 @@ public class TurnManager {
         
         boolean flag = true;
         while(flag){
-            Card cTemp = askForACard();
             
+            Card cTemp = askForACard();
+            boolean check = goFish(inPlay.getHand(), cTemp);
+            
+            if(!check){
+                hand.updateHandAdd(inPlay.getHand(), cTemp);
+                hand.updateHandDelete(notInPlay.getHand(), cTemp);
+            }//End I:*
+            
+            if(check){
+                hand.getCardFromDeck(inPlay.getHand());
+                turnSwitcher(inPlay, notInPlay);
+                flag = false; 
+            }//end I:*
         }//End W:*
+        //Set: limits.
         
-        return false; 
+        return false;      
     }//End M:*
     
      //Define: gets value and suit as string and then maps it. 
@@ -211,11 +235,14 @@ public class TurnManager {
         //C: Evaluate: 
         String result;
         if (guess.equals(flipped)) {
+            System.out.println("You're right. It was: " + flipped + " . It's your play");
             result = "correct";
+            inPlay = human;
         } //End I:*
         
         else {
             result = "incorrect";
+            inPlay = computer;
         }//End E:*
         
         //D: Copy It

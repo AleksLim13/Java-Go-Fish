@@ -22,25 +22,26 @@ public abstract class Player {
 
     //Fields:_______________________
     protected String name;
-    protected ArrayList<Card> hand;
+    protected List<Card> hand;
     protected static int numOfPlayers; //the unique ID for this player
     protected int playerId;
     protected List<Card> books;
-    protected ArrayList<Card> desirableList;
+    protected List<Card> desirableList;
 
     //Constructors:______________________________
     public Player() {
         numOfPlayers++;
         playerId = numOfPlayers;
+        books = new ArrayList<>();
+        desirableList = new ArrayList<>();
     }//End C:*
-
     
     //Getters & Setters:________________________
     public void setName(String newName) {
         this.name = newName;
     }//End S:*
 
-    public void setHand(ArrayList<Card> newHand) {
+    public void setHand(List<Card> newHand) {
         this.hand = newHand;
     }//End S:*
 
@@ -48,7 +49,7 @@ public abstract class Player {
         return name;
     }//End G:*
 
-    public ArrayList<Card> getHand() {
+    public List<Card> getHand() {
         return hand;
     }//End G:*
 
@@ -72,11 +73,11 @@ public abstract class Player {
         this.playerId = playerId;
     }
 
-    public ArrayList<Card> getDesirableList() {
+    public List<Card> getDesirableList() {
         return desirableList;
     }
 
-    public void setDesirableList(ArrayList<Card> desirableList) {
+    public void setDesirableList(List<Card> desirableList) {
         this.desirableList = desirableList;
     } 
 
@@ -88,8 +89,6 @@ public abstract class Player {
         this.books = books;
     }
     
-    
-
     //Methods:_________________________
     public void printStats(){
     

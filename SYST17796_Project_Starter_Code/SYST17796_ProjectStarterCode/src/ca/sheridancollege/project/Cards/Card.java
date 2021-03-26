@@ -5,6 +5,8 @@
  */
 package ca.sheridancollege.project.Cards;
 
+import java.util.Objects;
+
 /**
  * A class to be used as the base Card class for the project. Must be general
  * enough to be instantiated for any Card game. Students wishing to add to the code 
@@ -51,5 +53,26 @@ public abstract class Card
       
     @Override
     public abstract String toString();
+    
+      @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Card theCard = (Card) o;
+            return value == theCard.value &&
+                   suit == theCard.suit;
+        }//End M:*
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.suit);
+        hash = 67 * hash + Objects.hashCode(this.value);
+        return hash;
+    }
     
 }//End Class:_______________________+

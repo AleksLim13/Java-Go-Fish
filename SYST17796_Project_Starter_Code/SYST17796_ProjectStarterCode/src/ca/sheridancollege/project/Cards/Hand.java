@@ -15,15 +15,20 @@ import java.util.ArrayList;
  */
 public class Hand {
     
-    private ArrayList<Card> hand;
+    private List<Card> hand;
     private Deck deck;
 
-    public Hand(Deck deck) {
+    public Hand(Deck deck, List<Card> hand) {
         this.deck = deck;
+        this.hand = hand;
+        deckSetup();
     }//End C:*
 
     public Hand() {
         this.deck = new Deck();
+        this.hand = new ArrayList<>();
+        deckSetup();
+
     }//End C:*
     
     
@@ -116,7 +121,7 @@ public class Hand {
     
     
     //Define: normal getter for accessing the hand.
-    public ArrayList<Card> getHand() {
+    public List<Card> getHand() {
         return hand;
     }//End G:*
 

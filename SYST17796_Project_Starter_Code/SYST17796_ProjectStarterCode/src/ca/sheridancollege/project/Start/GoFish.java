@@ -74,9 +74,7 @@ public class GoFish extends Game {
     public void play() {
 
        
-        Card card = dealer.askForACard();
-        System.out.println(card.getValue() + " of " + card.getSuit());
-      
+ 
     }//End M:*
   
     @Override

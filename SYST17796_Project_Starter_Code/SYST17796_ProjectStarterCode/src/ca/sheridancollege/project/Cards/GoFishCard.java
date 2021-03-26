@@ -10,7 +10,9 @@ package ca.sheridancollege.project.Cards;
  * @author AllyCat13 @ Sheridan High 2021
  */
 public class GoFishCard extends Card {
-
+    
+    
+     
     public GoFishCard() {
         super();
     }//End C:*

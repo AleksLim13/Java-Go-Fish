@@ -8,25 +8,26 @@ import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Turns.Dealer;
 import ca.sheridancollege.project.Turns.Deck;
+import ca.sheridancollege.project.Turns.ScoreBoard;
 import ca.sheridancollege.project.Turns.TurnManager;
 import java.util.ArrayList;
 
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
+/************************************************************
  * @author AllyCat13 @ Sheridan High 2021
  */
+/**CLASS OVERVIEW:
+ * --------------
+ *
+ * 
+ ***************************************************************/
 public class GoFish extends Game {
 
     private final Dealer dealer; 
     private final Player human;
     private final Player computer;
     private final TurnManager turnController;
+    private final ScoreBoard scoreBoard;
    
             
     public GoFish(     String hName,
@@ -39,6 +40,7 @@ public class GoFish extends Game {
         this.human = new HumanPlayer();
         this.computer = new CompPlayer();
        this.turnController = turnController; 
+       this.scoreBoard = new ScoreBoard();
         
     }//End C:*
     public GoFish(
@@ -52,6 +54,8 @@ public class GoFish extends Game {
         this.human = human;
         this.computer = computer;
         this.turnController = turnController; 
+        this.scoreBoard = new ScoreBoard();
+
     }//End C:*
 
     public Dealer getDealer() {
@@ -73,8 +77,17 @@ public class GoFish extends Game {
     @Override
     public void play() {
 
-       
- 
+      //A: Setting up hands.
+      dealer.createHand(7);
+      human.setHand(dealer.getHand());
+      
+      dealer.createHand(7);
+      computer.setHand(dealer.getHand());
+      
+      //B: Setting desireable lists. 
+      human.setDesirableList(scoreBoard.getDupes(human.getHand()));
+      computer.setDesirableList(scoreBoard.getDupes());
+      
     }//End M:*
   
     @Override

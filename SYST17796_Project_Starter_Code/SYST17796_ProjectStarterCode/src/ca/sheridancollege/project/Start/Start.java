@@ -5,40 +5,15 @@
  */
 package ca.sheridancollege.project.Start;
 
-import ca.sheridancollege.project.Players.CompPlayer;
-import ca.sheridancollege.project.Players.HumanPlayer;
-import ca.sheridancollege.project.Players.Player;
-import ca.sheridancollege.project.Turns.Dealer;
-import ca.sheridancollege.project.Turns.Deck;
-import ca.sheridancollege.project.Turns.TurnManager;
-import java.util.ArrayList;
-
 /**
  *
- * @author AllyCat13 @ Sheridan High 2021. 
+ * @author aleks
  */
-public class Start {
-  
-   
-    public static void main(String[] args){
+public abstract class Start {
+     //Define: programs starting point.
     
-        Player human = new HumanPlayer();
-        Player computer = new CompPlayer();
-        
-    GoFish game = new GoFish(
-                             new Dealer(new Deck(),
-                             new ArrayList<>()),
-                             human,
-                             computer,
-                             new TurnManager(human,
-                                              computer,
-                                              human,
-                                              computer,
-                                              new ArrayList<>(),
-                                              new ArrayList<>()
-                                               )//End inner:* 
-                            );//End outer:*
-    game.play();
-    }//End M:*
+    public abstract void play();
+    
+ 
     
 }//End CL:*

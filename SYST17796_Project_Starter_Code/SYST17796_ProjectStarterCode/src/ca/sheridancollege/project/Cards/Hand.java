@@ -14,13 +14,13 @@ import java.util.ArrayList;
 public class Hand {
     
     //Define: adds a Card to a provided hand and copies the updated hand.
-    public ArrayList<Card> addCard(ArrayList<Card> cardHand, Card card) {
+    public ArrayList<Card> addCardInGeneral(ArrayList<Card> cardHand, Card card) {
         cardHand.add(card);
         return cardHand;
     }//End M:*
 
     //Define: 
-    private ArrayList<Card> deleteCard(
+    private ArrayList<Card> deleteCardInGeneral(
                                        ArrayList<Card> cardHand, 
                                        int posit
                                        ) 
@@ -31,20 +31,20 @@ public class Hand {
     }//End M:*
 
     //Define: "sorry don't have that card dude." Allor, take a card from the deck.  
-    public ArrayList<Card> drawCard(ArrayList<Card> cardHand) 
+    public ArrayList<Card> getCardFromDeck(ArrayList<Card> cardHand) 
     {
-        cardHand.add(randoCard());
+        cardHand.add(createRandoCard());
         return cardHand;
     }//End M:*
 
     //Define: ablility to remove target from other players hand. Calls delete method. 
-    public ArrayList<Card> checkHandAndRemove(
+    public ArrayList<Card> deleteCardFromComputer(
             ArrayList<Card> cardHand,//Incl: list for C's.
             ArrayList<Integer> dupesHolder//Incl: list for copies. 
                                              ) 
      {
         if (dupesHolder != null) {//Eval: is it empty?
-            cardHand = deleteCard(
+            cardHand = deleteCardInGeneral(
                                   cardHand, 
                                   dupesHolder.get(0)
                                   );//Assi: 
@@ -54,7 +54,7 @@ public class Hand {
  
     //Need to know what the index of the card need to remove 
     //from hand
-    public int findPosit(ArrayList<Card> hand, Card tCard) {
+    public int findPositInGeneral(ArrayList<Card> hand, Card tCard) {
         int posit = 0;
         for (int i = 0; i < hand.size(); i++) {
             if (hand.get(i).equals(tCard)) {
@@ -66,7 +66,7 @@ public class Hand {
     }//End M:*
     
     //Define: behavior for taking random card from deck after told to go fish. 
-    private GoFishCard randoCard() 
+    private GoFishCard createRandoCard() 
     {
         //A: create: ranges for random number to map against. 
         Card.Value[] values = Card.Value.values();

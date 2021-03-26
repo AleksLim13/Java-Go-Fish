@@ -5,7 +5,7 @@
  */
 package ca.sheridancollege.project.Cards;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,25 +13,26 @@ import java.util.ArrayList;
  */
 public class Hand {
     
+    
     //Define: adds a Card to a provided hand and copies the updated hand.
-    private ArrayList<Card> addCardToHand(ArrayList<Card> cardHand, Card card) {
+    private List<Card> addCardToHand(List<Card> cardHand, Card card) {
         cardHand.add(card);
         return cardHand;
     }//End M:*
 
     //Define: 
-    private ArrayList<Card> deleteCardFromHand(
-                                       ArrayList<Card> cardHand, 
+    private List<Card> deleteCardFromHand(
+                                       List<Card> cardHand, 
                                        int posit
                                        ) 
     {
-        ArrayList<Card> resultHand = cardHand;
+        List<Card> resultHand = cardHand;
         resultHand.remove(posit);
         return resultHand;
     }//End M:*
 
     //Define: "sorry don't have that card dude." Allor, take a card from the deck.  
-    public ArrayList<Card> getCardFromDeck(ArrayList<Card> cardHand) 
+    public List<Card> getCardFromDeck(List<Card> cardHand) 
     {
         cardHand.add(createRandoCard());
         return cardHand;
@@ -39,8 +40,8 @@ public class Hand {
     
     
     //Define: ablility to remove target from other players hand. Calls delete method. 
-    public ArrayList<Card> updateHandDelete(
-            ArrayList<Card> cHand,//Incl: list for C's.
+    public List<Card> updateHandDelete(
+            List<Card> cHand,//Incl: list for C's.
             Card tCard//Incl: list for copies. 
     )
                         
@@ -50,8 +51,8 @@ public class Hand {
     }//End M:*
     
     //Define: ablility to remove target from other players hand. Calls delete method. 
-    public ArrayList<Card> updateHandAdd(
-            ArrayList<Card> cHand,//Incl: list for C's.
+    public List<Card> updateHandAdd(
+            List<Card> cHand,//Incl: list for C's.
             Card tCard//Incl: list for copies. 
     )
                         
@@ -62,7 +63,7 @@ public class Hand {
  
     //Need to know what the index of the card need to remove 
     //from hand
-    private int findPosit(ArrayList<Card> hand, Card tCard) {
+    private int findPosit(List<Card> hand, Card tCard) {
         int posit = 0;
         for (int i = 0; i < hand.size(); i++) {
             if (hand.get(i).equals(tCard)) {
@@ -89,7 +90,9 @@ public class Hand {
         Card.Suit randSuit = suits[suitPossible];
 
         //D: create: the card object and copy it. 
-        return new GoFishCard(randSuit, randVal);
+        Card rCard = new GoFishCard(randSuit, randVal);
+        
+        return null;
     }//End M:*
 
 }//End CL:*

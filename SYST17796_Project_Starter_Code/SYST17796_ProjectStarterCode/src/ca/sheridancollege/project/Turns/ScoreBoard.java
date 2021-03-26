@@ -7,15 +7,53 @@ package ca.sheridancollege.project.Turns;
 
 import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Players.Player;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author aleks
+ * 
+ * ---------------------------------------------------------------------<Look
+ * CLASS OVERVIEW:
+ * ----------------
+ * 
+ * What is this class all about? Is it well designed? If so, how? 
+ * So, show and tell. Tasks related to strategy. 
+ * Tasks related to determining what to ask for. Determining based on the
+ * content of a players hand. Many calculations performed here related to 
+ * the advancement of the game. 
+ * ----------------------------------------------------------------------<LOOK
  */
 public class ScoreBoard {
     
     private Player winner;
+    private List<Card> dupes;
+
+    public ScoreBoard() {
+        this.dupes = new ArrayList<>();
+    }//End C:*
+
+    public ScoreBoard(Player winner, List<Card> dupes) {
+        this.winner = winner;
+        this.dupes = dupes;
+    }//End C:*
+
+    public Player getWinner() {
+        return winner;
+    }//End G:*
+
+    public void setWinner(Player winner) {
+        this.winner = winner;
+    }//End S:*
+
+    public List<Card> getDupes() {
+        return dupes;
+    }//End G:*
+
+    public void setDupes(List<Card> dupes) {
+        this.dupes = dupes;
+    }//End S:*
     
     public void calcBooks(
             Card tNum,
@@ -23,15 +61,18 @@ public class ScoreBoard {
             List<Card> books,
             List<Card> hand
     ) {
-        //----
         int ilCount = 0;
+        //Repeat: set outer loop. 
         for (int i = 0; i < dupes.size(); i++) {
-            //A.3.1: increment counter if already in duplicate list
-            if (tNum.equals(dupes.get(i))) {
+            //A.3.1: Check:
+            if (tNum.equals(dupes.get(i))) 
+            {
+                //Increment: counter if already in duplicate list. 
                 ilCount++;
             }//End I:*                    
         }//End F:*
         if (ilCount == 4) {
+            //Add: 
             books.add(tNum);
             //Notice: should only ever be four of a kind. E.g., standard deck format. 
             for (int j = 0; j < 4; j++) {
@@ -39,8 +80,7 @@ public class ScoreBoard {
             }//End I:*                  
         }//End I:*  
     }//End M:*
-    
-    
+     
      public int findFirstIndex(
             Card tNum,
             List<Card> tList
@@ -54,17 +94,14 @@ public class ScoreBoard {
         }//End F:*
         return pos;
     }//End M:*
-     
-     
-       //Define: get a list of duplicate cards. 
-    public static void getDupes(
-            List<Integer> hand,
-            List<Integer> dupes,
-            List<Integer> books
-    ) {
-
+      
+       //Define: get a list of duplicate cards. Nested for loop structure with if check.
+    public List<Card> getDupes(
+                              List<Card> hand
+                              ) 
+    {
+        dupes.clear();
         //A: main for loop: compare each card to every other card in hand.
-        //------------------
         for (int i = 0; i < hand.size(); i++) {
             int lCount = 0;
             //A.1: par two of compare each card to every other card in hand.
@@ -77,10 +114,14 @@ public class ScoreBoard {
             }//End F:*
             //A.2: counter > 1 means theres duplicates.
             //-----
+            //Check: 
             if (lCount > 1) {
                 dupes.add(hand.get(i));
             }//End I:*
         }//End F:*
+        
+        //Copy: 
+        return dupes;
     }//End M:*
 
     //Define: under construction...

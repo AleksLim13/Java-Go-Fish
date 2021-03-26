@@ -144,13 +144,15 @@ public class TurnManager {
         return true;
     }//End M:*
     
-    public void shouldKeepGoing(ArrayList<Card> hand){
+    public boolean shouldKeepGoing(){
         
         boolean flag = true;
         while(flag){
             Card cTemp = askForACard();
             
         }//End W:*
+        
+        return false; 
     }//End M:*
     
      //Define: gets value and suit as string and then maps it. 

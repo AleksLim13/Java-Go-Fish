@@ -37,6 +37,7 @@ public class TurnManager {
     private ArrayList<Player> updPlayerList;
     //F: Declare: 
     private Hand hand;
+    private ScoreBoard scoreBoard;
 
     //Constructor 
     public TurnManager(
@@ -44,7 +45,8 @@ public class TurnManager {
                         Player computer,
                         ArrayList<Player> inPlayList,
                         ArrayList<Player> udpPlayerList,
-                        Hand hand
+                        Hand hand,
+                        ScoreBoard scoreBoard
                          ) 
     {
         this.human = human;
@@ -52,6 +54,7 @@ public class TurnManager {
         this.inPlayList = inPlayList;
         this.updPlayerList = udpPlayerList;  
         this.hand = hand;
+        this.scoreBoard = scoreBoard;
     }//End C:*
 
     //Getter 
@@ -76,9 +79,15 @@ public class TurnManager {
     public void setHand(Hand hand) {
         this.hand = hand;
     }
-    
-    
 
+    public ScoreBoard getScoreBoard() {
+        return scoreBoard;
+    }
+
+    public void setScoreBoard(ScoreBoard scoreBoard) {
+        this.scoreBoard = scoreBoard;
+    }
+  
     //Setter 
     public void setNotInPlay(Player newNotInPlay) {
         this.notInPlay = newNotInPlay;

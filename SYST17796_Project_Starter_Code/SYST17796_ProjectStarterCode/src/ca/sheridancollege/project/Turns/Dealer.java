@@ -201,14 +201,14 @@ public class Dealer {
     }//End M:*
 
     //This works as a check if card is in opponents hand 
-    //so there turn keeps going
+    //so there turn keeps going. Returns a yes or no. 
     public boolean goFish(ArrayList<Card> hand, Card card) {
         for (int i = 0; i < hand.size(); i++) {
             if (hand.get(i).equals(card)) {
-                return true;
+                return false;
             }//End I:*
         }//End F:*
-        return false;
+        return true;
     }//End M:*
 
     //Need to know what the index of the card need to remove 

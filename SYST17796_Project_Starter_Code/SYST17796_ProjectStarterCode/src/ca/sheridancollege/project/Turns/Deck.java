@@ -10,6 +10,7 @@ package ca.sheridancollege.project.Turns;
 import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Cards.GoFishCard;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Deck {
     
     //Fields:________________________
     
-    private ArrayList<Card> deck; 
+    private List<Card> deck; 
     
     //Constructors:______________________
     
@@ -31,7 +32,7 @@ public class Deck {
     
     //Getters & Setters:____________________
     
-        public ArrayList<Card> getDeck() {
+        public List<Card> getDeck() {
         return deck;
     }//End G:*
 
@@ -60,5 +61,33 @@ public class Deck {
             deck.set(i, deck.get(rando));
             deck.set(rando, temp);         
         }//End Outer F:*
+    }//End M:*
+    
+    private int findPosit(List<Card> hand, Card tCard) {
+        int posit = 0;
+        for (int i = 0; i < hand.size(); i++) {
+            if (hand.get(i).equals(tCard)) {
+                posit = i;
+                return posit;
+            }//End I:*
+        }//End F:*
+        return posit;
+    }//End M:*
+    
+    private int findPositOfValueOnly(List<Card> deck, Card tCard) {
+        int posit = 0;
+        for (int i = 0; i < deck.size(); i++) {
+            if (deck.get(i).getValue() == tCard.getValue()) {
+                posit = i;
+                return posit;
+            }//End I:*
+        }//End F:*
+        return posit;
+    }//End M:*
+    
+    
+    public List<Card> removeCard(Card card){
+        deck.remove(findPosit(deck, card));
+        return deck;
     }//End M:*
 } //End class:_______________________

@@ -8,58 +8,71 @@ package ca.sheridancollege.project.Turns;
 //Imports:__________________________________
 import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Cards.GoFishCard;
+import ca.sheridancollege.project.Cards.PseudoCard;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Utility.UInput;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
-/**
+/**************************************************
  *
  * @author AllyCat13 @ Sheridan High 2021
- */
+ ***************************************************/
 public class Dealer {
 
     //Field Variables:_____________________
     private Deck deck;
     private ArrayList<Card> hand;
-    
-    public Dealer(){
-    }
+
+    public Dealer() 
+    {
+        
+    }//End C:*
 
     //Constructors:_____________________
-    public Dealer(Deck deck,
-            ArrayList<Card> hand) {
+    
+    //Define: Normal constructor. Sets fields. Calls known method. 
+    public Dealer(
+                  Deck deck,
+                  ArrayList<Card> hand
+                  ) 
+    {
         this.deck = deck;
         this.hand = hand;
         this.deckSetup();
     }//End C:*
 
     //Getters & Setters:__________________________
+    
+    //Define: Normal getter. Accessing the deck. 
     public Deck getDeck() {
         return deck;
     }//End G:*
 
+    //Define: normal setter. Assign new deck.
     public void setDeck(Deck deck) {
         this.deck = deck;
     }//End S:*
 
+    //Define: normal getter for accessing the hand.
     public ArrayList<Card> getHand() {
         return hand;
     }//End G:*
 
+    //Define: normal setter for a new hand.
     public void setHand(ArrayList<Card> hand) {
         this.hand = hand;
     }//End S:*
 
     //Methods:_________________________
+    
+    //Define: this fills deck and shuffles it. Uses 2 known methods.
     private void deckSetup() {
         deck.initDeck();
         deck.shuffle();
     }//End M:*
 
-    //Deal first card and simultaneously remove it from deck.
+    //Define: Deal first card and simultaneously remove it from deck.
     private Card startDeal() {
         Card card;
         card = deck.getDeck().get(0);
@@ -69,6 +82,7 @@ public class Dealer {
         return card;
     }//End M:*
 
+    //Define: provide number of cards. Repetition solution. Call's start deal.
     public void createHand(int size) {
 
         if (hand.size() > 0) {
@@ -82,26 +96,27 @@ public class Dealer {
     }//End M:*
 
     //Define: behavior for taking random card from deck after told to go fish. 
-    private GoFishCard randShuffle() {
-
-        //A: create ranges for random number to map against. 
+    private GoFishCard randShuffle() 
+    {
+        //A: create: ranges for random number to map against. 
         Card.Value[] values = Card.Value.values();
         Card.Suit[] suits = Card.Suit.values();
 
-        //B: Create the random numbers modelling suit and values. 
+        //B: Create: the random numbers modelling suit and values. 
         int valPossible = (int) (Math.random() * values.length) + 1;
         int suitPossible = (int) (Math.random() * suits.length) + 1;
 
-        //C: asssign the values determined by a random number
+        //C: asssign: the values determined by a random number
         Card.Value randVal = values[valPossible];
         Card.Suit randSuit = suits[suitPossible];
 
-        //D: create the card object and copy it. 
+        //D: create: the card object and copy it. 
         return new GoFishCard(randSuit, randVal);
     }//End M:*
 
     //Define: "sorry don't have that card dude." Allor, take a card from the deck.  
-    public ArrayList<Card> drawCard(ArrayList<Card> cardHand) {
+    public ArrayList<Card> drawCard(ArrayList<Card> cardHand) 
+    {
         cardHand.add(randShuffle());
         return cardHand;
     }//End M:*
@@ -110,55 +125,78 @@ public class Dealer {
     public ArrayList<Card> checkHandAndRemove(
             ArrayList<Card> cardHand,//Incl: list for C's.
             ArrayList<Integer> dupesHolder//Incl: list for copies. 
-    ) {
+                                             ) 
+     {
         if (dupesHolder != null) {//Eval: is it empty?
-            cardHand = deleteCard(cardHand, dupesHolder.get(0));//Assi: 
+            cardHand = deleteCard(
+                                  cardHand, 
+                                  dupesHolder.get(0)
+                                  );//Assi: 
         }//End I:*
         return cardHand;
     }//End M:*
 
-    //Takes value as parameter and uses it to remove that card from 
-    //a simulated card hand also passed to it. 
-    private ArrayList<Card> deleteCard(ArrayList<Card> cardHand, int posit) {
+    //Define: 
+    private ArrayList<Card> deleteCard(
+                                       ArrayList<Card> cardHand, 
+                                       int posit
+                                       ) 
+    {
         ArrayList<Card> resultHand = cardHand;
         resultHand.remove(posit);
         return resultHand;
-    }
+    }//End M:*
 
-    //Adds a value passed to it's card hand list also passed to it 
-    //To simulate receiving the card from your opponent and
-    //Putting it in your hand. 
+    //Define: adds a Card to a provided hand and copies the updated hand.
     public ArrayList<Card> addCard(ArrayList<Card> cardHand, Card card) {
         cardHand.add(card);
         return cardHand;
     }//End M:*
 
-    //compares player objects field var books. 
-    //Comparison is based on nunber of key value pairs in books 
+    
+    //Define: under construction...
     public Player determineWinner() {
         return null;
     }//End M:*
 
-    //This prompts for a card it knows about from a 
-    //Param value taken from elsewhere to simulate a card ask of 
-    //a opponent. It has validation for a value from 1-13(deck values)
-    //and to make sure it's a number. 
-    //Human player will respond to this method directly. 
-    public PseudoCard askForACard() {
+    //Define: gets value and suit as string and then maps it. 
+    //while loop overall strcuture with inner for loop and if.
+    public Card askForACard() {
         boolean flag = true;
+        //A: Iterate: 
         while (flag) {
+            //A.1: Get: 
             System.out.println("Which card value do you want?");
             String cvDesire = UInput.promptStringUser();
+            //A.2: Get: 
             System.out.println("Which card suit do you want?");
             String csDesire = UInput.promptStringUser();
-            PseudoCard cDesire = new PseudoCard(cvDesire.toLowerCase(), csDesire.toLowerCase());
+            //A.3: Create: 
+            PseudoCard cDesire = new PseudoCard(
+                                                cvDesire.toUpperCase(), 
+                                                csDesire.toUpperCase()
+                                            );
+            //A.4: Initialize: 
             cDesire.createDeck();
-            for(int i = 0; i < cDesire.getPseudoDeck().size(); i++){
-               if(cDesire.equals(cDesire.getPseudoDeck().get(i))){
-                   return cDesire;
-               }//End F:*
+            //A.5: Repeat: 
+            for (int i = 0; i < cDesire.getPseudoDeck().size(); i++) {
+                //A.6: Check: 
+                if (cDesire.equals(cDesire.getPseudoDeck().get(i))) {
+                    //A.7: Create: 
+                    Card resCard = new GoFishCard(
+                                                            Card.Suit.valueOf(
+                                                                        cDesire.getSuit()
+                                                                             ), //End M:*
+                                                            Card.Value.valueOf(
+                                                                        cDesire.getValue()
+                                                                              )//End M:*
+                                                       );//End C:*
+                    //A.9: Copy: 
+                    return resCard;
+                }//End I:*
             }//End F:*
         }//End W:*
+        //A.10: Anticipate: 
         return null;
     }//End M:*
 
@@ -249,105 +287,6 @@ public class Dealer {
         }//End F:*
         return pos;
     }//End M:*
-    
-    public static void main(String[] args){
-        Dealer dealer = new Dealer();
-        PseudoCard card = dealer.askForACard();
-        
-        System.out.println(card.getValue() + " of " + card.getSuit());
-        
-    }//End M:*
-    
-class PseudoCard {
-
-    private String value;
-    private String suit;
-    public String[] suits = {"hearts", "clubs", "diamonds", "spades"};
-    public String[] values = {"ace", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"};
-    private List<PseudoCard> pseudoDeck;
-
-    public PseudoCard(String value, String suit) {
-        this.value = value;
-        this.suit = suit;
-        this.pseudoDeck = new ArrayList<>();
-    }//End C:*
-
-    public List<PseudoCard> createDeck() {
-        for (String v : values) {
-            for (String s: suits) {
-                pseudoDeck.add(new PseudoCard(v, s));
-            } //End F:*
-        } //End F:*
-        return pseudoDeck;
-    }//End M:*
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public String getSuit() {
-        return suit;
-    }
-
-    public void setSuit(String suit) {
-        this.suit = suit;
-    }
-
-    public String[] getSuits() {
-        return suits;
-    }
-
-    public void setSuits(String[] suits) {
-        this.suits = suits;
-    }
-
-    public String[] getValues() {
-        return values;
-    }
-
-    public void setValues(String[] values) {
-        this.values = values;
-    }
-
-    public List<PseudoCard> getPseudoDeck() {
-        return pseudoDeck;
-    }
-
-    public void setPseudoDeck(List<PseudoCard> pseudoDeck) {
-        this.pseudoDeck = pseudoDeck;
-    }
-    
-    @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (o == null || getClass() != o.getClass()) {
-                return false;
-            }
-            PseudoCard theCard = (PseudoCard) o;
-            return value.equals(theCard.value) &&
-                   suit.equals(theCard.suit);
-        }//End M:*
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.value);
-        hash = 23 * hash + Objects.hashCode(this.suit);
-        hash = 23 * hash + Arrays.deepHashCode(this.suits);
-        hash = 23 * hash + Arrays.deepHashCode(this.values);
-        hash = 23 * hash + Objects.hashCode(this.pseudoDeck);
-        return hash;
-    }
-
- 
-
-}//End CL:*
 
 }//End class
 

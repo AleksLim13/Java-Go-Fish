@@ -9,8 +9,10 @@ import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Turns.Dealer;
 import ca.sheridancollege.project.Turns.Deck;
 import ca.sheridancollege.project.Turns.TurnSwitcher;
-import ca.sheridancollege.project.Utility.Printer;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -74,56 +76,11 @@ public class GoFish extends Game {
     @Override
     public void play() {
 
-        System.out.println("Dealer creating a hand");
-        this.dealer.createHand(7);
         
-        System.out.println("Dealer setting humans hand");
-        this.human.setHand(this.dealer.getHand());
-        
-        System.out.println("Printing humans hand");
-        Printer.printHand(this.human.getHand());
-        
-        System.out.println("Creating humans scorebord");
-        //this.dealer.createScoreBoard(new int[13][2]);
-        
-        System.out.println("Setting humans scorebord");
-        //this.human.setScoreBoard(this.dealer.getScoreBoard());
-        
-        System.out.println("Printing humans scorebord");
-        //Printer.printScoreBoard(this.human.getScoreBoard());
-        
-        System.out.println("Setting updated sb");
-        //this.human.setScoreBoard(this.dealer.checkHand(this.human.getScoreBoard(), this.human.getHand()));
-        
-        System.out.println("Printing humans scorebord");
-        //Printer.printScoreBoard(this.human.getScoreBoard());
-        
-        System.out.println("Dealer creating a hand");
-        this.dealer.createHand(7);
-        
-        System.out.println("Dealer setting computers hand");
-        this.computer.setHand(this.dealer.getHand());
-        
-        System.out.println("Printing computers hand");
-        Printer.printHand(this.computer.getHand());
-        
-        System.out.println("Creating computers scorebord");
-        //this.dealer.createScoreBoard(new int[13][2]);
-        
-        System.out.println("Setting computers scorebord");
-        //this.computer.setScoreBoard(this.dealer.getScoreBoard());
-        
-        //To change body of generated methods, choose Tools | Templates.
-        //System.out.println("Printing computers scorebord");
-        //Printer.printScoreBoard(this.computer.getScoreBoard());
-        
-        System.out.println("Setting computers updated sb");
-        //this.computer.setScoreBoard(this.dealer.checkHand(this.computer.getScoreBoard(), this.computer.getHand()));
-
-        System.out.println("Printing computers scorebord");
-        //Printer.printScoreBoard(this.computer.getScoreBoard());
-       
+      
     }//End M:*
+    
+
 
     @Override
     public void declareWinner() {
@@ -135,3 +92,93 @@ public class GoFish extends Game {
 
 
 }//End Class:________________+
+
+class PseudoCard {
+
+    private String value;
+    private String suit;
+    public String[] suits = {"hearts", "clubs", "diamonds", "spades"};
+    public String[] values = {"ace", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack", "queen", "king"};
+    private List<PseudoCard> pseudoDeck;
+
+    public PseudoCard(String value, String suit) {
+        this.value = value;
+        this.suit = suit;
+    }//End C:*
+
+    public List<PseudoCard> createDeck() {
+        for (String v : values) {
+            for (String s: suits) {
+                pseudoDeck.add(new PseudoCard(v, s));
+            } //End F:*
+        } //End F:*
+        return pseudoDeck;
+    }//End M:*
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String getSuit() {
+        return suit;
+    }
+
+    public void setSuit(String suit) {
+        this.suit = suit;
+    }
+
+    public String[] getSuits() {
+        return suits;
+    }
+
+    public void setSuits(String[] suits) {
+        this.suits = suits;
+    }
+
+    public String[] getValues() {
+        return values;
+    }
+
+    public void setValues(String[] values) {
+        this.values = values;
+    }
+
+    public List<PseudoCard> getPseudoDeck() {
+        return pseudoDeck;
+    }
+
+    public void setPseudoDeck(List<PseudoCard> pseudoDeck) {
+        this.pseudoDeck = pseudoDeck;
+    }
+    
+    @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            PseudoCard theCard = (PseudoCard) o;
+            return value.equals(theCard.value) &&
+                   suit.equals(theCard.suit);
+        }//End M:*
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.value);
+        hash = 23 * hash + Objects.hashCode(this.suit);
+        hash = 23 * hash + Arrays.deepHashCode(this.suits);
+        hash = 23 * hash + Arrays.deepHashCode(this.values);
+        hash = 23 * hash + Objects.hashCode(this.pseudoDeck);
+        return hash;
+    }
+
+ 
+
+}//End CL:*

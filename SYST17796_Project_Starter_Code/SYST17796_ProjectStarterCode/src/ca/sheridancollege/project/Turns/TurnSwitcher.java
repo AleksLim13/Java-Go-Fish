@@ -24,12 +24,14 @@ public class TurnSwitcher {
     private ArrayList<Player> updPlayerList;
 
     //Constructor 
-    public TurnSwitcher(Player human,
+    public TurnSwitcher(
+                        Player human,
                         Player computer,
                         Player inPlay,
                         Player notInPlay,
                         ArrayList<Player> inPlayList,
-                        ArrayList<Player> udpPlayerList) {
+                        ArrayList<Player> udpPlayerList
+                         ) {
         this.human = human;
         this.computer = computer;
         this.inPlay = inPlay;
@@ -41,12 +43,12 @@ public class TurnSwitcher {
     //Getter 
     public Player getInPlay() {
         return inPlay;
-    }
+    }//End G:*
 
     //Setter 
     public void setInPlay(Player newInPlay) {
         this.inPlay = newInPlay;
-    }
+    }//End S:*
 
     //Getter 
     public Player getNotInPlay() {
@@ -58,8 +60,6 @@ public class TurnSwitcher {
         this.notInPlay = newNotInPlay;
     }//End S:*
 
-  
-  
     public Player getHuman() {
         return human;
     }
@@ -75,9 +75,7 @@ public class TurnSwitcher {
     public void setComputer(Player computer) {
         this.computer = computer;
     }
-
-
-
+    
     public ArrayList<Player> getInPlayList() {
         return inPlayList;
     }
@@ -109,39 +107,46 @@ public class TurnSwitcher {
     public void setUpdPlayerList(ArrayList<Player> updPlayerList) {
         this.updPlayerList = updPlayerList;
     }
-    
-    
-
+   
     //Start Normal Methods 
     public Player turnSwitcher(Player inPlay, Player notInPlay) {
+        
         //A: 
         Player temp = inPlay;
+        
         //B: 
         inPlay = notInPlay;
         notInPlay = temp;
+        
         //C: 
         return inPlay;
     }//End M:*
 
     //Deciding which player goes first 
     public String coinToss(String guess) {
-        //A: Create It
+        
+        //A: Create: the coin as string array.
         String[] coin = {"heads", "tails"};
+        
+        ///B: simulate: the coin landing with value face up.
         int decision = (int) (Math.random() * 2);
-        //B: Do It
+        
+        //C: Get: store the result; either heads or tails.
         String flipped = coin[decision];
-        //C: Evaluate It
+        
+        //C: Evaluate: 
         String result;
         if (guess.equals(flipped)) {
             result = "correct";
-        } else {
+        } //End I:*
+        
+        else {
             result = "incorrect";
-        }
+        }//End E:*
+        
         //D: Copy It
         return result;
         
     }//End M:*
-    
-    
     
 }//End class 

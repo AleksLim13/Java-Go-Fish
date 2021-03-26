@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package ca.sheridancollege.project.Turns;
+import ca.sheridancollege.project.Cards.Card;
+import ca.sheridancollege.project.Cards.GoFishCard;
+import ca.sheridancollege.project.Cards.PseudoCard;
 import ca.sheridancollege.project.Players.Player;
+import ca.sheridancollege.project.Utility.UInput;
 import java.util.ArrayList;
 
 /**
@@ -14,16 +18,18 @@ import java.util.ArrayList;
 public class TurnManager {
 
     //Declare: fields: for keeping track. 
-    //A: it's only a two player game. 
+    //A: Declare: it's only a two player game. 
     private Player human;
     private Player computer;
-    //B: 
+    //B: Declare: designate storage for each.
     private Player inPlay;
     private Player notInPlay;
-    //C:
+    //C: Declare: a list to kee track. 
     private ArrayList<Player> inPlayList;
+    //D: declare: storage for the coin toss.
     private String guess;
     private String coinToss;
+    //E: Declare: another list to update back and forth. 
     private ArrayList<Player> updPlayerList;
 
     //Constructor 
@@ -34,7 +40,8 @@ public class TurnManager {
                         Player notInPlay,
                         ArrayList<Player> inPlayList,
                         ArrayList<Player> udpPlayerList
-                         ) {
+                         ) 
+    {
         this.human = human;
         this.computer = computer;
         this.inPlay = inPlay;
@@ -114,15 +121,77 @@ public class TurnManager {
     //Start Normal Methods 
     public Player turnSwitcher(Player inPlay, Player notInPlay) {
         
-        //A: 
+        //A: Hold: Pin it to a baord.
         Player temp = inPlay;
         
-        //B: 
+        //B: Switch: swap the two. 
         inPlay = notInPlay;
         notInPlay = temp;
         
-        //C: 
+        //C: Copy: remember it. 
         return inPlay;
+    }//End M:*
+    
+    
+    //This works as a check if card is in opponents hand 
+    //so there turn keeps going. Returns a yes or no. 
+    public boolean goFish(ArrayList<Card> hand, Card card) {
+        for (int i = 0; i < hand.size(); i++) {
+            if (hand.get(i).equals(card)) {
+                return false;
+            }//End I:*
+        }//End F:*
+        return true;
+    }//End M:*
+    
+    public void shouldKeepGoing(ArrayList<Card> hand){
+        
+        boolean flag = true;
+        while(flag){
+            Card cTemp = askForACard();
+            
+        }//End W:*
+    }//End M:*
+    
+     //Define: gets value and suit as string and then maps it. 
+    //while loop overall strcuture with inner for loop and if.
+    public Card askForACard() {
+        boolean flag = true;
+        //A: Iterate: 
+        while (flag) {
+            //A.1: Get: 
+            System.out.println("Which card value do you want?");
+            String cvDesire = UInput.promptStringUser();
+            //A.2: Get: 
+            System.out.println("Which card suit do you want?");
+            String csDesire = UInput.promptStringUser();
+            //A.3: Create: 
+            PseudoCard cDesire = new PseudoCard(
+                                                cvDesire.toUpperCase(), 
+                                                csDesire.toUpperCase()
+                                            );
+            //A.4: Initialize: 
+            cDesire.createDeck();
+            //A.5: Repeat: 
+            for (int i = 0; i < cDesire.getPseudoDeck().size(); i++) {
+                //A.6: Check: 
+                if (cDesire.equals(cDesire.getPseudoDeck().get(i))) {
+                    //A.7: Create: 
+                    Card resCard = new GoFishCard(
+                                                            Card.Suit.valueOf(
+                                                                        cDesire.getSuit()
+                                                                             ), //End M:*
+                                                            Card.Value.valueOf(
+                                                                        cDesire.getValue()
+                                                                              )//End M:*
+                                                       );//End C:*
+                    //A.9: Copy: 
+                    return resCard;
+                }//End I:*
+            }//End F:*
+        }//End W:*
+        //A.10: Anticipate: 
+        return null;
     }//End M:*
 
     //Deciding which player goes first 

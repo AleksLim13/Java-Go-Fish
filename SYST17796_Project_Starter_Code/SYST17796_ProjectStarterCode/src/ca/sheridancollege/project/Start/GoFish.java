@@ -8,7 +8,7 @@ import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Turns.Dealer;
 import ca.sheridancollege.project.Turns.Deck;
-import ca.sheridancollege.project.Turns.TurnSwitcher;
+import ca.sheridancollege.project.Turns.TurnManager;
 import java.util.ArrayList;
 
 
@@ -26,14 +26,14 @@ public class GoFish extends Game {
     private final Dealer dealer; 
     private final Player human;
     private final Player computer;
-    private final TurnSwitcher turnController;
+    private final TurnManager turnController;
    
             
     public GoFish(     String hName,
                        ArrayList<Card> hand,
                        ArrayList<Card> desirableList,
                        String cName,
-                       TurnSwitcher turnController) {
+                       TurnManager turnController) {
         super("Go Fish");
         this.dealer = new Dealer(new Deck(), new ArrayList<>());
         this.human = new HumanPlayer();
@@ -45,7 +45,7 @@ public class GoFish extends Game {
                   Dealer dealer,
                   Player human,
                   Player computer,
-                  TurnSwitcher turnController
+                  TurnManager turnController
                   ) {
         super("Go Fish");
         this.dealer = dealer;
@@ -66,7 +66,7 @@ public class GoFish extends Game {
         return computer;
     }
 
-    public TurnSwitcher getTurnController() {
+    public TurnManager getTurnController() {
         return turnController;
     }
 

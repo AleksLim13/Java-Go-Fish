@@ -35,6 +35,11 @@ public abstract class Card
             value = Value.ACE;
         }//End C:*
         
+        //Default Constructor:
+        public Card(Card.Value value){
+          this.value = value;
+        }//End C:*
+        
         public Card(Suit s, Value gVal)
         {
            suit =s;

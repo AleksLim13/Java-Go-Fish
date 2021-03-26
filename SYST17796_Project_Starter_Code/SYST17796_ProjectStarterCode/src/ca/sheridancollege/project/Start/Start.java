@@ -10,7 +10,7 @@ import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Turns.Dealer;
 import ca.sheridancollege.project.Turns.Deck;
-import ca.sheridancollege.project.Turns.TurnSwitcher;
+import ca.sheridancollege.project.Turns.TurnManager;
 import java.util.ArrayList;
 
 /**
@@ -30,7 +30,7 @@ public class Start {
                              new ArrayList<>()),
                              human,
                              computer,
-                             new TurnSwitcher(human,
+                             new TurnManager(human,
                                               computer,
                                               human,
                                               computer,

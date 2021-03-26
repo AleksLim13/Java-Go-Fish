@@ -42,18 +42,16 @@ public class TurnManager {
     public TurnManager(
                         Player human,
                         Player computer,
-                        Player inPlay,
-                        Player notInPlay,
                         ArrayList<Player> inPlayList,
-                        ArrayList<Player> udpPlayerList
+                        ArrayList<Player> udpPlayerList,
+                        Hand hand
                          ) 
     {
         this.human = human;
         this.computer = computer;
-        this.inPlay = inPlay;
-        this.notInPlay = notInPlay;
         this.inPlayList = inPlayList;
-        this.updPlayerList = udpPlayerList;     
+        this.updPlayerList = udpPlayerList;  
+        this.hand = hand;
     }//End C:*
 
     //Getter 
@@ -70,6 +68,16 @@ public class TurnManager {
     public Player getNotInPlay() {
         return notInPlay;
     }//End G:*
+
+    public Hand getHand() {
+        return hand;
+    }
+
+    public void setHand(Hand hand) {
+        this.hand = hand;
+    }
+    
+    
 
     //Setter 
     public void setNotInPlay(Player newNotInPlay) {
@@ -124,14 +132,7 @@ public class TurnManager {
         this.updPlayerList = updPlayerList;
     }
 
-    public Hand getHand() {
-        return hand;
-    }//End G:*
-
-    public void setHand(Hand hand) {
-        this.hand = hand;
-    }//End S:*
-   
+ 
     //Start Normal Methods 
     public Player turnSwitcher(Player inPlay, Player notInPlay) {
         
@@ -151,7 +152,7 @@ public class TurnManager {
     //so there turn keeps going. Returns a yes or no. 
     public boolean goFish(List<Card> hand, Card card) {
         for (int i = 0; i < hand.size(); i++) {
-            if (hand.get(i).equals(card)) {
+            if (hand.get(i).getValue() == card.getValue()) {
                 return false;
             }//End I:*
         }//End F:*
@@ -198,24 +199,18 @@ public class TurnManager {
             System.out.println("Which card value do you want?");
             String cvDesire = UInput.promptStringUser();
             //A.2: Get: 
-            System.out.println("Which card suit do you want?");
-            String csDesire = UInput.promptStringUser();
             //A.3: Create: 
             PseudoCard cDesire = new PseudoCard(
-                                                cvDesire.toUpperCase(), 
-                                                csDesire.toUpperCase()
+                                                cvDesire.toUpperCase()
                                             );
             //A.4: Initialize: 
             cDesire.createDeck();
             //A.5: Repeat: 
             for (int i = 0; i < cDesire.getPseudoDeck().size(); i++) {
                 //A.6: Check: 
-                if (cDesire.equals(cDesire.getPseudoDeck().get(i))) {
+                if (cDesire.getValue() == cDesire.getPseudoDeck().get(i).getValue()) {
                     //A.7: Create: 
                     Card resCard = new GoFishCard(
-                                                            Card.Suit.valueOf(
-                                                                        cDesire.getSuit()
-                                                                             ), //End M:*
                                                             Card.Value.valueOf(
                                                                         cDesire.getValue()
                                                                               )//End M:*
@@ -235,14 +230,14 @@ public class TurnManager {
         Card cTemp = null;
         
         if(!dTemp.isEmpty()){
-            cTemp = dTemp.get(0);
-            System.out.println("Computer is asking for: " + cTemp.toString());
+            cTemp = new GoFishCard(dTemp.get(0).getValue());
+            System.out.println("Computer is asking for: " + cTemp.getValue());
             hand.updateHandDelete(computer.getDesirableList(), cTemp);
         }//End I:*
        
         else if(!hTemp.isEmpty()){
-            cTemp = hTemp.get(0);
-            System.out.println("Computer is asking for: " + cTemp.toString());
+            cTemp = new GoFishCard(hTemp.get(0).getValue());
+            System.out.println("Computer is asking for: " + cTemp.getValue());
         }//End E:*
         
         else if(dTemp.isEmpty() && hTemp.isEmpty()){

@@ -15,45 +15,27 @@ import java.util.ArrayList;
  */
 public abstract class Game 
 {
-    private final String gameName;//the title of the game
-    private ArrayList <Player> players;// the players of the game
     
     
     public Game(){
-        gameName = "default";
-        players = new ArrayList();
+   
     }//End C:*
     
-    public Game(String givenName)
-    {
-        gameName = givenName;
-        players = new ArrayList();
-    }
 
     /**
      * @return the gameName
      */
-    public String getGameName() 
-    {
-        return gameName;
-    }
+  
     
      /**
      * @return the players of this game
      */
-    public ArrayList <Player> getPlayers() 
-    {
-        return players;
-    }
+ 
 
     /**
      * @param players the players of this game
      */
-    public void setPlayers(ArrayList <Player> players) 
-    {
-        this.players = players;
-    }
-    
+  
     /**
      * Play the game. This might be one method or many method calls depending
      * on your game.

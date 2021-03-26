@@ -14,13 +14,13 @@ import java.util.ArrayList;
 public class Hand {
     
     //Define: adds a Card to a provided hand and copies the updated hand.
-    public ArrayList<Card> addCardInGeneral(ArrayList<Card> cardHand, Card card) {
+    private ArrayList<Card> addCardToHand(ArrayList<Card> cardHand, Card card) {
         cardHand.add(card);
         return cardHand;
     }//End M:*
 
     //Define: 
-    private ArrayList<Card> deleteCardInGeneral(
+    private ArrayList<Card> deleteCardFromHand(
                                        ArrayList<Card> cardHand, 
                                        int posit
                                        ) 
@@ -36,25 +36,33 @@ public class Hand {
         cardHand.add(createRandoCard());
         return cardHand;
     }//End M:*
-
+    
+    
     //Define: ablility to remove target from other players hand. Calls delete method. 
-    public ArrayList<Card> deleteCardFromComputer(
-            ArrayList<Card> cardHand,//Incl: list for C's.
-            ArrayList<Integer> dupesHolder//Incl: list for copies. 
-                                             ) 
+    public ArrayList<Card> updateHandDelete(
+            ArrayList<Card> cHand,//Incl: list for C's.
+            Card tCard//Incl: list for copies. 
+    )
+                        
      {
-        if (dupesHolder != null) {//Eval: is it empty?
-            cardHand = deleteCardInGeneral(
-                                  cardHand, 
-                                  dupesHolder.get(0)
-                                  );//Assi: 
-        }//End I:*
-        return cardHand;
+        deleteCardFromHand(cHand, findPosit(cHand, tCard));
+        return cHand;
+    }//End M:*
+    
+    //Define: ablility to remove target from other players hand. Calls delete method. 
+    public ArrayList<Card> updateHandAdd(
+            ArrayList<Card> cHand,//Incl: list for C's.
+            Card tCard//Incl: list for copies. 
+    )
+                        
+     {
+        addCardToHand(cHand, tCard);
+        return cHand;
     }//End M:*
  
     //Need to know what the index of the card need to remove 
     //from hand
-    public int findPositInGeneral(ArrayList<Card> hand, Card tCard) {
+    private int findPosit(ArrayList<Card> hand, Card tCard) {
         int posit = 0;
         for (int i = 0; i < hand.size(); i++) {
             if (hand.get(i).equals(tCard)) {

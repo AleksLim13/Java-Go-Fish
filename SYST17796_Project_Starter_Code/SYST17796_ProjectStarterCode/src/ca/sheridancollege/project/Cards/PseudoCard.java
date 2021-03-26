@@ -12,7 +12,7 @@ import java.util.Objects;
 
 /**
  *
- * @author aleks
+ * @author AllyCat13
  */
 public class PseudoCard {
 

@@ -14,6 +14,9 @@ import java.util.List;
  * @author aleks
  */
 public class ScoreBoard {
+    
+    private Player winner;
+    
     public void calcBooks(
             Card tNum,
             List<Card> dupes,
@@ -81,8 +84,14 @@ public class ScoreBoard {
     }//End M:*
 
     //Define: under construction...
-    public Player determineWinner() {
-        return null;
+    public Player determineWinner(Player human, Player computer) {
+        if(human.getBooks().size() > computer.getBooks().size()){
+            winner = human;
+        }//End I:*
+        else{
+            winner = computer;
+        }//End E:*
+        return winner;
     }//End M:*
     
 }//End CL:*

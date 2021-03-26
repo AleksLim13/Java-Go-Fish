@@ -8,9 +8,12 @@ import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Cards.GoFishCard;
 import ca.sheridancollege.project.Cards.Hand;
 import ca.sheridancollege.project.Cards.PseudoCard;
+import ca.sheridancollege.project.Players.CompPlayer;
+import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Utility.UInput;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -146,7 +149,7 @@ public class TurnManager {
     
     //This works as a check if card is in opponents hand 
     //so there turn keeps going. Returns a yes or no. 
-    public boolean goFish(ArrayList<Card> hand, Card card) {
+    public boolean goFish(List<Card> hand, Card card) {
         for (int i = 0; i < hand.size(); i++) {
             if (hand.get(i).equals(card)) {
                 return false;
@@ -160,7 +163,13 @@ public class TurnManager {
         boolean flag = true;
         while(flag){
             
-            Card cTemp = askForACard();
+            Card cTemp = null;
+            if(inPlay instanceof HumanPlayer){
+                cTemp = humanAskingForACard();
+            }//End I:*
+            else if (inPlay instanceof CompPlayer){
+                cTemp = computerAskingForACard();
+            }//End E:*
             boolean check = goFish(inPlay.getHand(), cTemp);
             
             if(!check){
@@ -181,7 +190,7 @@ public class TurnManager {
     
      //Define: gets value and suit as string and then maps it. 
     //while loop overall strcuture with inner for loop and if.
-    public Card askForACard() {
+    public Card humanAskingForACard() {
         boolean flag = true;
         //A: Iterate: 
         while (flag) {
@@ -219,7 +228,31 @@ public class TurnManager {
         //A.10: Anticipate: 
         return null;
     }//End M:*
-
+    
+    public Card computerAskingForACard(){
+        List<Card> dTemp = computer.getDesirableList();
+        List<Card> hTemp = computer.getHand();
+        Card cTemp = null;
+        
+        if(!dTemp.isEmpty()){
+            cTemp = dTemp.get(0);
+            System.out.println("Computer is asking for: " + cTemp.toString());
+            hand.updateHandDelete(computer.getDesirableList(), cTemp);
+        }//End I:*
+       
+        else if(!hTemp.isEmpty()){
+            cTemp = hTemp.get(0);
+            System.out.println("Computer is asking for: " + cTemp.toString());
+        }//End E:*
+        
+        else if(dTemp.isEmpty() && hTemp.isEmpty()){
+            System.out.println("Computer has no cards left in their hand");
+        }//End E:*
+        
+        return cTemp;
+    }//End M:*
+    
+  
     //Deciding which player goes first 
     public String coinToss(String guess) {
         

@@ -7,7 +7,6 @@ package ca.sheridancollege.project.Turns;
 
 import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Players.Player;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,16 +26,15 @@ import java.util.List;
  */
 public class ScoreBoard {
     
+   
+    
     private Player winner;
-    private List<Card> dupes;
-
+ 
     public ScoreBoard() {
-        this.dupes = new ArrayList<>();
     }//End C:*
 
-    public ScoreBoard(Player winner, List<Card> dupes) {
+    public ScoreBoard(Player winner) {
         this.winner = winner;
-        this.dupes = dupes;
     }//End C:*
 
     public Player getWinner() {
@@ -47,13 +45,7 @@ public class ScoreBoard {
         this.winner = winner;
     }//End S:*
 
-    public List<Card> getDupes() {
-        return dupes;
-    }//End G:*
-
-    public void setDupes(List<Card> dupes) {
-        this.dupes = dupes;
-    }//End S:*
+ 
     
     public void calcBooks(
             Card tNum,
@@ -97,18 +89,19 @@ public class ScoreBoard {
       
        //Define: get a list of duplicate cards. Nested for loop structure with if check.
     public List<Card> getDupes(
-                              List<Card> hand
+                              List<Card> tHand,
+                              List<Card> dupes
                               ) 
     {
-        dupes.clear();
+       
         //A: main for loop: compare each card to every other card in hand.
-        for (int i = 0; i < hand.size(); i++) {
+        for (int i = 0; i < tHand.size(); i++) {
             int lCount = 0;
             //A.1: par two of compare each card to every other card in hand.
             //----
-            for (int j = 0; j < hand.size(); j++) {
+            for (int j = 0; j < tHand.size(); j++) {
                 //Notice: duplicates determined only by card value.
-                if (hand.get(i).getValue() == hand.get(j).getValue()) {
+                if (tHand.get(i).getValue() == tHand.get(j).getValue()) {
                     //A.1.1: increase counter if they are equal. 
                     lCount++;
                 }//End I:*
@@ -117,13 +110,15 @@ public class ScoreBoard {
             //-----
             //Check: 
             if (lCount > 1) {
-                dupes.add(hand.get(i));
+                dupes.add(tHand.get(i));
             }//End I:*
         }//End F:*
         
         //Copy: 
         return dupes;
     }//End M:*
+    
+    
 
     //Define: under construction...
     public Player determineWinner(Player human, Player computer) {

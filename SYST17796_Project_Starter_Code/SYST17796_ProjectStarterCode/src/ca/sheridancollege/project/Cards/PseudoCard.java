@@ -54,6 +54,12 @@ public class PseudoCard {
         this.suit = suit;
         this.pseudoDeck = new ArrayList<>();
     }//End C:*
+    
+    public PseudoCard(String value) 
+    {
+        this.value = value;
+        this.pseudoDeck = new ArrayList<>();
+    }//End C:*
 
     public List<PseudoCard> createDeck() 
     {

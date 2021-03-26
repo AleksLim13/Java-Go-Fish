@@ -153,64 +153,7 @@ public class Dealer {
         return cardHand;
     }//End M:*
 
-    
-    //Define: under construction...
-    public Player determineWinner() {
-        return null;
-    }//End M:*
-
-    //Define: gets value and suit as string and then maps it. 
-    //while loop overall strcuture with inner for loop and if.
-    public Card askForACard() {
-        boolean flag = true;
-        //A: Iterate: 
-        while (flag) {
-            //A.1: Get: 
-            System.out.println("Which card value do you want?");
-            String cvDesire = UInput.promptStringUser();
-            //A.2: Get: 
-            System.out.println("Which card suit do you want?");
-            String csDesire = UInput.promptStringUser();
-            //A.3: Create: 
-            PseudoCard cDesire = new PseudoCard(
-                                                cvDesire.toUpperCase(), 
-                                                csDesire.toUpperCase()
-                                            );
-            //A.4: Initialize: 
-            cDesire.createDeck();
-            //A.5: Repeat: 
-            for (int i = 0; i < cDesire.getPseudoDeck().size(); i++) {
-                //A.6: Check: 
-                if (cDesire.equals(cDesire.getPseudoDeck().get(i))) {
-                    //A.7: Create: 
-                    Card resCard = new GoFishCard(
-                                                            Card.Suit.valueOf(
-                                                                        cDesire.getSuit()
-                                                                             ), //End M:*
-                                                            Card.Value.valueOf(
-                                                                        cDesire.getValue()
-                                                                              )//End M:*
-                                                       );//End C:*
-                    //A.9: Copy: 
-                    return resCard;
-                }//End I:*
-            }//End F:*
-        }//End W:*
-        //A.10: Anticipate: 
-        return null;
-    }//End M:*
-
-    //This works as a check if card is in opponents hand 
-    //so there turn keeps going. Returns a yes or no. 
-    public boolean goFish(ArrayList<Card> hand, Card card) {
-        for (int i = 0; i < hand.size(); i++) {
-            if (hand.get(i).equals(card)) {
-                return false;
-            }//End I:*
-        }//End F:*
-        return true;
-    }//End M:*
-
+ 
     //Need to know what the index of the card need to remove 
     //from hand
     public int findPosit(ArrayList<Card> hand, Card tCard) {
@@ -224,69 +167,6 @@ public class Dealer {
         return posit;
     }//End M:*
 
-    //Define: get a list of duplicate cards. 
-    public static void getDupes(
-            List<Integer> hand,
-            List<Integer> dupes,
-            List<Integer> books
-    ) {
-
-        //A: main for loop: compare each card to every other card in hand.
-        //------------------
-        for (int i = 0; i < hand.size(); i++) {
-            int lCount = 0;
-            //A.1: par two of compare each card to every other card in hand.
-            //----
-            for (int j = 0; j < hand.size(); j++) {
-                if (hand.get(i).equals(hand.get(j))) {
-                    //A.1.1: increase counter if they are equal. 
-                    lCount++;
-                }//End I:*
-            }//End F:*
-            //A.2: counter > 1 means theres duplicates.
-            //-----
-            if (lCount > 1) {
-                dupes.add(hand.get(i));
-            }//End I:*
-        }//End F:*
-    }//End M:*
-
-    public void calcBooks(
-            Card tNum,
-            List<Card> dupes,
-            List<Card> books,
-            List<Card> hand
-    ) {
-        //----
-        int ilCount = 0;
-        for (int i = 0; i < dupes.size(); i++) {
-            //A.3.1: increment counter if already in duplicate list
-            if (tNum.equals(dupes.get(i))) {
-                ilCount++;
-            }//End I:*                    
-        }//End F:*
-        if (ilCount == 4) {
-            books.add(tNum);
-            //Notice: should only ever be four of a kind. E.g., standard deck format. 
-            for (int j = 0; j < 4; j++) {
-                hand.remove(findFirstIndex(tNum, hand));
-            }//End I:*                  
-        }//End I:*  
-    }//End M:*
-
-    public int findFirstIndex(
-            Card tNum,
-            List<Card> tList
-    ) {
-        int pos = 0;
-        for (int i = 0; i < tList.size(); i++) {
-            if (tNum.equals(tList.get(i))) {
-                pos = i;
-                return pos;
-            }//End I:*
-        }//End F:*
-        return pos;
-    }//End M:*
 
 }//End class
 

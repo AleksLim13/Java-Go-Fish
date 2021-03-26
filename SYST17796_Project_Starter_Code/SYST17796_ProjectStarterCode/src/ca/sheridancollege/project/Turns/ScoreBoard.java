@@ -107,7 +107,8 @@ public class ScoreBoard {
             //A.1: par two of compare each card to every other card in hand.
             //----
             for (int j = 0; j < hand.size(); j++) {
-                if (hand.get(i).equals(hand.get(j))) {
+                //Notice: duplicates determined only by card value.
+                if (hand.get(i).getValue() == hand.get(j).getValue()) {
                     //A.1.1: increase counter if they are equal. 
                     lCount++;
                 }//End I:*

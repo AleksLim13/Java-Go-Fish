@@ -20,6 +20,10 @@ public class GoFishCard extends Card {
     public GoFishCard(Suit suit, Value value) {
         super(suit, value);
     }//End C:*
+    
+    public GoFishCard(Value value) {
+        super(value);
+    }//End C:*
 
     @Override
     public String toString() {   

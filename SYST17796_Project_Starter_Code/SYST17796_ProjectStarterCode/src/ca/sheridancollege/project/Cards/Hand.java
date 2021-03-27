@@ -42,7 +42,8 @@ public class Hand {
     }
     
     //Define: adds a Card to a provided hand and copies the updated hand.
-    private List<Card> addCardToHand(List<Card> cardHand, Card card) {
+    private List<Card> addCardToHand(List<Card> cardHand, Card card) 
+    {
         cardHand.add(card);
         return cardHand;
     }//End M:*

@@ -11,6 +11,7 @@ import ca.sheridancollege.project.Cards.PseudoCard;
 import ca.sheridancollege.project.Players.CompPlayer;
 import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
+import ca.sheridancollege.project.Utility.Printer;
 import ca.sheridancollege.project.Utility.UInput;
 import java.util.ArrayList;
 import java.util.List;
@@ -143,7 +144,7 @@ public class TurnManager {
 
  
     //Start Normal Methods 
-    public Player turnSwitcher(Player inPlay, Player notInPlay) {
+    private Player turnSwitcher(Player inPlay, Player notInPlay) {
         
         //A: Hold: Pin it to a baord.
         Player temp = inPlay;
@@ -159,9 +160,9 @@ public class TurnManager {
     
     //This works as a check if card is in opponents hand 
     //so there turn keeps going. Returns a yes or no. 
-    public boolean goFish(List<Card> hand, Card card) {
+    private boolean goFish(List<Card> hand, Card card) {
         for (int i = 0; i < hand.size(); i++) {
-            if (hand.get(i).getValue() == card.getValue()) {
+            if (hand.get(i).getValue().equals(card.getValue())) {
                 return false;
             }//End I:*
         }//End F:*
@@ -170,9 +171,7 @@ public class TurnManager {
     
     public boolean shouldKeepGoing(){
         
-        boolean flag = true;
-        while(flag)
-        {
+       
             
             Card cTemp = null;
             if(inPlay instanceof HumanPlayer)
@@ -187,20 +186,34 @@ public class TurnManager {
             
             boolean check = goFish(notInPlay.getHand(), cTemp);
             
-            if(!check)
-            {
-                hand.updateHandAdd(inPlay.getHand(), cTemp);
-                hand.updateHandDelete(notInPlay.getHand(), cTemp);
-            }//End I:*
+            System.out.println("Check is: " + check);
             
             if(check)
             {
                 hand.getCardFromDeck(inPlay.getHand());
+                System.out.println("Printing in plays: " + inPlay.getName() + "hand: ");
+                Printer.printHand(inPlay.getHand());
+                
+                System.out.println("Switching who's in play");
                 turnSwitcher(inPlay, notInPlay);
-                flag = false; 
+                
             }//end I:*
-        }//End W:*
-        //Set: limits.
+            
+            else 
+            {
+                hand.updateHandAdd(inPlay.getHand(), cTemp, notInPlay.getHand());
+                System.out.println("Printing in play hand: " + inPlay.getName());
+                Printer.printHand(inPlay.getHand());
+                
+                hand.updateHandDelete(notInPlay.getHand(), inPlay.getHand().get(inPlay.getHand().size()-1));
+                System.out.println("Printing not in play" + notInPlay.getName() + " hand:");
+                Printer.printHand(notInPlay.getHand());
+                
+                System.out.println("Switching who's in play");
+                turnSwitcher(inPlay, notInPlay);
+            }//End I:*
+            
+     
         
         return false;      
     }//End M:*
@@ -251,16 +264,18 @@ public class TurnManager {
         if(!dTemp.isEmpty()){
             cTemp = new GoFishCard(dTemp.get(0).getValue());
             System.out.println("Computer is asking for: " + cTemp.getValue());
-            hand.updateHandDelete(computer.getDesirableList(), cTemp);
+            return cTemp;
         }//End I:*
        
         else if(!hTemp.isEmpty()){
             cTemp = new GoFishCard(hTemp.get(0).getValue());
             System.out.println("Computer is asking for: " + cTemp.getValue());
+            return cTemp;
         }//End E:*
         
         else if(dTemp.isEmpty() && hTemp.isEmpty()){
             System.out.println("Computer has no cards left in their hand");
+            return null;
         }//End E:*
         
         return cTemp;
@@ -286,6 +301,7 @@ public class TurnManager {
             System.out.println("You're right. It was: " + flipped + " . It's your play");
             result = "correct";
             inPlay = human;
+            notInPlay = computer;
         } //End I:*
         
         else 
@@ -293,6 +309,7 @@ public class TurnManager {
             System.out.println("Sorry, it was: " + flipped);
             result = "incorrect";
             inPlay = computer;
+            notInPlay = human;
         }//End E:*
         
         //D: Copy It

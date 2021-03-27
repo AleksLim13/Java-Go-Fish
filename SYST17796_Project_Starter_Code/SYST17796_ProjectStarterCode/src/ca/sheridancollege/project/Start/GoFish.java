@@ -24,10 +24,10 @@ public class GoFish extends Game {
     private final TurnManager turnController;
    
             
-    public GoFish() {
+    public GoFish(String hName) {
  
         this.turnController = new TurnManager(
-                                             new HumanPlayer(), 
+                                             new HumanPlayer(hName), 
                                              new CompPlayer(),
                                              new ArrayList<>(),
                                              new ArrayList<>(),

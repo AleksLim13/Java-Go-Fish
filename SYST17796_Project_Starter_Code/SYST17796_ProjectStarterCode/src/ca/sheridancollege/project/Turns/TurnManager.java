@@ -171,23 +171,30 @@ public class TurnManager {
     public boolean shouldKeepGoing(){
         
         boolean flag = true;
-        while(flag){
+        while(flag)
+        {
             
             Card cTemp = null;
-            if(inPlay instanceof HumanPlayer){
+            if(inPlay instanceof HumanPlayer)
+            {
                 cTemp = humanAskingForACard();
             }//End I:*
-            else if (inPlay instanceof CompPlayer){
+            
+            else if (inPlay instanceof CompPlayer)
+            {
                 cTemp = computerAskingForACard();
             }//End E:*
-            boolean check = goFish(inPlay.getHand(), cTemp);
             
-            if(!check){
+            boolean check = goFish(notInPlay.getHand(), cTemp);
+            
+            if(!check)
+            {
                 hand.updateHandAdd(inPlay.getHand(), cTemp);
                 hand.updateHandDelete(notInPlay.getHand(), cTemp);
             }//End I:*
             
-            if(check){
+            if(check)
+            {
                 hand.getCardFromDeck(inPlay.getHand());
                 turnSwitcher(inPlay, notInPlay);
                 flag = false; 
@@ -200,10 +207,11 @@ public class TurnManager {
     
      //Define: gets value and suit as string and then maps it. 
     //while loop overall strcuture with inner for loop and if.
-    public Card humanAskingForACard() {
+    private Card humanAskingForACard() {
         boolean flag = true;
         //A: Iterate: 
-        while (flag) {
+        while (flag) 
+        {
             //A.1: Get: 
             System.out.println("Which card value do you want?");
             String cvDesire = UInput.promptStringUser();
@@ -215,9 +223,11 @@ public class TurnManager {
             //A.4: Initialize: 
             cDesire.createDeck();
             //A.5: Repeat: 
-            for (int i = 0; i < cDesire.getPseudoDeck().size(); i++) {
+            for (int i = 0; i < cDesire.getPseudoDeck().size(); i++) 
+            {
                 //A.6: Check: 
-                if (cDesire.getValue() == cDesire.getPseudoDeck().get(i).getValue()) {
+                if (cDesire.getValue().equals(cDesire.getPseudoDeck().get(i).getValue())) 
+                {
                     //A.7: Create: 
                     Card resCard = new GoFishCard(
                                                             Card.Value.valueOf(
@@ -233,7 +243,7 @@ public class TurnManager {
         return null;
     }//End M:*
     
-    public Card computerAskingForACard(){
+    private Card computerAskingForACard(){
         List<Card> dTemp = computer.getDesirableList();
         List<Card> hTemp = computer.getHand();
         Card cTemp = null;
@@ -271,13 +281,16 @@ public class TurnManager {
         
         //C: Evaluate: 
         String result;
-        if (guess.equals(flipped)) {
+        if (guess.equals(flipped)) 
+        {
             System.out.println("You're right. It was: " + flipped + " . It's your play");
             result = "correct";
             inPlay = human;
         } //End I:*
         
-        else {
+        else 
+        {
+            System.out.println("Sorry, it was: " + flipped);
             result = "incorrect";
             inPlay = computer;
         }//End E:*

@@ -90,8 +90,8 @@ public abstract class Player {
     }
     
     //Methods:_________________________
-    public void printStats(){
-    
+    public String printStats(){
+        return "[" + "Name: " + name + "," + " Id: " + playerId + "]";
     }//End M:*
     
     

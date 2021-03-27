@@ -29,7 +29,8 @@ public abstract class Player {
     protected List<Card> desirableList;
 
     //Constructors:______________________________
-    public Player() {
+    public Player(String name) {
+        this.name = name;
         numOfPlayers++;
         playerId = numOfPlayers;
         books = new ArrayList<>();

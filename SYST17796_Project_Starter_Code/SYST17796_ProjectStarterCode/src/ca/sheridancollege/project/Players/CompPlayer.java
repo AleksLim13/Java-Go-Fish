@@ -14,7 +14,7 @@ package ca.sheridancollege.project.Players;
 public class CompPlayer extends Player {
 
     public CompPlayer() {
-        super();//For visual understanding.
+        super("Computer");//For visual understanding.
     }//End C:*
 
    

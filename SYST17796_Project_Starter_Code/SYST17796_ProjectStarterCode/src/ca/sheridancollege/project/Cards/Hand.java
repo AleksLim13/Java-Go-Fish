@@ -42,9 +42,16 @@ public class Hand {
     }
     
     //Define: adds a Card to a provided hand and copies the updated hand.
-    private List<Card> addCardToHand(List<Card> cardHand, Card card) 
+    private List<Card> addCardToHand(
+                                     List<Card> cardHand, 
+                                     Card card, 
+                                     List<Card> opponentHand
+                                    ) 
     {
-        cardHand.add(card);
+       
+        int posit = findPositPartialCard(opponentHand, card);
+        Card cTemp = opponentHand.get(posit);
+        cardHand.add(cTemp);
         return cardHand;
     }//End M:*
 
@@ -54,9 +61,9 @@ public class Hand {
                                        int posit
                                        ) 
     {
-        List<Card> resultHand = cardHand;
-        resultHand.remove(posit);
-        return resultHand;
+
+        cardHand.remove(posit);
+        return cardHand;
     }//End M:*
 
     //Define: "sorry don't have that card dude." Allor, take a card from the deck.  
@@ -74,27 +81,39 @@ public class Hand {
     )
                         
      {
-        deleteCardFromHand(cHand, findPosit(cHand, tCard));
+        deleteCardFromHand(cHand, findPositFullCard(cHand, tCard));
         return cHand;
     }//End M:*
     
     //Define: ablility to remove target from other players hand. Calls delete method. 
     public List<Card> updateHandAdd(
             List<Card> cHand,//Incl: list for C's.
-            Card tCard//Incl: list for copies. 
+            Card tCard,//Incl: list for copies. 
+            List<Card> oppHand
     )
                         
      {
-        addCardToHand(cHand, tCard);
+        addCardToHand(cHand, tCard, oppHand);
         return cHand;
     }//End M:*
  
     //Need to know what the index of the card need to remove 
     //from hand
-    private int findPosit(List<Card> hand, Card tCard) {
+    private int findPositFullCard(List<Card> hand, Card tCard) {
         int posit = 0;
         for (int i = 0; i < hand.size(); i++) {
             if (hand.get(i).equals(tCard)) {
+                posit = i;
+                return posit;
+            }//End I:*
+        }//End F:*
+        return posit;
+    }//End M:*
+    
+    private int findPositPartialCard(List<Card> hand, Card tCard) {
+        int posit = 0;
+        for (int i = 0; i < hand.size(); i++) {
+            if (hand.get(i).getValue().equals(tCard.getValue())) {
                 posit = i;
                 return posit;
             }//End I:*

@@ -31,10 +31,7 @@ public class RoundOne extends Start {
         if (game instanceof GoFish) 
         {
             
-            System.out.println("What's your name?");
-            String uName = UInput.promptStringUser();
-            ((GoFish)game).getTurnController().getHuman().setName(uName);
-            System.out.println("");
+         
             
             System.out.println("Creating humans hand");
             ((GoFish)game).getTurnController().getHand().createHand(7);
@@ -91,6 +88,10 @@ public class RoundOne extends Start {
             
             System.out.println("Printing who's in play");
             System.out.println(((GoFish)game).getTurnController().getInPlay().printStats());
+            
+            System.out.println("Starting first round now.");
+            ((GoFish)game).getTurnController().shouldKeepGoing();
+            
             
           
 

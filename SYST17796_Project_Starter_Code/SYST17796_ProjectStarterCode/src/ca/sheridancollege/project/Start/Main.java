@@ -11,7 +11,7 @@ package ca.sheridancollege.project.Start;
  */
 public class Main {
     public static void main(String[] args){
-        RoundOne round1 = new RoundOne(new GoFish());
+        RoundOne round1 = new RoundOne(new GoFish("Aleks"));
         round1.play();
     }//End M:*
     

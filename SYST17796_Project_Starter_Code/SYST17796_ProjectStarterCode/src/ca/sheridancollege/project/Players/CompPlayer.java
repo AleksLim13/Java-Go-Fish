@@ -17,12 +17,6 @@ public class CompPlayer extends Player {
         super();//For visual understanding.
     }//End C:*
 
-    @Override
-    public void printStats() {    
-        System.out.println(super.name);
-        super.hand.forEach(c -> {
-            System.out.println(c);
-        }); //End F:*
-    }//End C:*
+   
     
 }//End Class:______________________+

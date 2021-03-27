@@ -19,13 +19,5 @@ public class HumanPlayer extends Player{
         super();
     }//End C:*
     
-  
-    @Override
-    public void printStats() {    
-        System.out.println(super.name + " " + super.playerId);
-        super.hand.forEach(c -> {
-            System.out.println(c);
-        }); //End F:*
-    }//End C:*
-    
+ 
 }//End Class:__________________+

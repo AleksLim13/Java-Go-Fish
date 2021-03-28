@@ -7,7 +7,6 @@ package ca.sheridancollege.project.Cards;
 
 import java.util.List;
 import ca.sheridancollege.project.Turns.Deck;
-import java.util.ArrayList;
 
 /**
  *
@@ -17,23 +16,27 @@ public class Hand {
     
     private Deck deck;
 
-    public Hand(Deck deck) {
+    public Hand(Deck deck) 
+    {
         this.deck = deck;
         deckSetup();
     }//End C:*
 
-    public Hand() {
+    public Hand() 
+    {
         this.deck = new Deck();
         deckSetup();
 
     }//End C:*
     
 
-    public Deck getDeck() {
+    public Deck getDeck() 
+    {
         return this.deck;
     }
 
-    public void setDeck(Deck deck) {
+    public void setDeck(Deck deck) 
+    {
         this.deck = deck;
     }
     
@@ -92,10 +95,13 @@ public class Hand {
  
     //Need to know what the index of the card need to remove 
     //from hand
-    private int findPositFullCard(List<Card> hand, Card tCard) {
+    private int findPositFullCard(List<Card> hand, Card tCard) 
+    {
         int posit = 0;
-        for (int i = 0; i < hand.size(); i++) {
-            if (hand.get(i).equals(tCard)) {
+        for (int i = 0; i < hand.size(); i++) 
+        {
+            if (hand.get(i).equals(tCard)) 
+            {
                 posit = i;
                 return posit;
             }//End I:*
@@ -103,10 +109,13 @@ public class Hand {
         return posit;
     }//End M:*
     
-    private int findPositPartialCard(List<Card> hand, Card tCard) {
+    private int findPositPartialCard(List<Card> hand, Card tCard) 
+    {
         int posit = 0;
-        for (int i = 0; i < hand.size(); i++) {
-            if (hand.get(i).getValue().equals(tCard.getValue())) {
+        for (int i = 0; i < hand.size(); i++) 
+        {
+            if (hand.get(i).getValue().equals(tCard.getValue())) 
+            {
                 posit = i;
                 return posit;
             }//End I:*
@@ -136,13 +145,15 @@ public class Hand {
     //Methods:_________________________
     
     //Define: this fills deck and shuffles it. Uses 2 known methods.
-    private void deckSetup() {
+    private void deckSetup() 
+    {
         this.deck.initDeck();
         this.deck.shuffle();
     }//End M:*
 
     //Define: Deal first card and simultaneously remove it from deck.
-    private Card startDeal() {
+    private Card startDeal() 
+    {//Notice: end of line style looks better.
         Card card;
         card = this.deck.getDeck().get(0);
         //B: 
@@ -152,12 +163,12 @@ public class Hand {
     }//End M:*
 
     //Define: provide number of cards. Repetition solution. Call's start deal.
-    public List<Card> createHand(int size, List<Card> tHand) {
-
-        for (int i = 0; i < size; i++) {
+    public List<Card> createHand(int size, List<Card> tHand) 
+    {
+        for (int i = 0; i < size; i++) 
+        {
             tHand.add(this.startDeal());
-        }//End F:*   
-        
+        }//End F:*          
         return tHand;
     }//End M:*
 

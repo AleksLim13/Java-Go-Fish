@@ -9,7 +9,6 @@ package ca.sheridancollege.project.Start;
 import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Players.CompPlayer;
 import ca.sheridancollege.project.Players.HumanPlayer;
-import ca.sheridancollege.project.Players.Player;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +19,7 @@ import java.util.List;
  */
 public class RoundOne extends Start {
 
-    private Player human;
-    private Player computer;
-    private Player inPlay;
-    private Player notInPlay;
+    
     
     private Game game;
 
@@ -36,37 +32,20 @@ public class RoundOne extends Start {
     
         if (game instanceof GoFish) {
         
+         List<Card> hHand = ((GoFish)game).getTurnController().getClassHand().createHand(7, new ArrayList<>());
+         List<Card> cHand = ((GoFish)game).getTurnController().getClassHand().createHand(7, new ArrayList<>());
          
-            this.human = new HumanPlayer("Aleks");
-            this.computer = new CompPlayer();
-            
-            List<Card> hHand = ((GoFish)game).getTurnController().getHand().createHand(7, new ArrayList<>());
-            this.human.setHand(hHand);
-            System.out.println(this.human.getHand().toString());
+         ((GoFish)game).getTurnController().getHuman().setHand(hHand);
+         ((GoFish)game).getTurnController().getComputer().setHand(cHand);
          
-            
-            
-            List<Card> cHand = ((GoFish)game).getTurnController().getHand().createHand(7, new ArrayList<>());
-            this.computer.setHand(cHand);
-            System.out.println(this.computer.getHand().toString());
+          ((GoFish)game).getTurnController().setInPlay(((GoFish)game).getTurnController().getHuman());
+          ((GoFish)game).getTurnController().setNotInPlay(((GoFish)game).getTurnController().getComputer());
 
-            this.inPlay = this.human;
-            this.notInPlay = this.computer;
-            
-            System.out.println(this.inPlay.getHand().toString());
-            System.out.println(this.notInPlay.getHand().toString());
+            System.out.println(((GoFish)game).getTurnController().getInPlay().getHand().toString());
+          
+            System.out.println(((GoFish)game).getTurnController().getNotInPlay().getHand().toString());
 
-            
-            //his.human.setHand(((GoFish)game).getTurnController().getHand().getHand());
-            
-           // ((GoFish)game).getTurnController().getHand().createHand(7);
-           // this.computer.setHand(((GoFish)game).getTurnController().getHand().getHand());
-            
-         
-            
-            //System.out.println(this.human.getHand().toString());
-           // System.out.println(this.computer.getHand().toString());
-           
+
         }//End I:*
 
     }//End M:*

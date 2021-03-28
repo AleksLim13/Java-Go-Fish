@@ -38,12 +38,32 @@ public class RoundOne extends Start {
          ((GoFish)game).getTurnController().getHuman().setHand(hHand);
          ((GoFish)game).getTurnController().getComputer().setHand(cHand);
          
-          ((GoFish)game).getTurnController().setInPlay(((GoFish)game).getTurnController().getHuman());
-          ((GoFish)game).getTurnController().setNotInPlay(((GoFish)game).getTurnController().getComputer());
+         
+            
+            
+            List<Card> hDupes = ((GoFish)game).getTurnController().getScoreBoard().getDupes(hHand, new ArrayList<>());
+            
+            ((GoFish)game).getTurnController().getHuman().setDesirableList(hDupes);
+            
+             List<Card> cDupes = ((GoFish)game).getTurnController().getScoreBoard().getDupes(hHand, new ArrayList<>());  
+             ((GoFish)game).getTurnController().getComputer().setDesirableList(cDupes);
+            
+             ((GoFish)game).getTurnController().setInPlay(((GoFish)game).getTurnController().getHuman());
+
+             ((GoFish)game).getTurnController().setNotInPlay(((GoFish)game).getTurnController().getComputer());
+          
+            
+             System.out.println("In Play Hand:");
 
             System.out.println(((GoFish)game).getTurnController().getInPlay().getHand().toString());
           
+            System.out.println("Not In Play Hand:");
+
             System.out.println(((GoFish)game).getTurnController().getNotInPlay().getHand().toString());
+
+            
+             System.out.println("Starting round one");
+            ((GoFish)game).getTurnController().shouldKeepGoing();
 
 
         }//End I:*

@@ -101,8 +101,6 @@ public class Player {
         return scoreBoard;
     }
 
-   
-
     public HashMap<Integer, Integer> getBooks() {
         return books;
     }

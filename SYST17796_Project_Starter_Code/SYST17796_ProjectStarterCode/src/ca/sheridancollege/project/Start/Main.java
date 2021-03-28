@@ -9,8 +9,10 @@ package ca.sheridancollege.project.Start;
  *
  * @author aleks
  */
-public class Main {
-    public static void main(String[] args){
+public class Main 
+{
+    public static void main(String[] args)
+    {
         RoundOne round1 = new RoundOne(new GoFish("Aleks"));
         round1.play();
     }//End M:*

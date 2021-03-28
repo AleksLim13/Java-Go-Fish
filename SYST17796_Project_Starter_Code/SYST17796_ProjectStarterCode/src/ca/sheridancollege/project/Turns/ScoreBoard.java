@@ -86,6 +86,7 @@ public class ScoreBoard {
     }//End M:*
       
        //Define: get a list of duplicate cards. Nested for loop structure with if check.
+     //Notice: don't use 1 field variable for dupes if this will be called for different players. 
     public List<Card> getDupes(
                               List<Card> tHand,
                               List<Card> dupes

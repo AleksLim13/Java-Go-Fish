@@ -5,11 +5,14 @@
  */
 package ca.sheridancollege.project.Start;
 
+
 import ca.sheridancollege.project.Cards.Card;
-import ca.sheridancollege.project.Utility.Printer;
-import ca.sheridancollege.project.Utility.UInput;
+import ca.sheridancollege.project.Players.CompPlayer;
+import ca.sheridancollege.project.Players.HumanPlayer;
+import ca.sheridancollege.project.Players.Player;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  *
@@ -17,86 +20,57 @@ import java.util.List;
  */
 public class RoundOne extends Start {
 
+    private Player human;
+    private Player computer;
+    private Player inPlay;
+    private Player notInPlay;
+    
     private Game game;
 
-    public RoundOne(Game game) 
-    {
+    public RoundOne(Game game) {
         this.game = game;
     }//End C:*
 
     @Override
-    public void play() 
-    {
+    public void play() {
+    
+        if (game instanceof GoFish) {
+        
+         
+            this.human = new HumanPlayer("Aleks");
+            this.computer = new CompPlayer();
+            
+            List<Card> hHand = ((GoFish)game).getTurnController().getHand().createHand(7, new ArrayList<>());
+            this.human.setHand(hHand);
+            System.out.println(this.human.getHand().toString());
+         
+            
+            
+            List<Card> cHand = ((GoFish)game).getTurnController().getHand().createHand(7, new ArrayList<>());
+            this.computer.setHand(cHand);
+            System.out.println(this.computer.getHand().toString());
 
-        if (game instanceof GoFish) 
-        {
+            this.inPlay = this.human;
+            this.notInPlay = this.computer;
+            
+            System.out.println(this.inPlay.getHand().toString());
+            System.out.println(this.notInPlay.getHand().toString());
+
+            
+            //his.human.setHand(((GoFish)game).getTurnController().getHand().getHand());
+            
+           // ((GoFish)game).getTurnController().getHand().createHand(7);
+           // this.computer.setHand(((GoFish)game).getTurnController().getHand().getHand());
             
          
             
-            System.out.println("Creating humans hand");
-            ((GoFish)game).getTurnController().getHand().createHand(7);
-             List<Card> hHand = ((GoFish)game).getTurnController().getHand().getHand();
-            ((GoFish)game).getTurnController().getHuman().setHand(hHand);
-            System.out.println("");
-            
-            System.out.println("Printing size of deck now.");
-            System.out.println(((GoFish)game).getTurnController().getHand().getDeck().getDeck().size());
+            //System.out.println(this.human.getHand().toString());
+           // System.out.println(this.computer.getHand().toString());
            
-            System.out.println("Printing humans hand");
-            Printer.printHand(((GoFish)game).getTurnController().getHuman().getHand());
-            System.out.println("");
-            
-            System.out.println("Setting humans duplicates");
-            List<Card> hDupes = ((GoFish)game).getTurnController().getScoreBoard().getDupes(hHand, new ArrayList<>());
-            ((GoFish)game).getTurnController().getHuman().setDesirableList(hDupes);
-            System.out.println("");
-            
-            System.out.println("Printing human dupes");
-            Printer.printHand( ((GoFish)game).getTurnController().getHuman().getDesirableList());
-            System.out.println("");
-
-            //A.2:
-           
-            System.out.println("Creating and setting computers hand");
-            ((GoFish)game).getTurnController().getHand().createHand(7);
-            List<Card> cHand = ((GoFish)game).getTurnController().getHand().getHand();
-            System.out.println("");
-
-            ((GoFish)game).getTurnController().getComputer().setHand(cHand);
-            System.out.println("Printing computers hand");
-            Printer.printHand(((GoFish)game).getTurnController().getComputer().getHand());
-            System.out.println("");
-            
-             System.out.println("Printing size of deck now.");
-            System.out.println(((GoFish)game).getTurnController().getHand().getDeck().getDeck().size());
-            
-            System.out.println("Setting computers duplicates");
-            List<Card> cDupes = ((GoFish)game).getTurnController().getScoreBoard().getDupes(cHand, new ArrayList<>());
-            ((GoFish)game).getTurnController().getComputer().setDesirableList(cDupes);
-            System.out.println("");
-            
-            System.out.println("Printing computer dupes");
-            Printer.printHand( ((GoFish)game).getTurnController().getComputer().getDesirableList());
-            System.out.println("");
-
-           //C: Start: Coin toss to decide who goes first. 
-            System.out.println("Starting the coint toss now.");
-            System.out.println("Choose heads or tails");
-            String uGuess = UInput.promptStringUser();
-            ((GoFish)game).getTurnController().coinToss(uGuess.toLowerCase());
-            System.out.println("");
-            
-            System.out.println("Printing who's in play");
-            System.out.println(((GoFish)game).getTurnController().getInPlay().printStats());
-            
-            System.out.println("Starting first round now.");
-            ((GoFish)game).getTurnController().shouldKeepGoing();
-            
-            
-          
-
         }//End I:*
 
     }//End M:*
+    
+    
 
 }//End CL:*

@@ -44,8 +44,6 @@ public class ScoreBoard {
     public void setWinner(Player winner) {
         this.winner = winner;
     }//End S:*
-
- 
     
     public void calcBooks(
             Card tNum,
@@ -101,7 +99,7 @@ public class ScoreBoard {
             //----
             for (int j = 0; j < tHand.size(); j++) {
                 //Notice: duplicates determined only by card value.
-                if (tHand.get(i).getValue() == tHand.get(j).getValue()) {
+                if (tHand.get(i).getValue().equals(tHand.get(j).getValue())) {
                     //A.1.1: increase counter if they are equal. 
                     lCount++;
                 }//End I:*

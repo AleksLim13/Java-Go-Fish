@@ -10,7 +10,10 @@ import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Cards.GoFishCard;
 import ca.sheridancollege.project.Cards.Hand;
 import ca.sheridancollege.project.Cards.PseudoCard;
+import ca.sheridancollege.project.Players.CompPlayer;
+import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
+import ca.sheridancollege.project.Start.GoFish;
 import ca.sheridancollege.project.Utility.UInput;
 import java.util.List;
 
@@ -67,8 +70,6 @@ public class TurnManager {
         return computer;
     }
     
-    
-
     public void setNotInPlay(Player notInPlay) {
         this.notInPlay = notInPlay;
     }
@@ -81,18 +82,12 @@ public class TurnManager {
     public ScoreBoard getScoreBoard() {
         return this.scoreBoard;
     }
-
- 
-   
+    
     //This works as a check if card is in opponents hand 
     //so there turn keeps going. Returns a yes or no. 
-    private boolean goFish(List<Card> notInPlayHand, Card inPlaysDesireC) {
-        for (int i = 0; i < notInPlayHand.size(); i++) {
-            if (notInPlayHand.get(i).getValue().equals(inPlaysDesireC.getValue())) {
-                System.out.println(
-                                    "Opponent: " + notInPlayHand.get(i).getValue() + 
-                                    "In Play: " + inPlaysDesireC.getValue()
-                                    );
+    private boolean goFish(Card inPlaysDesireC) {
+        for (int i = 0; i < notInPlay.getHand().size(); i++) {
+            if (notInPlay.getHand().get(i).getValue().equals(inPlaysDesireC.getValue())) {
                 return false;
             }//End I:*
         }//End F:*
@@ -100,6 +95,50 @@ public class TurnManager {
     }//End M:*
     
     public boolean shouldKeepGoing(){
+                
+        
+        boolean flag = true;
+        while(flag)
+        {
+            Card cTemp = null;
+              
+            if(this.inPlay instanceof HumanPlayer)
+            {
+                  cTemp = humanAskingForACard();
+              }//End I:*
+              else if(this.inPlay instanceof CompPlayer)
+              {
+                  cTemp = computerAskingForACard();
+              }//End EI:*
+              
+              boolean check = goFish(cTemp);
+              
+              if(check)
+              {
+                  System.out.println(this.notInPlay.getName() + " does not have " + cTemp.getValue());
+                  this.classHand.getCardFromDeck(this.inPlay.getHand());
+                  System.out.println("In Play Hand:");
+                  System.out.println(this.inPlay.getHand().toString());
+                  
+                  System.out.println("Not In Play Hand:");
+                  System.out.println(this.notInPlay.getHand().toString());
+
+                  return false;
+              }//End I:*
+              
+              else if(!check)
+              {
+                   System.out.println(this.notInPlay.getName() + " does have " + cTemp.getValue());
+                   this.classHand.updateHandAdd(this.inPlay.getHand(), cTemp, this.notInPlay.getHand());
+                   System.out.println("In Play Hand:");
+                   System.out.println(this.inPlay.getHand().toString());
+                
+                   this.classHand.updateHandDelete(this.notInPlay.getHand(), this.inPlay.getHand().get(this.inPlay.getHand().size()-1));  
+                   System.out.println("Not In Play Hand:");
+                   System.out.println(this.notInPlay.getHand().toString());
+
+              }//End EI:*
+        }//End W:*
               
         return false;      
     }//End M:*
@@ -140,9 +179,10 @@ public class TurnManager {
         return null;
     }//End M:*
     
-    private Card computerAskingForACard(Player comp){
-        List<Card> dTemp = comp.getDesirableList();
-        List<Card> hTemp = comp.getHand();
+    
+    private Card computerAskingForACard(){
+        List<Card> dTemp = computer.getDesirableList();
+        List<Card> hTemp = computer.getHand();
         Card cTemp = null;
         
         if(!dTemp.isEmpty()){
@@ -182,12 +222,15 @@ public class TurnManager {
         if (guess.equals(flipped)) 
         {
             System.out.println("You're right. It was: " + flipped + " . It's your play");
-           
+           this.inPlay = this.human;
+           this.notInPlay = computer;
         } //End I:*
         
         else if(!guess.equals(flipped))
         {
             System.out.println("Sorry, it was: " + flipped);
+            this.inPlay = computer;
+            this.notInPlay = human;
        
         }//End E:*
   

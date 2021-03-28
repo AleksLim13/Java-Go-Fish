@@ -17,11 +17,11 @@ public class GoFishCard extends Card {
         super();
     }//End C:*
 
-    public GoFishCard(Suit suit, Value value) {
+    public GoFishCard(String suit, String value) {
         super(suit, value);
     }//End C:*
     
-    public GoFishCard(Value value) {
+    public GoFishCard(String value) {
         super(value);
     }//End C:*
 

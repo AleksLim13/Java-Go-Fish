@@ -11,17 +11,19 @@ package ca.sheridancollege.project.Cards;
  */
 public class GoFishCard extends Card {
     
-    
-     
-    public GoFishCard() {
+ 
+    public GoFishCard() 
+    {
         super();
     }//End C:*
 
-    public GoFishCard(String suit, String value) {
+    public GoFishCard(String suit, String value) 
+    {
         super(suit, value);
     }//End C:*
     
-    public GoFishCard(String value) {
+    public GoFishCard(String value) 
+    {
         super(value);
     }//End C:*
 

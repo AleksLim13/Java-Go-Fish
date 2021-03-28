@@ -7,6 +7,7 @@
 //Imports:_____________________________
 
 package ca.sheridancollege.project.Turns;
+
 import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Cards.GoFishCard;
 import java.util.ArrayList;
@@ -29,37 +30,30 @@ public class Deck {
         this.deck = new ArrayList<>();
     }//End C:*
     
-    
-    //Getters & Setters:____________________
-    
+    //Getters & Setters:___________________
         public List<Card> getDeck() {
-        return deck;
+        return this.deck;
     }//End G:*
 
     //Of objects as cards with 2 fields 
     //Takes blank array list as param 
     public void initDeck() {  
-		for(Card.Suit suits: Card.Suit.values())
-                {
-                    for(Card.Value values: Card.Value.values())
-                    {
-                        deck.add(new GoFishCard(suits, values));                   
-                    }//End Inner F:*
-                }//end outter for   
+        for (String suitsRange : Card.suitsRange) {
+            for (String valuesRange : Card.valuesRange) {
+                this.deck.add(new GoFishCard(suitsRange, valuesRange));
+            } //End Inner F:*
+        } //end outter for   
     }//End M:*
-    
-  
-    //Main functionality here...The old swaperoo!
+   
     //Swap pairs of card objects at random positions / 52.
     //Needs the actually value of this class's field var
-    //deck after it's been initialized. 
     public void shuffle() {
         int rando;
-        for (int i = 0; i < deck.size(); i++) {
-            rando = (int) (Math.random() * deck.size());        
-            Card temp = deck.get(i);
-            deck.set(i, deck.get(rando));
-            deck.set(rando, temp);         
+        for (int i = 0; i < this.deck.size(); i++) {
+            rando = (int) (Math.random() * this.deck.size());        
+            Card temp = this.deck.get(i);
+            this.deck.set(i, this.deck.get(rando));
+            this.deck.set(rando, temp);         
         }//End Outer F:*
     }//End M:*
     
@@ -87,7 +81,7 @@ public class Deck {
     
     
     public List<Card> removeCard(Card card){
-        deck.remove(findPosit(deck, card));
-        return deck;
+        this.deck.remove(findPosit(this.deck, card));
+        return this.deck;
     }//End M:*
 } //End class:_______________________

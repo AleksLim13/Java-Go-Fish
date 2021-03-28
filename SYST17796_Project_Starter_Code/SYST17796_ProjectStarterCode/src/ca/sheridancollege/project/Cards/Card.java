@@ -23,39 +23,58 @@ public abstract class Card
      * Could be an UNO card, a regular playing card etc.
      */
     
-        public enum Suit {HEARTS, CLUBS, SPADES, DIAMONDS};
-        public enum Value{ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING};
-        protected Suit suit;
-        protected Value value;
+        public final static String[] suitsRange = 
+        {
+                                    "HEARTS", 
+                                    "CLUBS", 
+                                    "SPADES", 
+                                    "DIAMONDS"
+        };
+        public final static String[] valuesRange = 
+        {
+                                     "ACE", 
+                                     "TWO", 
+                                     "THREE", 
+                                     "FOUR", 
+                                     "FIVE", 
+                                     "SIX", 
+                                     "SEVEN", 
+                                     "EIGHT", 
+                                     "NINE", 
+                                     "TEN", 
+                                     "JACK", 
+                                     "QUEEN", 
+                                     "KING"
+        };
+        protected String suit;
+        protected String value;
     
-        
         //Default Constructor:
         public Card(){
-            suit = Suit.HEARTS;
-            value = Value.ACE;
+            suit = suitsRange[0];
+            value = valuesRange[0];
         }//End C:*
         
         //Default Constructor:
-        public Card(Card.Value value){
+        public Card(String value){
           this.value = value;
         }//End C:*
         
-        public Card(Suit s, Value gVal)
+        public Card(String s, String v)
         {
-           suit =s;
-           value= gVal;
+           this.suit = s;
+           this.value= v;
         }//End C:*
         
-	public Value getValue() {
+	public String getValue() {
 		return this.value;
 	}//End G:*
-
-	
-	public Suit getSuit() {
+        
+	public String getSuit() {
 		return this.suit;
         }//End G:*
         
-      
+
     @Override
     public abstract String toString();
     
@@ -68,8 +87,10 @@ public abstract class Card
                 return false;
             }
             Card theCard = (Card) o;
-            return value == theCard.value &&
-                   suit == theCard.suit;
+            
+            return 
+                    value.equals(theCard.value) &&
+                    suit.equals(theCard.suit);
         }//End M:*
 
     @Override

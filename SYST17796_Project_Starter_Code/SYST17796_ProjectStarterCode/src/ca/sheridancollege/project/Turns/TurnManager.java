@@ -13,7 +13,6 @@ import ca.sheridancollege.project.Cards.PseudoCard;
 import ca.sheridancollege.project.Players.CompPlayer;
 import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
-import ca.sheridancollege.project.Start.GoFish;
 import ca.sheridancollege.project.Utility.UInput;
 import java.util.List;
 
@@ -50,51 +49,63 @@ public class TurnManager {
         this.scoreBoard = scoreBoard;
     }//End C:*
 
-    public Player getInPlay() {
+    public Player getInPlay() 
+    {
         return inPlay;
     }
 
-    public void setInPlay(Player inPlay) {
+    public void setInPlay(Player inPlay) 
+    {
         this.inPlay = inPlay;
     }
 
-    public Player getNotInPlay() {
+    public Player getNotInPlay() 
+    {
         return notInPlay;
     }
 
-    public Player getHuman() {
+    public Player getHuman() 
+    {
         return human;
     }
 
-    public Player getComputer() {
+    public Player getComputer() 
+    {
         return computer;
     }
     
-    public void setNotInPlay(Player notInPlay) {
+    public void setNotInPlay(Player notInPlay) 
+    {
         this.notInPlay = notInPlay;
     }
 
-    public Hand getClassHand() {
+    public Hand getClassHand() 
+    {
         return this.classHand;
     }
 
 
-    public ScoreBoard getScoreBoard() {
+    public ScoreBoard getScoreBoard() 
+    {
         return this.scoreBoard;
     }
     
     //This works as a check if card is in opponents hand 
     //so there turn keeps going. Returns a yes or no. 
-    private boolean goFish(Card inPlaysDesireC) {
-        for (int i = 0; i < notInPlay.getHand().size(); i++) {
-            if (notInPlay.getHand().get(i).getValue().equals(inPlaysDesireC.getValue())) {
+    private boolean goFish(Card inPlaysDesireC) 
+    {
+        for (int i = 0; i < notInPlay.getHand().size(); i++) 
+        {
+            if (notInPlay.getHand().get(i).getValue().equals(inPlaysDesireC.getValue())) 
+            {
                 return false;
             }//End I:*
         }//End F:*
         return true;
     }//End M:*
     
-    public boolean shouldKeepGoing(){
+    public boolean shouldKeepGoing()
+    {
                 
         
         boolean flag = true;
@@ -145,7 +156,8 @@ public class TurnManager {
     
      //Define: gets value and suit as string and then maps it. 
     //while loop overall strcuture with inner for loop and if.
-    private Card humanAskingForACard() {
+    private Card humanAskingForACard() 
+    {
         boolean flag = true;
         //A: Iterate: 
         while (flag) 
@@ -180,24 +192,28 @@ public class TurnManager {
     }//End M:*
     
     
-    private Card computerAskingForACard(){
+    private Card computerAskingForACard()
+    {
         List<Card> dTemp = computer.getDesirableList();
         List<Card> hTemp = computer.getHand();
         Card cTemp = null;
         
-        if(!dTemp.isEmpty()){
+        if(!dTemp.isEmpty())
+        {
             cTemp = new GoFishCard(dTemp.get(0).getValue());
             System.out.println("Computer is asking for: " + cTemp.getValue());
             return cTemp;
         }//End I:*
        
-        else if(!hTemp.isEmpty()){
+        else if(!hTemp.isEmpty())
+        {
             cTemp = new GoFishCard(hTemp.get(0).getValue());
             System.out.println("Computer is asking for: " + cTemp.getValue());
             return cTemp;
         }//End E:*
         
-        else if(dTemp.isEmpty() && hTemp.isEmpty()){
+        else if(dTemp.isEmpty() && hTemp.isEmpty())
+        {
             System.out.println("Computer has no cards left in their hand");
             return null;
         }//End E:*
@@ -207,7 +223,8 @@ public class TurnManager {
     
   
     //Deciding which player goes first 
-    public void coinToss(String guess) {
+    public void coinToss(String guess) 
+    {
         
         //A: Create: the coin as string array.
         String[] coin = {"heads", "tails"};

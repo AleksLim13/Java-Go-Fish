@@ -7,8 +7,6 @@ package ca.sheridancollege.project.Start;
 
 
 import ca.sheridancollege.project.Cards.Card;
-import ca.sheridancollege.project.Players.CompPlayer;
-import ca.sheridancollege.project.Players.HumanPlayer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,14 +21,17 @@ public class RoundOne extends Start {
     
     private Game game;
 
-    public RoundOne(Game game) {
+    public RoundOne(Game game) 
+    {
         this.game = game;
     }//End C:*
 
     @Override
-    public void play() {
+    public void play() 
+    {
     
-        if (game instanceof GoFish) {
+        if (game instanceof GoFish) 
+        {
         
          List<Card> hHand = ((GoFish)game).getTurnController().getClassHand().createHand(7, new ArrayList<>());
          List<Card> cHand = ((GoFish)game).getTurnController().getClassHand().createHand(7, new ArrayList<>());

@@ -70,10 +70,6 @@ public class ArrayStuff {
     {
         int[] result = new int[list.length];
 
-        //i < list.length is single test condition. 
-        //look for commas and where semi colon ends to see grouping. 
-        //2 counters: 1 to start at beginning element and 1 for ending element slot
-        //Use assignment to make last = first.
         //Then update counters to move to next slot either down or up.
         //Then swap again. 
         for (int i = 0, j = result.length - 1; i < list.length; i++, j--) 

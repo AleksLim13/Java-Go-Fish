@@ -12,7 +12,6 @@ import ca.sheridancollege.project.Cards.Hand;
 import ca.sheridancollege.project.Cards.PseudoCard;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Utility.UInput;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,36 +26,63 @@ public class TurnManager {
     //B: Declare: designate storage for each.
     //C: Declare: a list to kee track. 
     //F: Declare: 
-    private Hand classHand;
-    private ScoreBoard scoreBoard;
+    private final Player human;
+    private final Player computer;
+    private Player inPlay;
+    private Player notInPlay;
+    private final Hand classHand;
+    private final ScoreBoard scoreBoard;
 
     //Constructor 
     public TurnManager(
+                        Player human,
+                        Player computer,
                         Hand hand,
                         ScoreBoard scoreBoard
                          ) 
     {
+        this.human = human;
+        this.computer = computer;
         this.classHand = hand;
         this.scoreBoard = scoreBoard;
     }//End C:*
 
- 
-    public Hand getHand() {
+    public Player getInPlay() {
+        return inPlay;
+    }
+
+    public void setInPlay(Player inPlay) {
+        this.inPlay = inPlay;
+    }
+
+    public Player getNotInPlay() {
+        return notInPlay;
+    }
+
+    public Player getHuman() {
+        return human;
+    }
+
+    public Player getComputer() {
+        return computer;
+    }
+    
+    
+
+    public void setNotInPlay(Player notInPlay) {
+        this.notInPlay = notInPlay;
+    }
+
+    public Hand getClassHand() {
         return this.classHand;
     }
 
-    public void setHand(Hand hand) {
-        this.classHand = hand;
-    }
 
     public ScoreBoard getScoreBoard() {
         return this.scoreBoard;
     }
 
-    public void setScoreBoard(ScoreBoard scoreBoard) {
-        this.scoreBoard = scoreBoard;
-    }
-  
+ 
    
     //This works as a check if card is in opponents hand 
     //so there turn keeps going. Returns a yes or no. 

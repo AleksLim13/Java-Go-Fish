@@ -15,55 +15,49 @@ import java.util.ArrayList;
  */
 public class Hand {
     
-    private List<Card> hand;
     private Deck deck;
 
-    public Hand(Deck deck, List<Card> hand) {
+    public Hand(Deck deck) {
         this.deck = deck;
-        this.hand = hand;
         deckSetup();
     }//End C:*
 
     public Hand() {
         this.deck = new Deck();
-        this.hand = new ArrayList<>();
         deckSetup();
 
     }//End C:*
     
-    
 
     public Deck getDeck() {
-        return deck;
+        return this.deck;
     }
 
     public void setDeck(Deck deck) {
         this.deck = deck;
     }
     
-    //Define: adds a Card to a provided hand and copies the updated hand.
-    private List<Card> addCardToHand(
-                                     List<Card> cardHand, 
-                                     Card card, 
-                                     List<Card> opponentHand
+    //Define: yes. the opponent has the card. add to inplay and subtract not in play.
+    private void addCardToHand(
+                                     List<Card> inPlayHand, //inplay
+                                     Card inPlaysDesireC, //in plays desire
+                                     List<Card> notInPlayHand //remmove from
                                     ) 
     {
        
-        int posit = findPositPartialCard(opponentHand, card);
-        Card cTemp = opponentHand.get(posit);
-        cardHand.add(cTemp);
-        return cardHand;
+        int posit = findPositPartialCard(notInPlayHand, inPlaysDesireC);
+        Card cTemp = notInPlayHand.get(posit);
+        inPlayHand.add(cTemp);
     }//End M:*
 
-    //Define: 
-    private List<Card> deleteCardFromHand(
-                                       List<Card> cardHand, 
+    //Define: opponent has card. Remove it after giving it to player in play. 
+    private void deleteCardFromHand(
+                                       List<Card> notInPlayHand, 
                                        int posit
                                        ) 
     {
 
-        cardHand.remove(posit);
-        return cardHand;
+        notInPlayHand.remove(posit);
     }//End M:*
 
     //Define: "sorry don't have that card dude." Allor, take a card from the deck.  
@@ -74,27 +68,26 @@ public class Hand {
     }//End M:*
     
     
-    //Define: ablility to remove target from other players hand. Calls delete method. 
-    public List<Card> updateHandDelete(
-            List<Card> cHand,//Incl: list for C's.
-            Card tCard//Incl: list for copies. 
+    //Define: Not in play has the card. Remove it from not in play. 
+    public void updateHandDelete(
+            List<Card> notInPlayHand,//Incl: list for C's.
+            Card inPlaysDesireC//Incl: list for copies. 
     )
                         
      {
-        deleteCardFromHand(cHand, findPositFullCard(cHand, tCard));
-        return cHand;
+        deleteCardFromHand(notInPlayHand, findPositFullCard(notInPlayHand, inPlaysDesireC));
+
     }//End M:*
     
     //Define: ablility to remove target from other players hand. Calls delete method. 
-    public List<Card> updateHandAdd(
-            List<Card> cHand,//Incl: list for C's.
-            Card tCard,//Incl: list for copies. 
-            List<Card> oppHand
+    public void updateHandAdd(
+            List<Card> inPlayHand,//Incl: list for C's.
+            Card inPlaysDesireC,//Incl: list for copies. 
+            List<Card> notInPlayHand
     )
                         
      {
-        addCardToHand(cHand, tCard, oppHand);
-        return cHand;
+        addCardToHand(inPlayHand, inPlaysDesireC, notInPlayHand);
     }//End M:*
  
     //Need to know what the index of the card need to remove 
@@ -125,60 +118,47 @@ public class Hand {
     private Card createRandoCard() 
     {
         //A: create: ranges for random number to map against. 
-        Card.Value[] values = Card.Value.values();
-
+        
         //B: Create: the random numbers modelling suit and values. 
-        int valPossible = (int) (Math.random() * values.length) + 1;
+        int valPossible = (int) (Math.random() * Card.valuesRange.length) + 1;
 
         //C: asssign: the values determined by a random number
-        Card resCard = deck.getDeck().get(valPossible);
+        Card resCard = this.deck.getDeck().get(valPossible);
 
         //D: create: the card object and copy it. 
-        deck.removeCard(resCard);
+        this.deck.removeCard(resCard);
         
         return resCard;
     }//End M:*
     
-    
-    //Define: normal getter for accessing the hand.
-    public List<Card> getHand() {
-        return hand;
-    }//End G:*
-
-    //Define: normal setter for a new hand.
-    public void setHand(ArrayList<Card> hand) {
-        this.hand = hand;
-    }//End S:*
+   
 
     //Methods:_________________________
     
     //Define: this fills deck and shuffles it. Uses 2 known methods.
     private void deckSetup() {
-        deck.initDeck();
-        deck.shuffle();
+        this.deck.initDeck();
+        this.deck.shuffle();
     }//End M:*
 
     //Define: Deal first card and simultaneously remove it from deck.
     private Card startDeal() {
         Card card;
-        card = deck.getDeck().get(0);
+        card = this.deck.getDeck().get(0);
         //B: 
-        deck.getDeck().remove(0);
+        this.deck.getDeck().remove(0);
         //C: 
         return card;
     }//End M:*
 
     //Define: provide number of cards. Repetition solution. Call's start deal.
-    public void createHand(int size) {
-
-        if (hand.size() > 0) {
-            hand.clear();
-        }//End I:*
+    public List<Card> createHand(int size, List<Card> tHand) {
 
         for (int i = 0; i < size; i++) {
-            hand.add(this.startDeal());
-        }//End F:*     
-
+            tHand.add(this.startDeal());
+        }//End F:*   
+        
+        return tHand;
     }//End M:*
 
     

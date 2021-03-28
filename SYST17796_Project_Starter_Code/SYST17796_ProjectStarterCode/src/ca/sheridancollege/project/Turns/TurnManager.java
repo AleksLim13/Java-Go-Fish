@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package ca.sheridancollege.project.Turns;
+
+
 import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Cards.GoFishCard;
 import ca.sheridancollege.project.Cards.Hand;
 import ca.sheridancollege.project.Cards.PseudoCard;
-import ca.sheridancollege.project.Players.CompPlayer;
-import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
-import ca.sheridancollege.project.Utility.Printer;
 import ca.sheridancollege.project.Utility.UInput;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,145 +23,50 @@ public class TurnManager {
 
     //Declare: fields: for keeping track. 
     //A: Declare: it's only a two player game. 
-    private Player human;
-    private Player computer;
+    
     //B: Declare: designate storage for each.
-    private Player inPlay;
-    private Player notInPlay;
     //C: Declare: a list to kee track. 
-    private ArrayList<Player> inPlayList;
-    //D: declare: storage for the coin toss.
-    private String guess;
-    private String coinToss;
-    //E: Declare: another list to update back and forth. 
-    private ArrayList<Player> updPlayerList;
     //F: Declare: 
-    private Hand hand;
+    private Hand classHand;
     private ScoreBoard scoreBoard;
 
     //Constructor 
     public TurnManager(
-                        Player human,
-                        Player computer,
-                        ArrayList<Player> inPlayList,
-                        ArrayList<Player> udpPlayerList,
                         Hand hand,
                         ScoreBoard scoreBoard
                          ) 
     {
-        this.human = human;
-        this.computer = computer;
-        this.inPlayList = inPlayList;
-        this.updPlayerList = udpPlayerList;  
-        this.hand = hand;
+        this.classHand = hand;
         this.scoreBoard = scoreBoard;
     }//End C:*
 
-    //Getter 
-    public Player getInPlay() {
-        return inPlay;
-    }//End G:*
-
-    //Setter 
-    public void setInPlay(Player newInPlay) {
-        this.inPlay = newInPlay;
-    }//End S:*
-
-    //Getter 
-    public Player getNotInPlay() {
-        return notInPlay;
-    }//End G:*
-
+ 
     public Hand getHand() {
-        return hand;
+        return this.classHand;
     }
 
     public void setHand(Hand hand) {
-        this.hand = hand;
+        this.classHand = hand;
     }
 
     public ScoreBoard getScoreBoard() {
-        return scoreBoard;
+        return this.scoreBoard;
     }
 
     public void setScoreBoard(ScoreBoard scoreBoard) {
         this.scoreBoard = scoreBoard;
     }
   
-    //Setter 
-    public void setNotInPlay(Player newNotInPlay) {
-        this.notInPlay = newNotInPlay;
-    }//End S:*
-
-    public Player getHuman() {
-        return human;
-    }//End G:*
-
-    public void setHuman(Player human) {
-        this.human = human;
-    }//End S:*
-
-    public Player getComputer() {
-        return computer;
-    }//End G:*
-
-    public void setComputer(Player computer) {
-        this.computer = computer;
-    }//End S:*
-    
-    public ArrayList<Player> getInPlayList() {
-        return inPlayList;
-    }//End G:*
-
-    public void setInPlayList(ArrayList<Player> inPlayList) {
-        this.inPlayList = inPlayList;
-    }//End S:*
-
-    public String getGuess() {
-        return guess;
-    }//End G:*
-
-    public void setGuess(String guess) {
-        this.guess = guess;
-    }//End S:*
-
-    public String getCoinToss() {
-        return coinToss;
-    }//End G:*
-
-    public void setCoinToss(String coinToss) {
-        this.coinToss = coinToss;
-    }//End S:*
-
-    public ArrayList<Player> getUpdPlayerList() {
-        return updPlayerList;
-    }//End G:*
-
-    public void setUpdPlayerList(ArrayList<Player> updPlayerList) {
-        this.updPlayerList = updPlayerList;
-    }
-
- 
-    //Start Normal Methods 
-    private Player turnSwitcher(Player inPlay, Player notInPlay) {
-        
-        //A: Hold: Pin it to a baord.
-        Player temp = inPlay;
-        
-        //B: Switch: swap the two. 
-        inPlay = notInPlay;
-        notInPlay = temp;
-        
-        //C: Copy: remember it. 
-        return inPlay;
-    }//End M:*
-    
-    
+   
     //This works as a check if card is in opponents hand 
     //so there turn keeps going. Returns a yes or no. 
-    private boolean goFish(List<Card> hand, Card card) {
-        for (int i = 0; i < hand.size(); i++) {
-            if (hand.get(i).getValue().equals(card.getValue())) {
+    private boolean goFish(List<Card> notInPlayHand, Card inPlaysDesireC) {
+        for (int i = 0; i < notInPlayHand.size(); i++) {
+            if (notInPlayHand.get(i).getValue().equals(inPlaysDesireC.getValue())) {
+                System.out.println(
+                                    "Opponent: " + notInPlayHand.get(i).getValue() + 
+                                    "In Play: " + inPlaysDesireC.getValue()
+                                    );
                 return false;
             }//End I:*
         }//End F:*
@@ -170,51 +74,7 @@ public class TurnManager {
     }//End M:*
     
     public boolean shouldKeepGoing(){
-        
-       
-            
-            Card cTemp = null;
-            if(inPlay instanceof HumanPlayer)
-            {
-                cTemp = humanAskingForACard();
-            }//End I:*
-            
-            else if (inPlay instanceof CompPlayer)
-            {
-                cTemp = computerAskingForACard();
-            }//End E:*
-            
-            boolean check = goFish(notInPlay.getHand(), cTemp);
-            
-            System.out.println("Check is: " + check);
-            
-            if(check)
-            {
-                hand.getCardFromDeck(inPlay.getHand());
-                System.out.println("Printing in plays: " + inPlay.getName() + "hand: ");
-                Printer.printHand(inPlay.getHand());
-                
-                System.out.println("Switching who's in play");
-                turnSwitcher(inPlay, notInPlay);
-                
-            }//end I:*
-            
-            else 
-            {
-                hand.updateHandAdd(inPlay.getHand(), cTemp, notInPlay.getHand());
-                System.out.println("Printing in play hand: " + inPlay.getName());
-                Printer.printHand(inPlay.getHand());
-                
-                hand.updateHandDelete(notInPlay.getHand(), inPlay.getHand().get(inPlay.getHand().size()-1));
-                System.out.println("Printing not in play" + notInPlay.getName() + " hand:");
-                Printer.printHand(notInPlay.getHand());
-                
-                System.out.println("Switching who's in play");
-                turnSwitcher(inPlay, notInPlay);
-            }//End I:*
-            
-     
-        
+              
         return false;      
     }//End M:*
     
@@ -243,10 +103,8 @@ public class TurnManager {
                 {
                     //A.7: Create: 
                     Card resCard = new GoFishCard(
-                                                            Card.Value.valueOf(
-                                                                        cDesire.getValue()
-                                                                              )//End M:*
-                                                       );//End C:*
+                                                  cDesire.getValue()
+                                                  );//End C:*
                     //A.9: Copy: 
                     return resCard;
                 }//End I:*
@@ -256,9 +114,9 @@ public class TurnManager {
         return null;
     }//End M:*
     
-    private Card computerAskingForACard(){
-        List<Card> dTemp = computer.getDesirableList();
-        List<Card> hTemp = computer.getHand();
+    private Card computerAskingForACard(Player comp){
+        List<Card> dTemp = comp.getDesirableList();
+        List<Card> hTemp = comp.getHand();
         Card cTemp = null;
         
         if(!dTemp.isEmpty()){
@@ -283,7 +141,7 @@ public class TurnManager {
     
   
     //Deciding which player goes first 
-    public String coinToss(String guess) {
+    public void coinToss(String guess) {
         
         //A: Create: the coin as string array.
         String[] coin = {"heads", "tails"};
@@ -295,26 +153,18 @@ public class TurnManager {
         String flipped = coin[decision];
         
         //C: Evaluate: 
-        String result;
         if (guess.equals(flipped)) 
         {
             System.out.println("You're right. It was: " + flipped + " . It's your play");
-            result = "correct";
-            inPlay = human;
-            notInPlay = computer;
+           
         } //End I:*
         
-        else 
+        else if(!guess.equals(flipped))
         {
             System.out.println("Sorry, it was: " + flipped);
-            result = "incorrect";
-            inPlay = computer;
-            notInPlay = human;
+       
         }//End E:*
-        
-        //D: Copy It
-        return result;
-        
+  
     }//End M:*
     
 }//End class 

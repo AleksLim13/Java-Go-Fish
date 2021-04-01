@@ -27,8 +27,6 @@ public class Hand {
         deckSetup();
         this.scoreBoard = sb;
     }//End C:*
-
-  
     
     public Deck getDeck() 
     {
@@ -42,25 +40,25 @@ public class Hand {
     
     //Define: yes. the opponent has the card. add to inplay and subtract not in play.
     private void addCardToHand(
-                                     List<Card> inPlayHand, //inplay
+                                     Player inPlay, //inplay
                                      Card inPlaysDesireC, //in plays desire
-                                     List<Card> notInPlayHand //remove from
+                                     Player notInPlay //remove from
                                     ) 
     {
        
-        int posit = findPositPartialCard(notInPlayHand, inPlaysDesireC);
-        Card cTemp = notInPlayHand.get(posit);
-        inPlayHand.add(cTemp);
+        int posit = findPositPartialCard(notInPlay, inPlaysDesireC);
+        Card cTemp = notInPlay.getHand().get(posit);
+        inPlay.getHand().add(cTemp);
     }//End M:*
 
     //Define: opponent has card. Remove it after giving it to player in play. 
     private void deleteCardFromHand(
-                                       List<Card> notInPlayHand, 
+                                       Player notInPlay, 
                                        int posit
                                        ) 
     {
 
-        notInPlayHand.remove(posit);
+        notInPlay.getHand().remove(posit);
     }//End M:*
 
     //Define: "sorry don't have that card dude." Allor, take a card from the deck.  
@@ -73,35 +71,35 @@ public class Hand {
     
     //Define: Not in play has the card. Remove it from not in play. 
     public void updateHandDelete(
-            List<Card> notInPlayHand,//Incl: list for C's.
+            Player notInPlay,//Incl: list for C's.
             Card inPlaysDesireC//Incl: list for copies. 
     )
                         
      {
-        deleteCardFromHand(notInPlayHand, findPositFullCard(notInPlayHand, inPlaysDesireC));
+        deleteCardFromHand(notInPlay, findPositFullCard(notInPlay, inPlaysDesireC));
 
     }//End M:*
     
     //Define: ablility to remove target from other players hand. Calls delete method. 
     public void updateHandAdd(
-            List<Card> inPlayHand,//Incl: list for C's.
+            Player inPlay,//Incl: list for C's.
             Card inPlaysDesireC,//Incl: list for copies. 
-            List<Card> notInPlayHand
+            Player notInPlay
     )
                         
      {
-        addCardToHand(inPlayHand, inPlaysDesireC, notInPlayHand);
+        addCardToHand(inPlay, inPlaysDesireC, notInPlay);
     }//End M:*
  
     //Need to know what the index of the card need to remove 
     //from hand
     //Define: 
-    private int findPositFullCard(List<Card> hand, Card tCard) 
+    private int findPositFullCard(Player player, Card tCard) 
     {
         int posit = 0;
-        for (int i = 0; i < hand.size(); i++) 
+        for (int i = 0; i < player.getHand().size(); i++) 
         {
-            if (hand.get(i).equals(tCard)) 
+            if (player.getHand().get(i).equals(tCard)) 
             {
                 posit = i;
                 return posit;
@@ -111,12 +109,12 @@ public class Hand {
     }//End M:*
     
     //Define: 
-    private int findPositPartialCard(List<Card> hand, Card tCard) 
+    private int findPositPartialCard(Player player, Card tCard) 
     {
         int posit = 0;
-        for (int i = 0; i < hand.size(); i++) 
+        for (int i = 0; i < player.getHand().size(); i++) 
         {
-            if (hand.get(i).getValue().equals(tCard.getValue())) 
+            if (player.getHand().get(i).getValue().equals(tCard.getValue())) 
             {
                 posit = i;
                 return posit;
@@ -169,7 +167,6 @@ public class Hand {
         
         for (int i = 0; i < size; i++) 
         {
-          
             player.getHand().add(this.startDeal());
         }//End F:*         
     }//End M:

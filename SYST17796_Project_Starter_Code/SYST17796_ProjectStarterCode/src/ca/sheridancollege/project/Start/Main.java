@@ -5,6 +5,14 @@
  */
 package ca.sheridancollege.project.Start;
 
+import ca.sheridancollege.project.Cards.Hand;
+import ca.sheridancollege.project.Players.CompPlayer;
+import ca.sheridancollege.project.Players.HumanPlayer;
+import ca.sheridancollege.project.Turns.Deck;
+import ca.sheridancollege.project.Turns.ScoreBoard;
+import ca.sheridancollege.project.Turns.TurnManager;
+import java.util.ArrayList;
+
 /**
  *
  * @author aleks
@@ -13,7 +21,14 @@ public class Main
 {
     public static void main(String[] args)
     {
-        RoundOne round1 = new RoundOne(new GoFish("Aleks"));
+        TurnManager tM = new TurnManager(
+                                        new HumanPlayer("Aleks", new ArrayList<>(), new ArrayList<>()), 
+                                        new CompPlayer(new ArrayList<>(), new ArrayList<>()), 
+                                        new Hand(new Deck() ,new ScoreBoard()), 
+                                        new ScoreBoard()
+                                        );
+        
+        RoundOne round1 = new RoundOne(new GoFish("Aleks", tM));
         round1.play();
     }//End M:*
     

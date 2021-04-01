@@ -125,14 +125,14 @@ public class TurnManager {
               if(check)
               {
                   System.out.println(this.notInPlay.getName() + " does not have " + cTemp.getValue());
-                  this.classHand.getCardFromDeck(this.inPlay.getHand());
+                  this.classHand.getCardFromDeck(this.inPlay);
                   
                   System.out.println("");
-                  System.out.println("In Play Hand:");
+                  System.out.println(this.inPlay.getName() + " In Play Hand:");
                   System.out.println(this.inPlay.getHand().toString());
                   
                   System.out.println("");
-                  System.out.println("Not In Play Hand:");
+                  System.out.println(this.notInPlay.getName() + " Not In Play Hand:");
                   System.out.println(this.notInPlay.getHand().toString());
                   
                   System.out.println("");

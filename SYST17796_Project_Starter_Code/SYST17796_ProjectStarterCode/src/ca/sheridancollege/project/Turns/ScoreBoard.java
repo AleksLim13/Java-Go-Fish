@@ -10,6 +10,7 @@ package ca.sheridancollege.project.Turns;
 
 import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Players.Player;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,16 +53,17 @@ public class ScoreBoard {
     
     public void calcBooks(
             Card tNum,
-            List<Card> dupes,
-            List<Card> books,
-            List<Card> hand
+            Player player
     ) {
         int ilCount = 0;
         //Repeat: set outer loop. 
-        for (int i = 0; i < dupes.size(); i++) 
+        
+        player.setBooks(new ArrayList<>());
+        
+        for (int i = 0; i < player.getDesirableList().size(); i++) 
         {
             //A.3.1: Check:
-            if (tNum.equals(dupes.get(i))) 
+            if (tNum.getValue().equals(player.getDesirableList().get(i).getValue())) 
             {
                 //Increment: counter if already in duplicate list. 
                 ilCount++;
@@ -70,11 +72,11 @@ public class ScoreBoard {
         if (ilCount == 4) 
         {
             //Add: 
-            books.add(tNum);
+            player.getBooks().add(tNum);
             //Notice: should only ever be four of a kind. E.g., standard deck format. 
             for (int j = 0; j < 4; j++) 
             {
-                hand.remove(findFirstIndex(tNum, hand));
+                player.getHand().remove(findFirstIndex(tNum, player.getHand()));
             }//End I:*                  
         }//End I:*  
     }//End M:*
@@ -85,7 +87,7 @@ public class ScoreBoard {
     ) {
         int pos = 0;
         for (int i = 0; i < tList.size(); i++) {
-            if (tNum.equals(tList.get(i))) {
+            if (tNum.getValue().equals(tList.get(i).getValue())) {
                 pos = i;
                 return pos;
             }//End I:*

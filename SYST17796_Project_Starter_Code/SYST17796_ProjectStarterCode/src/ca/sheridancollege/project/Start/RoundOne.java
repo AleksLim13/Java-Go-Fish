@@ -6,9 +6,6 @@
 package ca.sheridancollege.project.Start;
 
 
-import ca.sheridancollege.project.Cards.Card;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -34,115 +31,112 @@ public class RoundOne extends Start {
             
             System.out.println("Creating Hands:");
         
-            List<Card> hHand = ((GoFish)game)
-                                     .getTurnController()
-                                         .getClassHand()
-                                             .createHand(7, new ArrayList<>());
-         
-            List<Card> cHand = ((GoFish)game)
-                                   .getTurnController()
-                                      .getClassHand()
-                                         .createHand(7, new ArrayList<>());
-         
-            ((GoFish)game)//DownCast-It: 
-                  .getTurnController()
-                       .getHuman()
-                            .setHand(hHand);
-         
             ((GoFish)game)
-                  .getTurnController()
-                       .getComputer()
-                           .setHand(cHand);
+                          .getTurnController()
+                          .getClassHand()
+                          .createHand(7,  ((GoFish)game)
+                                                         .getTurnController()
+                                                         .getHuman());
+         
+             ((GoFish)game)
+                           .getTurnController()
+                           .getClassHand()
+                           .createHand(7,  ((GoFish)game)
+                                                         .getTurnController()
+                                                         .getComputer());
+         
+            
             
             //Divide: Part Two:_________________________________________________ 
             System.out.println("");
             System.out.println("Creating Duplicate Lists:");
-            List<Card> hDupes = ((GoFish)game)
-                                        .getTurnController()
-                                              .getScoreBoard()
-                                                   .getDupes(hHand, new ArrayList<>());
             
             ((GoFish)game)
-                     .getTurnController()
-                           .getHuman()
-                               .setDesirableList(hDupes);
+                         .getTurnController()
+                         .getScoreBoard()
+                         .getDupes(((GoFish)game)
+                                                 .getTurnController()
+                                                 .getHuman());
             
-             List<Card> cDupes = ((GoFish)game)
-                                       .getTurnController()
-                                            .getScoreBoard()
-                                                .getDupes(cHand, new ArrayList<>());  
+           
+            
+            ((GoFish)game)
+                          .getTurnController()
+                          .getScoreBoard()
+                          .getDupes(((GoFish)game)
+                                                  .getTurnController()
+                                                  .getComputer());  
              
-            ((GoFish)game)
-                      .getTurnController()
-                           .getComputer()
-                                .setDesirableList(cDupes);
+        
             
             //Divide: Part Three:_______________________________________________
             
             System.out.println("");
             System.out.println("Setting who goes first");
              ((GoFish)game)
-                      .getTurnController()
+                          .getTurnController()
                           .setInPlay(((GoFish)game)
-                              .getTurnController()
-                                  .getHuman());
+                                                   .getTurnController()
+                                                   .getHuman()
+                          );//End S:*
 
             ((GoFish)game)
-                      .getTurnController()
-                         .setNotInPlay(((GoFish)game)
-                                            .getTurnController()
-                                                .getComputer());
+                          .getTurnController()
+                          .setNotInPlay(((GoFish)game)
+                                                      .getTurnController()
+                                                      .getComputer()
+                          );//End S:*
           
             System.out.println("");
             System.out.println( "[" + ((GoFish)game) 
-                                         .getTurnController()
-                                            .getInPlay()
-                                               .getName() + "]" + " -In Play Hand:");
+                                                    .getTurnController()
+                                                    .getInPlay()
+                                                    .getName() + "]" + " -In Play Hand:");
 
             System.out.println(((GoFish)game)
-                                    .getTurnController()
-                                        .getInPlay()
+                                             .getTurnController()
+                                             .getInPlay()
                                              .getHand()
-                                                 .toString());
+                                             .toString());
           
             System.out.println("");
             System.out.println("[" + ((GoFish)game)
-                                         .getTurnController()
+                                                   .getTurnController()
+                                                   .getInPlay()
+                                                   .getName() + "]" + " -In Play Desirable List:");
+            System.out.println(((GoFish)game)
+                                             .getTurnController()
                                              .getInPlay()
-                                                 .getName() + "]" + " -In Play Desirable List:");
-            System.out.println(((GoFish)game)
-                                   .getTurnController()
-                                       .getInPlay()
-                                            .getDesirableList()
-                                                .toString());
+                                             .getDesirableList()
+                                             .toString());
             System.out.println("");
             System.out.println("[" + ((GoFish)game)
-                                         .getTurnController()
+                                                   .getTurnController()
+                                                   .getNotInPlay()
+                                                   .getName() + "]" + " -Not In Play Hand:");
+
+            System.out.println(((GoFish)game)
+                                             .getTurnController()
                                              .getNotInPlay()
-                                                .getName() + "]" + " -Not In Play Hand:");
-
-            System.out.println(((GoFish)game)
-                                       .getTurnController()
-                                           .getNotInPlay()
-                                               .getHand()
-                                                    .toString());
+                                             .getHand()
+                                             .toString());
 
             System.out.println("");
             System.out.println("[" + ((GoFish)game)
-                                         .getTurnController()
-                                              .getNotInPlay()
-                                                  .getName() + "]" + " -Not In Play Desirable List:");
+                                                   .getTurnController()
+                                                   .getNotInPlay()
+                                                   .getName() + "]" + " -Not In Play Desirable List:");
             System.out.println(((GoFish)game)
-                                   .getTurnController()
-                                       .getNotInPlay()
-                                            .getDesirableList()
-                                                .toString());
+                                             .getTurnController()
+                                             .getNotInPlay()
+                                             .getDesirableList()
+                                             .toString());
             //Divide: Part Four:________________________________________________
             System.out.println("");
             System.out.println("Round One");
              
             ((GoFish)game)
-                      .getTurnController()
+                           .getTurnController()
                            .shouldKeepGoing();
 
 

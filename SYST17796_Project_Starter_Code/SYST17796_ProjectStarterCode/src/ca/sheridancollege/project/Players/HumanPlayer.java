@@ -7,6 +7,10 @@ package ca.sheridancollege.project.Players;
 
 //Imports:__________________________
 
+import ca.sheridancollege.project.Cards.Card;
+import java.util.List;
+
+
 
 /**
  *
@@ -15,8 +19,8 @@ package ca.sheridancollege.project.Players;
 public class HumanPlayer extends Player{
     
  
-    public HumanPlayer(String name){
-        super(name);
+    public HumanPlayer(String name, List<Card> books, List<Card> dL){
+        super(name, books, dL);
     }//End C:*
     
  

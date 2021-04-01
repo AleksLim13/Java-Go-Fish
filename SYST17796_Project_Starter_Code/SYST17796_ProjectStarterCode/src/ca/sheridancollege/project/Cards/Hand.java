@@ -51,6 +51,15 @@ public class Hand {
         inPlay.getHand().add(cTemp);
         System.out.println("Calculating books on " + cTemp.toString());
         this.scoreBoard.calcBooks(cTemp, inPlay);
+        
+        System.out.println("");
+        System.out.println("Calculating dupes for " + inPlay.getName());
+        this.scoreBoard.getDupes(inPlay);
+        
+        System.out.println("");
+        System.out.println(inPlay.getName() + " dupes: " + inPlay.getDesirableList().toString());
+        
+        
     }//End M:*
 
     //Define: opponent has card. Remove it after giving it to player in play. 
@@ -68,8 +77,16 @@ public class Hand {
     {
         player.getHand().add(createRandoCard());
         System.out.println("");
+        
         System.out.println("Calculating books on " + player.getHand().get(player.getHand().size()-1).toString());
         this.scoreBoard.calcBooks(player.getHand().get(player.getHand().size()-1), player);
+        
+        System.out.println("");
+        System.out.println("Calculating dupes for " + player.getName());
+        this.scoreBoard.getDupes(player);
+        
+        System.out.println("");
+        System.out.println(player.getName() + " dupes: " + player.getDesirableList().toString());
     }//End M:*
     
     

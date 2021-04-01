@@ -155,9 +155,9 @@ public class TurnManager {
                    System.out.println(this.notInPlay.getName() + " does have " + cTemp.getValue());
                    
                    this.classHand.updateHandAdd(
-                                                this.inPlay.getHand(), 
+                                                this.inPlay, 
                                                 cTemp, 
-                                                this.notInPlay.getHand()
+                                                this.notInPlay
                                                );
                    
                    System.out.println("");
@@ -165,7 +165,7 @@ public class TurnManager {
                    System.out.println(this.inPlay.getHand().toString());
                 
                    this.classHand.updateHandDelete(
-                                                   this.notInPlay.getHand(), 
+                                                   this.notInPlay, 
                                                    this.inPlay.getHand().get(//last card added to other guys hand.
                                                                              this.inPlay.getHand().size()-1
                                                                               )//End G:*  

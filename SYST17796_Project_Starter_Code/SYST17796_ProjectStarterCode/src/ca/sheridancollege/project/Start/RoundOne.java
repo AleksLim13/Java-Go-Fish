@@ -5,9 +5,6 @@
  */
 package ca.sheridancollege.project.Start;
 
-
-
-
 /**
  *
  * @author AlllyCat13 @ Sheridan High 2021. 
@@ -93,9 +90,19 @@ public class RoundOne extends Start {
             System.out.println("Round One");
              
             
-            boolean flag = true;
-            while(flag){
-                System.out.println("");
+         
+            
+            //Define: main while loop control structure. Per if deck still had cards.
+            while(!((GoFish)game)
+                                  .getTurnController()
+                                  .getClassHand()
+                                  .getDeck()
+                                  .getDeck()
+                                  .isEmpty()
+                    )//End W:*
+            {
+            
+            System.out.println("");
             System.out.println( "[" + ((GoFish)game) 
                                                     .getTurnController()
                                                     .getInPlay()
@@ -142,6 +149,8 @@ public class RoundOne extends Start {
                 ((GoFish)game)
                            .getTurnController()
                            .shouldKeepGoing();
+                
+           
             }//End W:*
             
 

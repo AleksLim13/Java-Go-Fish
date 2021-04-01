@@ -137,7 +137,15 @@ public class TurnManager {
                   
                   System.out.println("");
                   System.out.println("Switching who's in play");
+                  
                   this.turnSwitcher();
+                  
+                  System.out.println("");
+                  System.out.println( "[" + this.inPlay.getName() + "]" + " In Play");
+                  
+                  System.out.println("");
+                  System.out.println(  "[" + this.notInPlay.getName() + "]" + " Not In Play");
+                  
                   return false;
               }//End I:*
               
@@ -145,13 +153,23 @@ public class TurnManager {
               {
                    System.out.println("");
                    System.out.println(this.notInPlay.getName() + " does have " + cTemp.getValue());
-                   this.classHand.updateHandAdd(this.inPlay.getHand(), cTemp, this.notInPlay.getHand());
+                   
+                   this.classHand.updateHandAdd(
+                                                this.inPlay.getHand(), 
+                                                cTemp, 
+                                                this.notInPlay.getHand()
+                                               );
                    
                    System.out.println("");
                    System.out.println("[" + this.inPlay.getName() + "]" + " In Play Hand:");
                    System.out.println(this.inPlay.getHand().toString());
                 
-                   this.classHand.updateHandDelete(this.notInPlay.getHand(), this.inPlay.getHand().get(this.inPlay.getHand().size()-1));  
+                   this.classHand.updateHandDelete(
+                                                   this.notInPlay.getHand(), 
+                                                   this.inPlay.getHand().get(//last card added to other guys hand.
+                                                                             this.inPlay.getHand().size()-1
+                                                                              )//End G:*  
+                                                    );//End M:*
                    System.out.println("");
                    System.out.println("[" + this.notInPlay.getName() + "]" + " Not In Play Hand:");
                    System.out.println(this.notInPlay.getHand().toString());

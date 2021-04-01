@@ -1,9 +1,12 @@
+
+package ca.sheridancollege.project.Turns;
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca.sheridancollege.project.Turns;
 
 import ca.sheridancollege.project.Cards.Card;
 import ca.sheridancollege.project.Players.Player;
@@ -11,9 +14,9 @@ import java.util.List;
 
 /**
  *
- * @author aleks
+ * @author AllyCat13 : Sheridan High 2021. 
  * 
- * ---------------------------------------------------------------------<Look
+ * ---------------------------------------------------------------------<
  * CLASS OVERVIEW:
  * ----------------
  * 
@@ -22,26 +25,28 @@ import java.util.List;
  * Tasks related to determining what to ask for. Determining based on the
  * content of a players hand. Many calculations performed here related to 
  * the advancement of the game. 
- * ----------------------------------------------------------------------<LOOK
+ * ----------------------------------------------------------------------<
  */
 public class ScoreBoard {
-    
-   
-    
+    //Declare:
     private Player winner;
  
-    public ScoreBoard() {
+    public ScoreBoard() 
+    {
     }//End C:*
 
-    public ScoreBoard(Player winner) {
+    public ScoreBoard(Player winner) 
+    {
         this.winner = winner;
     }//End C:*
 
-    public Player getWinner() {
+    public Player getWinner() 
+    {
         return winner;
     }//End G:*
 
-    public void setWinner(Player winner) {
+    public void setWinner(Player winner) 
+    {
         this.winner = winner;
     }//End S:*
     
@@ -53,7 +58,8 @@ public class ScoreBoard {
     ) {
         int ilCount = 0;
         //Repeat: set outer loop. 
-        for (int i = 0; i < dupes.size(); i++) {
+        for (int i = 0; i < dupes.size(); i++) 
+        {
             //A.3.1: Check:
             if (tNum.equals(dupes.get(i))) 
             {
@@ -61,11 +67,13 @@ public class ScoreBoard {
                 ilCount++;
             }//End I:*                    
         }//End F:*
-        if (ilCount == 4) {
+        if (ilCount == 4) 
+        {
             //Add: 
             books.add(tNum);
             //Notice: should only ever be four of a kind. E.g., standard deck format. 
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < 4; j++) 
+            {
                 hand.remove(findFirstIndex(tNum, hand));
             }//End I:*                  
         }//End I:*  
@@ -87,20 +95,18 @@ public class ScoreBoard {
       
        //Define: get a list of duplicate cards. Nested for loop structure with if check.
      //Notice: don't use 1 field variable for dupes if this will be called for different players. 
-    public List<Card> getDupes(
-                              List<Card> tHand,
-                              List<Card> dupes
+    public void getDupes(
+                              Player player
                               ) 
     {
-       
         //A: main for loop: compare each card to every other card in hand.
-        for (int i = 0; i < tHand.size(); i++) {
+        for (int i = 0; i < player.getHand().size(); i++) {
             int lCount = 0;
             //A.1: par two of compare each card to every other card in hand.
             //----
-            for (int j = 0; j < tHand.size(); j++) {
+            for (int j = 0; j < player.getHand().size(); j++) {
                 //Notice: duplicates determined only by card value.
-                if (tHand.get(i).getValue().equals(tHand.get(j).getValue())) {
+                if (player.getHand().get(i).getValue().equals(player.getHand().get(j).getValue())) {
                     //A.1.1: increase counter if they are equal. 
                     lCount++;
                 }//End I:*
@@ -109,12 +115,9 @@ public class ScoreBoard {
             //-----
             //Check: 
             if (lCount > 1) {
-                dupes.add(tHand.get(i));
+                player.getDesirableList().add(player.getHand().get(i));
             }//End I:*
         }//End F:*
-        
-        //Copy: 
-        return dupes;
     }//End M:*
     
     

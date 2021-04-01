@@ -135,9 +135,14 @@ public class RoundOne extends Start {
             System.out.println("");
             System.out.println("Round One");
              
-            ((GoFish)game)
+            
+            boolean flag = true;
+            while(flag){
+                ((GoFish)game)
                            .getTurnController()
                            .shouldKeepGoing();
+            }//End W:*
+            
 
 
         }//End I:*

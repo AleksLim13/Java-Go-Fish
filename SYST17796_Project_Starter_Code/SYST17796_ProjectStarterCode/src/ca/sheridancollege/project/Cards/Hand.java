@@ -49,6 +49,8 @@ public class Hand {
         int posit = findPositPartialCard(notInPlay, inPlaysDesireC);
         Card cTemp = notInPlay.getHand().get(posit);
         inPlay.getHand().add(cTemp);
+        System.out.println("Calculating books on " + cTemp.toString());
+        this.scoreBoard.calcBooks(cTemp, inPlay);
     }//End M:*
 
     //Define: opponent has card. Remove it after giving it to player in play. 
@@ -62,10 +64,12 @@ public class Hand {
     }//End M:*
 
     //Define: "sorry don't have that card dude." Allor, take a card from the deck.  
-    public List<Card> getCardFromDeck(List<Card> cardHand) 
+    public void getCardFromDeck(Player player) 
     {
-        cardHand.add(createRandoCard());
-        return cardHand;
+        player.getHand().add(createRandoCard());
+        System.out.println("");
+        System.out.println("Calculating books on " + player.getHand().get(player.getHand().size()-1).toString());
+        this.scoreBoard.calcBooks(player.getHand().get(player.getHand().size()-1), player);
     }//End M:*
     
     

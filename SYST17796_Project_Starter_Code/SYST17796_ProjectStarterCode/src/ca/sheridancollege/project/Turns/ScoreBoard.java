@@ -86,8 +86,10 @@ public class ScoreBoard {
             List<Card> tList
     ) {
         int pos = 0;
-        for (int i = 0; i < tList.size(); i++) {
-            if (tNum.getValue().equals(tList.get(i).getValue())) {
+        for (int i = 0; i < tList.size(); i++) 
+        {
+            if (tNum.getValue().equals(tList.get(i).getValue())) 
+            {
                 pos = i;
                 return pos;
             }//End I:*
@@ -101,7 +103,9 @@ public class ScoreBoard {
                               Player player
                               ) 
     {
-        //A: main for loop: compare each card to every other card in hand.
+        player.getDesirableList().clear();
+        
+    //A: main for loop: compare each card to every other card in hand.
         for (int i = 0; i < player.getHand().size(); i++) {
             int lCount = 0;
             //A.1: par two of compare each card to every other card in hand.

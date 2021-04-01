@@ -22,13 +22,27 @@ public class Main
     public static void main(String[] args)
     {
         TurnManager tM = new TurnManager(
-                                        new HumanPlayer("Aleks", new ArrayList<>(), new ArrayList<>()), 
-                                        new CompPlayer(new ArrayList<>(), new ArrayList<>()), 
-                                        new Hand(new Deck() ,new ScoreBoard()), 
+                                        new HumanPlayer(
+                                                        "Aleks", 
+                                                        new ArrayList<>(), 
+                                                        new ArrayList<>()
+                                                         ),//End C:* 
+                                        new CompPlayer(
+                                                       new ArrayList<>(), 
+                                                       new ArrayList<>()
+                                                       ), //End C:*
+                                        new Hand(
+                                                 new Deck(),
+                                                 new ScoreBoard()
+                                                ), //End C:*
                                         new ScoreBoard()
                                         );
         
-        RoundOne round1 = new RoundOne(new GoFish("Aleks", tM));
+        RoundOne round1 = new RoundOne(
+                                       new GoFish(
+                                                  "Aleks", 
+                                                  tM)
+                                       );
         round1.play();
     }//End M:*
     

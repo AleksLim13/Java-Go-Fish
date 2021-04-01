@@ -29,16 +29,22 @@ public abstract class Player {
     protected List<Card> desirableList;
 
     //Constructors:______________________________
-    public Player(String name) {
+    public Player(
+                  String name, 
+                  List<Card> books, 
+                  List<Card> dL
+                  ) 
+    {
         this.name = name;
-        numOfPlayers++;
-        playerId = numOfPlayers;
-        books = new ArrayList<>();
-        desirableList = new ArrayList<>();
+        Player.numOfPlayers++;
+        this.playerId = numOfPlayers;
+        this.books = books;
+        this.desirableList = dL;
     }//End C:*
     
     //Getters & Setters:________________________
-    public void setName(String newName) {
+    public void setName(String newName) 
+    {
         this.name = newName;
     }//End S:*
 

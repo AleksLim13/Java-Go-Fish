@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  *
- * @author AllyCat13 @ Sheridan High 2021
+ * @author AllyCat13 @ Sheridan High 2021.
  */
 public class TurnManager {
 
@@ -52,43 +52,43 @@ public class TurnManager {
     public Player getInPlay() 
     {
         return inPlay;
-    }
+    }//End G:*
 
     public void setInPlay(Player inPlay) 
     {
         this.inPlay = inPlay;
-    }
+    }//End G:*
 
     public Player getNotInPlay() 
     {
         return notInPlay;
-    }
+    }//End G:*
 
     public Player getHuman() 
     {
         return human;
-    }
+    }//End G:*
 
     public Player getComputer() 
     {
         return computer;
-    }
+    }//End G:*
     
     public void setNotInPlay(Player notInPlay) 
     {
         this.notInPlay = notInPlay;
-    }
+    }//End S:*
 
     public Hand getClassHand() 
     {
         return this.classHand;
-    }
+    }//End G:*
 
 
     public ScoreBoard getScoreBoard() 
     {
         return this.scoreBoard;
-    }
+    }//End G:*
     
     //This works as a check if card is in opponents hand 
     //so there turn keeps going. Returns a yes or no. 
@@ -106,8 +106,6 @@ public class TurnManager {
     
     public boolean shouldKeepGoing()
     {
-                
-        
         boolean flag = true;
         while(flag)
         {
@@ -128,26 +126,35 @@ public class TurnManager {
               {
                   System.out.println(this.notInPlay.getName() + " does not have " + cTemp.getValue());
                   this.classHand.getCardFromDeck(this.inPlay.getHand());
+                  
+                  System.out.println("");
                   System.out.println("In Play Hand:");
                   System.out.println(this.inPlay.getHand().toString());
                   
+                  System.out.println("");
                   System.out.println("Not In Play Hand:");
                   System.out.println(this.notInPlay.getHand().toString());
-
+                  
+                  System.out.println("");
+                  System.out.println("Switching who's in play");
+                  this.turnSwitcher();
                   return false;
               }//End I:*
               
               else if(!check)
               {
+                   System.out.println("");
                    System.out.println(this.notInPlay.getName() + " does have " + cTemp.getValue());
                    this.classHand.updateHandAdd(this.inPlay.getHand(), cTemp, this.notInPlay.getHand());
-                   System.out.println("In Play Hand:");
+                   
+                   System.out.println("");
+                   System.out.println("[" + this.inPlay.getName() + "]" + " In Play Hand:");
                    System.out.println(this.inPlay.getHand().toString());
                 
                    this.classHand.updateHandDelete(this.notInPlay.getHand(), this.inPlay.getHand().get(this.inPlay.getHand().size()-1));  
-                   System.out.println("Not In Play Hand:");
+                   System.out.println("");
+                   System.out.println("[" + this.notInPlay.getName() + "]" + " Not In Play Hand:");
                    System.out.println(this.notInPlay.getHand().toString());
-
               }//End EI:*
         }//End W:*
               
@@ -163,6 +170,7 @@ public class TurnManager {
         while (flag) 
         {
             //A.1: Get: 
+            System.out.println("");
             System.out.println("Which card value do you want?");
             String cvDesire = UInput.promptStringUser();
             //A.2: Get: 
@@ -201,6 +209,7 @@ public class TurnManager {
         if(!dTemp.isEmpty())
         {
             cTemp = new GoFishCard(dTemp.get(0).getValue());
+            System.out.println("");
             System.out.println("Computer is asking for: " + cTemp.getValue());
             return cTemp;
         }//End I:*
@@ -208,12 +217,14 @@ public class TurnManager {
         else if(!hTemp.isEmpty())
         {
             cTemp = new GoFishCard(hTemp.get(0).getValue());
+            System.out.println("");
             System.out.println("Computer is asking for: " + cTemp.getValue());
             return cTemp;
         }//End E:*
         
         else if(dTemp.isEmpty() && hTemp.isEmpty())
         {
+            System.out.println("");
             System.out.println("Computer has no cards left in their hand");
             return null;
         }//End E:*
@@ -221,8 +232,16 @@ public class TurnManager {
         return cTemp;
     }//End M:*
     
+    //Define: switch who's in play with help of special holder. 
+    private void turnSwitcher()
+    {
+        Player temp = inPlay;
+        inPlay = notInPlay;
+        notInPlay = temp;  
+    }//End M:*
+    
   
-    //Deciding which player goes first 
+    //Define: Deciding which player goes first 
     public void coinToss(String guess) 
     {
         

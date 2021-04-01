@@ -6,7 +6,6 @@
 package ca.sheridancollege.project.Cards;
 
 import ca.sheridancollege.project.Players.Player;
-import java.util.List;
 import ca.sheridancollege.project.Turns.Deck;
 import ca.sheridancollege.project.Turns.ScoreBoard;
 import java.util.ArrayList;
@@ -24,8 +23,8 @@ public class Hand {
     public Hand(Deck deck, ScoreBoard sb) 
     {
         this.deck = deck;
-        deckSetup();
         this.scoreBoard = sb;
+        this.deckSetup();
     }//End C:*
     
     public Deck getDeck() 
@@ -49,6 +48,8 @@ public class Hand {
         int posit = findPositPartialCard(notInPlay, inPlaysDesireC);
         Card cTemp = notInPlay.getHand().get(posit);
         inPlay.getHand().add(cTemp);
+        
+        System.out.println("");
         System.out.println("Calculating books on " + cTemp.toString());
         this.scoreBoard.calcBooks(cTemp, inPlay);
         

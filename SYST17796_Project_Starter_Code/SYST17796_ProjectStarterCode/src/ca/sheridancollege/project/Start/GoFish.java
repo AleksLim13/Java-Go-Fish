@@ -7,6 +7,7 @@ import ca.sheridancollege.project.Players.CompPlayer;
 import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Turns.ScoreBoard;
 import ca.sheridancollege.project.Turns.TurnManager;
+import java.util.ArrayList;
 
 
 /************************************************************
@@ -23,14 +24,9 @@ public class GoFish extends Game {
     private final TurnManager turnController;
    
             
-    public GoFish(String hName) {
+    public GoFish(String hName, TurnManager tN) {
  
-        this.turnController = new TurnManager(
-                                             new HumanPlayer("Aleks"),
-                                             new CompPlayer(),
-                                             new Hand(),
-                                             new ScoreBoard()
-                                            ); 
+        this.turnController = tN;
        
         
     }//End C:*

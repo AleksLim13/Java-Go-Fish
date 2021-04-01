@@ -87,7 +87,15 @@ public class RoundOne extends Start {
                                                       .getComputer()
                           );//End S:*
           
+            
+            //Divide: Part Four:________________________________________________
             System.out.println("");
+            System.out.println("Round One");
+             
+            
+            boolean flag = true;
+            while(flag){
+                System.out.println("");
             System.out.println( "[" + ((GoFish)game) 
                                                     .getTurnController()
                                                     .getInPlay()
@@ -131,13 +139,6 @@ public class RoundOne extends Start {
                                              .getNotInPlay()
                                              .getDesirableList()
                                              .toString());
-            //Divide: Part Four:________________________________________________
-            System.out.println("");
-            System.out.println("Round One");
-             
-            
-            boolean flag = true;
-            while(flag){
                 ((GoFish)game)
                            .getTurnController()
                            .shouldKeepGoing();

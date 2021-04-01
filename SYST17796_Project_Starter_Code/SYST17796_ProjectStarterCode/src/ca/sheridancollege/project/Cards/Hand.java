@@ -5,46 +5,46 @@
  */
 package ca.sheridancollege.project.Cards;
 
+import ca.sheridancollege.project.Players.Player;
 import java.util.List;
 import ca.sheridancollege.project.Turns.Deck;
+import ca.sheridancollege.project.Turns.ScoreBoard;
+import java.util.ArrayList;
 
 /**
  *
  * @author AllyCat13: 
+ * 
  */
 public class Hand {
     
+    private final ScoreBoard scoreBoard;
     private Deck deck;
 
-    public Hand(Deck deck) 
+    public Hand(Deck deck, ScoreBoard sb) 
     {
         this.deck = deck;
         deckSetup();
+        this.scoreBoard = sb;
     }//End C:*
 
-    public Hand() 
-    {
-        this.deck = new Deck();
-        deckSetup();
-
-    }//End C:*
+  
     
-
     public Deck getDeck() 
     {
         return this.deck;
-    }
+    }//End G:*
 
     public void setDeck(Deck deck) 
     {
         this.deck = deck;
-    }
+    }//End S:*
     
     //Define: yes. the opponent has the card. add to inplay and subtract not in play.
     private void addCardToHand(
                                      List<Card> inPlayHand, //inplay
                                      Card inPlaysDesireC, //in plays desire
-                                     List<Card> notInPlayHand //remmove from
+                                     List<Card> notInPlayHand //remove from
                                     ) 
     {
        
@@ -95,6 +95,7 @@ public class Hand {
  
     //Need to know what the index of the card need to remove 
     //from hand
+    //Define: 
     private int findPositFullCard(List<Card> hand, Card tCard) 
     {
         int posit = 0;
@@ -109,6 +110,7 @@ public class Hand {
         return posit;
     }//End M:*
     
+    //Define: 
     private int findPositPartialCard(List<Card> hand, Card tCard) 
     {
         int posit = 0;
@@ -140,8 +142,6 @@ public class Hand {
         return resCard;
     }//End M:*
     
-   
-
     //Methods:_________________________
     
     //Define: this fills deck and shuffles it. Uses 2 known methods.
@@ -163,15 +163,15 @@ public class Hand {
     }//End M:*
 
     //Define: provide number of cards. Repetition solution. Call's start deal.
-    public List<Card> createHand(int size, List<Card> tHand) 
+    public void createHand(int size, Player player) 
     {
+        player.setHand(new ArrayList<>());
+        
         for (int i = 0; i < size; i++) 
         {
-            tHand.add(this.startDeal());
-        }//End F:*          
-        return tHand;
-    }//End M:*
-
+          
+            player.getHand().add(this.startDeal());
+        }//End F:*         
+    }//End M:
     
-
 }//End CL:*

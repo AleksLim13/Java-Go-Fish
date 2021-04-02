@@ -1,14 +1,16 @@
 package ca.sheridancollege.javagofish.Start;
 
 /**
- * The class that models your game. You should create a more specific
- * child of this class and instantiate the methods given.
- * @author dancye, 2018
+ * top level class for modeling generic card games.
+ * An instance like Black Jack or Big Two can extend this class. 
+ * @author AllyCat13 : Sheridan High 2021. 
  */
 public abstract class Game 
 {
     
-    
+    /**
+     * Basic constructor for creating a game example. 
+     */
     public Game(){
    
     }//End C:*

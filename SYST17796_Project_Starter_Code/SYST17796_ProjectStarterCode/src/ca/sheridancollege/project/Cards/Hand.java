@@ -8,6 +8,7 @@ package ca.sheridancollege.project.Cards;
 import ca.sheridancollege.project.Players.Player;
 import ca.sheridancollege.project.Turns.Deck;
 import ca.sheridancollege.project.Turns.ScoreBoard;
+import ca.sheridancollege.project.Utility.Printer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +58,8 @@ public class Hand {
 
         System.out.println("");
         this.sort(inPlay, 'd');
-        System.out.println(inPlay.getName() + " dupes: " + inPlay.getDesirableList().toString());
+        System.out.println(inPlay.getName() + " dupes: ");
+        Printer.printHand(inPlay.getDesirableList());
 
     }//End M:*
 

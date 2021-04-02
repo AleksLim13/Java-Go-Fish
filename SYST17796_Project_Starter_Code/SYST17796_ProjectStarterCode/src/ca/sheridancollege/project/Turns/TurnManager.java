@@ -169,12 +169,8 @@ public class TurnManager {
                    System.out.println("[" + this.inPlay.getName() + "]" + " In Play Hand:");
                    Printer.printHand(this.inPlay.getHand());
                 
-                   this.classHand.updateHandDelete(
-                                                   this.notInPlay, 
-                                                   this.inPlay.getHand().get(//last card added to other guys hand.
-                                                                             this.inPlay.getHand().size()-1
-                                                                              )//End G:*  
-                                                    );//End M:*
+                   //Notice: now deleting from class hand.
+                   
                    System.out.println("");
                    this.classHand.sort(this.notInPlay, 'h');
                    System.out.println("[" + this.notInPlay.getName() + "]" + " Not In Play Hand:");

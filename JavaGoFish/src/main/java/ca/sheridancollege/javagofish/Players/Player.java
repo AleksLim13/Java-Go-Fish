@@ -1,34 +1,58 @@
 package ca.sheridancollege.javagofish.Players;
 
-/**
- * SYST 17796 Project Winter 2021 Base code of a could be any game. Students can
- * modify and extend to implement their game. Add your name as a modifier and
- * the date!
- */
+
 //Imports:_______________________________
 import ca.sheridancollege.javagofish.Cards.Card;
 import java.util.*;
 
 /**
- * A class that models each Player in a possible any game. Note: Show expertise
- * in generic programming. Note: Players have an identifier, which should be
- * unique. Note: Provide user manual like in Linux man pages. Note: Remember to
- * do that for Java2 class as well. Note: Best OOP design wins the free Surface
- * Pro Laptop.
+ * Parent class that models a generic Player. 
+ * All the data a  Player needs during a Card game is declared and defined here. 
  *
  * @author AllyCat13 @ Sheridan High 2021.
  */
 public abstract class Player {
 
     //Fields:_______________________
+    
+    /**
+     * Every player needs a String variable to store their name.
+     */
     protected String name;
+    
+    /**
+     * Every Player needs a Card list to hold their Hand.
+     */
     protected List<Card> hand;
+    
+    /**
+     * This variable keeps track of number of Players created to set Ids automatically. 
+     */
     protected static int numOfPlayers; //the unique ID for this player
+    
+    /**
+     * Each Player needs a number variable to store their Id to differentiate them from other Players.
+     */
     protected int playerId;
+    
+    /**
+     * Each player needs a Card list variable to store their number of four of a kinds.
+     */
     protected List<Card> books;
+    
+    /**
+     * Each Player needs a Card list to store their duplicates to know what to ask for. 
+     */
     protected List<Card> desirableList;
 
     //Constructors:______________________________
+    
+    /**
+     * Constructs a Player and initializes the Players name, book, and duplicate list. 
+     * @param name String type.
+     * @param books card list type.
+     * @param dL card list type. 
+     */
     public Player(
                   String name, 
                   List<Card> books, 
@@ -48,57 +72,83 @@ public abstract class Player {
         this.name = newName;
     }//End S:*
 
-    public void setHand(List<Card> newHand) {
+    public void setHand(List<Card> newHand) 
+    {
         this.hand = newHand;
     }//End S:*
 
-    public String getName() {
+    public String getName() 
+    {
         return name;
     }//End G:*
 
-    public List<Card> getHand() {
+    public List<Card> getHand() 
+    {
         return hand;
     }//End G:*
 
-    public int getPlayerID() {
+    public int getPlayerID() 
+    {
         return playerId;
     }//End G:*
 
-    public static int getNumOfPlayers() {
+    public static int getNumOfPlayers() 
+    {
         return numOfPlayers;
     }
 
-    public static void setNumOfPlayers(int numOfPlayers) {
+    public static void setNumOfPlayers(int numOfPlayers) 
+    {
         Player.numOfPlayers = numOfPlayers;
     }
 
-    public int getPlayerId() {
+    public int getPlayerId() 
+    {
         return playerId;
     }
 
-    public void setPlayerId(int playerId) {
+    public void setPlayerId(int playerId) 
+    {
         this.playerId = playerId;
     }
 
-    public List<Card> getDesirableList() {
+    public List<Card> getDesirableList() 
+    {
         return desirableList;
     }
 
-    public void setDesirableList(List<Card> desirableList) {
+    public void setDesirableList(List<Card> desirableList) 
+    {
         this.desirableList = desirableList;
     } 
 
-    public List<Card> getBooks() {
+    public List<Card> getBooks() 
+    {
         return books;
     }
 
-    public void setBooks(List<Card> books) {
+    public void setBooks(List<Card> books) 
+    {
         this.books = books;
     }
     
     //Methods:_________________________
-    public String printStats(){
-        return "[" + "Name: " + name + "," + " Id: " + playerId + "]";
+    
+    /**
+     * Returns String representation of all a Players data. 
+     * Easy printing and display of all a Players attributes.
+     * @return concatenated String of all a Players data. 
+     */
+    public String printStats()
+    {
+        return  
+                "_______________________________________" +
+                "Id: " + this.playerId + "\n" + 
+                "Name: " + this.name + "\n" +
+                "Hand: " + this.hand.toString() + "\n" +
+                "Duplicats: " + this.desirableList.toString() + "\n" +
+                "Books: " + this.books.toString() + "\n" +
+                "________________________________________";
     }//End M:*
     
     

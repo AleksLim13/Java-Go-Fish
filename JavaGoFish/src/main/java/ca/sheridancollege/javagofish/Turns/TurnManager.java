@@ -2,14 +2,15 @@ package ca.sheridancollege.javagofish.Turns;
 
 
 import ca.sheridancollege.javagofish.Cards.Card;
+import ca.sheridancollege.javagofish.Cards.Deck;
 import ca.sheridancollege.javagofish.Cards.GoFishCard;
 import ca.sheridancollege.javagofish.Cards.Hand;
-import ca.sheridancollege.javagofish.Cards.PseudoCard;
 import ca.sheridancollege.javagofish.Players.CompPlayer;
 import ca.sheridancollege.javagofish.Players.HumanPlayer;
 import ca.sheridancollege.javagofish.Players.Player;
 import ca.sheridancollege.javagofish.Utility.Printer;
 import ca.sheridancollege.javagofish.Utility.UInput;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -189,23 +190,20 @@ public class TurnManager {
             String cvDesire = UInput.promptStringUser();
             //A.2: Get: 
             //A.3: Create: 
-            PseudoCard cDesire = new PseudoCard(
+            GoFishCard cDesire = new GoFishCard(
                                                 cvDesire.toUpperCase()
                                             );
             //A.4: Initialize: 
-            cDesire.createDeck();
+            Deck deck = new Deck(new ArrayList<>());
+            deck.initDeck();
             //A.5: Repeat: 
-            for (int i = 0; i < cDesire.getPseudoDeck().size(); i++) 
+            for (int i = 0; i < deck.getDeck().size(); i++) 
             {
                 //A.6: Check: 
-                if (cDesire.getValue().equals(cDesire.getPseudoDeck().get(i).getValue())) 
+                if (cDesire.getValue().equals(deck.getDeck().get(i).getValue())) 
                 {
-                    //A.7: Create: 
-                    Card resCard = new GoFishCard(
-                                                  cDesire.getValue()
-                                                  );//End C:*
-                    //A.9: Copy: 
-                    return resCard;
+                    
+                    return cDesire;
                 }//End I:*
             }//End F:*
         }//End W:*

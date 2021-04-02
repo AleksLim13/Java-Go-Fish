@@ -5,6 +5,8 @@
  */
 package ca.sheridancollege.project.Start;
 
+import ca.sheridancollege.project.Utility.Printer;
+
 /**
  *
  * @author AlllyCat13 @ Sheridan High 2021. 
@@ -88,10 +90,7 @@ public class RoundOne extends Start {
             //Divide: Part Four:________________________________________________
             System.out.println("");
             System.out.println("Round One");
-             
-            
-         
-            
+                    
             //Define: main while loop control structure. Per if deck still had cards.
             while(!((GoFish)game)
                                   .getTurnController()
@@ -108,44 +107,74 @@ public class RoundOne extends Start {
                                                     .getInPlay()
                                                     .getName() + "]" + " -In Play Hand:");
 
-            System.out.println(((GoFish)game)
+            
+            
+            ((GoFish)game)
+                          .getTurnController()
+                          .getClassHand()
+                          .sort(((GoFish)game)
+                                             .getTurnController()
+                                              .getInPlay(), 'h');
+            
+            Printer.printHand(((GoFish)game)
                                              .getTurnController()
                                              .getInPlay()
                                              .getHand()
-                                             .toString());
+                                             );
           
             System.out.println("");
             System.out.println("[" + ((GoFish)game)
                                                    .getTurnController()
                                                    .getInPlay()
                                                    .getName() + "]" + " -In Play Desirable List:");
-            System.out.println(((GoFish)game)
+            
+          ((GoFish)game)
+                          .getTurnController()
+                          .getClassHand()
+                          .sort(((GoFish)game)
+                                             .getTurnController()
+                                              .getInPlay(), 'd');
+            Printer.printHand(((GoFish)game)
                                              .getTurnController()
                                              .getInPlay()
                                              .getDesirableList()
-                                             .toString());
+                                             );
             System.out.println("");
             System.out.println("[" + ((GoFish)game)
                                                    .getTurnController()
                                                    .getNotInPlay()
                                                    .getName() + "]" + " -Not In Play Hand:");
 
-            System.out.println(((GoFish)game)
+            
+          ((GoFish)game)
+                          .getTurnController()
+                          .getClassHand()
+                          .sort(((GoFish)game)
+                                             .getTurnController()
+                                              .getNotInPlay(), 'h');
+            Printer.printHand(((GoFish)game)
                                              .getTurnController()
                                              .getNotInPlay()
                                              .getHand()
-                                             .toString());
+                                             );
 
             System.out.println("");
             System.out.println("[" + ((GoFish)game)
                                                    .getTurnController()
                                                    .getNotInPlay()
                                                    .getName() + "]" + " -Not In Play Desirable List:");
-            System.out.println(((GoFish)game)
+            ((GoFish)game)
+                          .getTurnController()
+                          .getClassHand()
+                          .sort(((GoFish)game)
+                                             .getTurnController()
+                                              .getNotInPlay(), 'd');
+         
+            Printer.printHand(((GoFish)game)
                                              .getTurnController()
                                              .getNotInPlay()
                                              .getDesirableList()
-                                             .toString());
+                                             );
                 ((GoFish)game)
                            .getTurnController()
                            .shouldKeepGoing();

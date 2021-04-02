@@ -77,7 +77,8 @@ public class ScoreBoard {
             //Notice: should only ever be four of a kind. E.g., standard deck format. 
             for (int j = 0; j < 4; j++) 
             {
-                player.getHand().remove(findFirstIndex(tNum, player.getHand()));
+                int pTemp = findFirstIndex(tNum, player.getHand());
+                player.getHand().remove(pTemp);
             }//End I:*                  
         }//End I:*  
     }//End M:*

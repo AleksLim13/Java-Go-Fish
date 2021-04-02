@@ -69,6 +69,7 @@ public class ScoreBoard {
                 ilCount++;
             }//End I:*                    
         }//End F:*
+        
         if (ilCount == 4) 
         {
             //Add: 

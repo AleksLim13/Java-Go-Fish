@@ -55,6 +55,7 @@ public class Hand {
         this.scoreBoard.getDupes(inPlay);
 
         System.out.println("");
+        this.sort(inPlay, 'd');
         System.out.println(inPlay.getName() + " dupes: " + inPlay.getDesirableList().toString());
 
     }//End M:*
@@ -214,20 +215,17 @@ public class Hand {
         
         //Notice: watch nested for loop structure. 
         for (int i = 0; i < optList.size(); i++) 
-        {
-            String v1 = optList.get(i).getValue();
-            char cv1 = v1.charAt(0);
-            
+        {       
             for (int j = i + 1; j < optList.size(); j++) 
                 
             {
                 //Get: value of card and store it in String VAR.
+                String v1 = optList.get(i).getValue();
+                char cv1 = v1.charAt(0);
                 
                 String v2 = optList.get(j).getValue();
-                
-                //Extract: use char at to get first letter of above step. 
-                
                 char cv2 = v2.charAt(0);
+                //Extract: use char at to get first letter of above step. 
                              
                 Card tmp = null;
                 

@@ -231,6 +231,16 @@ public class TurnManager {
             cTemp = new GoFishCard(dTemp.get(0).getValue());
             System.out.println("");
             System.out.println("Computer is asking for: " + cTemp.getValue());
+            System.out.println("Do you have any?");
+            String response = UInput.promptStringUser();
+            if(response.equals("yes"))
+            {
+                System.out.println("Ok thanks for confirming");
+            }//End I:*
+            else if(response.equals("no"))
+            {
+                System.out.println("Ok, computer will go fish then");
+            }//End I:*
             return cTemp;
         }//End I:*
        
@@ -239,6 +249,16 @@ public class TurnManager {
             cTemp = new GoFishCard(hTemp.get(0).getValue());
             System.out.println("");
             System.out.println("Computer is asking for: " + cTemp.getValue());
+            System.out.println("Do you have any?");
+            String response = UInput.promptStringUser();
+            if(response.equals("yes"))
+            {
+                System.out.println("Ok thanks for confirming");
+            }//End I:*
+            else if(response.equals("no"))
+            {
+                System.out.println("Ok, computer will go fish then");
+            }//End I:*
             return cTemp;
         }//End E:*
         

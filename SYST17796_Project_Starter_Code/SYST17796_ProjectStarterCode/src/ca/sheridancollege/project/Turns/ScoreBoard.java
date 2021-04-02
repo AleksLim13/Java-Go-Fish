@@ -79,7 +79,13 @@ public class ScoreBoard {
             {
                 int pTemp = findFirstIndex(tNum, player.getHand());
                 player.getHand().remove(pTemp);
-            }//End I:*                  
+            }//End I:*  
+            
+            for (int j = 0; j < 4; j++) 
+            {
+                int pTemp = findFirstIndex(tNum, player.getDesirableList());
+                player.getDesirableList().remove(pTemp);
+            }//End I:*  
         }//End I:*  
     }//End M:*
      

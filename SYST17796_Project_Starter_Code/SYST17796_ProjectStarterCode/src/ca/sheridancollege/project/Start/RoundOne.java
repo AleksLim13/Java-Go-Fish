@@ -179,7 +179,31 @@ public class RoundOne extends Start {
                            .getTurnController()
                            .shouldKeepGoing();
                 
-           
+            System.out.println("");
+               System.out.println("Calculating books for " + ((GoFish)game)
+                           .getTurnController()
+                           .getNotInPlay().getName());
+               
+               
+           for(int i = 0; i < ((GoFish)game)
+                                            .getTurnController()
+                                            .getNotInPlay()
+                                                        .getDesirableList()
+                                                             .size(); i++)
+           {
+               
+               ((GoFish)game)
+                           .getTurnController()
+                           .getScoreBoard()
+                           .calcBooks(((GoFish)game)
+                                                    .getTurnController()
+                                                    .getNotInPlay()
+                                                    .getDesirableList()
+                                                    .get(i), 
+                                                     ((GoFish)game)
+                                                                   .getTurnController()
+                                                                   .getNotInPlay());
+           }//End F:*
             }//End W:*
             
 

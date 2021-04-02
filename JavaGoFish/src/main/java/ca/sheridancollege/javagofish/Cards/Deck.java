@@ -1,62 +1,105 @@
 
 package ca.sheridancollege.javagofish.Cards;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 //Imports:_____________________________
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * This is the Deck class. 
+ * It has behavior for initializing and shuffling a deck of cards.
+ * The deck is to be used throughout a card game. 
+ * Most decks have 52 cards. 
+ * There usually is 13 values and 4 types of suit. 
  * @author AllyCat13 @ Sheridan High 2021
  */
 public class Deck {
     
     //Fields:________________________
     
+    /**
+     * This is a field variable of a Card list type.
+     * It's final because once it is initialized with Card values the Deck's state is finished.
+     * A card game becomes relevant per a single decks change in status over the game duration. 
+     * Only one copy is desirable and a requirement.
+     */
+    
     private final List<Card> deck; 
     
     //Constructors:______________________
     
-    //Empty constructor  
-    public Deck() {     
-        this.deck = new ArrayList<>();
+    /**
+     * @param deck of Card list type. 
+     * Pass empty array list for constructor dependency injection. 
+     * This constructs a instance of a Deck. 
+     */
+    public Deck(List<Card> deck) {     
+        this.deck = deck; 
     }//End C:*
     
     //Getters & Setters:___________________
-        public List<Card> getDeck() {
+    
+    /**
+     * A getter method to access the values in a created deck. 
+     * @return the Deck field var of Card list type. 
+     */
+        public List<Card> getDeck() 
+        {
         return this.deck;
     }//End G:*
 
-    //Of objects as cards with 2 fields 
-    //Takes blank array list as param 
-    public void initDeck() {  
-        for (String suitsRange : Card.suitsRange) {
-            for (String valuesRange : Card.valuesRange) {
+    /**
+     * This method populates the deck field var full of Card instances. 
+     * Outer for loop repeats per number of suits in Cards suits range array. 
+     * Inner for loop repeats per number of values in Cards values range array. 
+     * So, it will make a whole values range of hearts. 
+     * Then it will make a whole values range of clubs. 
+     * Then it will make a whole values range of diamonds. 
+     * Lastly, it will make a whole values range of spades.
+     */
+       
+    public void initDeck() 
+    {  
+        for (String suitsRange : Card.suitsRange) 
+        {
+            for (String valuesRange : Card.valuesRange) 
+            {
                 this.deck.add(new GoFishCard(suitsRange, valuesRange));
             } //End Inner F:*
         } //end outter for   
     }//End M:*
    
-    //Swap pairs of card objects at random positions / 52.
-    //Needs the actually value of this class's field var
+    /**
+     * This method repeats it's body of statements 52 times.
+     * Set the counter limit to the size of the field var deck.
+     * This creates a random number from 0 to 52. 
+     * in total it creates 52 random numbers from 0 to 52.
+     * It steps through each slot in the deck list and swaps every
+     * slot with a value from a random slot in the same deck list. 
+     */
     public void shuffle() {
         int rando;
-        for (int i = 0; i < this.deck.size(); i++) {
-            rando = (int) (Math.random() * this.deck.size());        
+        for (int i = 0; i < this.deck.size(); i++) 
+        {
+            //A: Create: 
+            rando = (int) (Math.random() * this.deck.size());      
+            //B: Get:
             Card temp = this.deck.get(i);
+            //C: Set: 
             this.deck.set(i, this.deck.get(rando));
             this.deck.set(rando, temp);         
         }//End Outer F:*
     }//End M:*
     
+    /**
+     * 
+     * @param hand is a Card list type. The players hand to be searched.
+     * @param tCard is of Card type. The position of this card in the hand is wanted. 
+     * @return a integer representing the Cards position in the hand. 
+     * Use this method as a method parameter anywhere a integer is expected.
+     */
     private int findPosit(List<Card> hand, Card tCard) {
         int posit = 0;
         for (int i = 0; i < hand.size(); i++) {
@@ -68,18 +111,12 @@ public class Deck {
         return posit;
     }//End M:*
     
-    private int findPositOfValueOnly(List<Card> deck, Card tCard) {
-        int posit = 0;
-        for (int i = 0; i < deck.size(); i++) {
-            if (deck.get(i).getValue() == tCard.getValue()) {
-                posit = i;
-                return posit;
-            }//End I:*
-        }//End F:*
-        return posit;
-    }//End M:*
-    
-    
+ 
+    /**
+     * This method is for removing a Card from a players hand after they've handed it to a opponent.
+     * @param card is of Card type and the target to be deleted.
+     * @return a Card list representing the updated hand as the result. 
+     */
     public List<Card> removeCard(Card card){
         this.deck.remove(findPosit(this.deck, card));
         return this.deck;

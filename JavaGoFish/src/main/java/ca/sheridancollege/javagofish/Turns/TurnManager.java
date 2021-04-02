@@ -14,7 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * This class has all the data and functionality needed for tasks that occur during a Players turn. 
+ * During a turn, a Players asking for cards is determined to be a success or failure.
+ * Whether or not the player should keep asking needs to be determined. 
+ * the way a computer and human each uniquely ask for cards needs to be defined. 
+ * A way for the Players status as the one asking versus the one being asked needs to be defined. 
  * @author AllyCat13 @ Sheridan High 2021.
  */
 public class TurnManager {
@@ -25,14 +29,41 @@ public class TurnManager {
     //B: Declare: designate storage for each.
     //C: Declare: a list to kee track. 
     //F: Declare: 
+    
+    /**
+     * A reference to a Human player is required.
+     */
     private final Player human;
+    /**
+     * A reference to a computer player is required.
+     */
     private final Player computer;
+    /**
+     * A reference to the player asking for cards is required.
+     */
     private Player inPlay;
+    /**
+     * A reference to the player being asked for cards is required.
+     */
     private Player notInPlay;
+    /**
+     * A reference to the Hand class for hand related tasks is required. 
+     */
     private final Hand classHand;
+    /**
+     * A reference to a scoreboard for strategy related tasks is required. 
+     */
     private final ScoreBoard scoreBoard;
 
     //Constructor 
+    
+   /**
+    * Constructs a TurnManager instance and initializes Players and helpers.
+    * @param human top level Player type.
+    * @param computer top level Player type.
+    * @param hand Hand class type.
+    * @param scoreBoard ScoreBoard class type. 
+    */
     public TurnManager(
                         Player human,
                         Player computer,
@@ -87,8 +118,12 @@ public class TurnManager {
         return this.scoreBoard;
     }//End G:*
     
-    //This works as a check if card is in opponents hand 
-    //so there turn keeps going. Returns a yes or no. 
+    /**
+     * This is a check to see if the Card is in the asked players hand.
+     * it asks the not asking player for a card, checks their hand if it's there, 
+     * @param inPlaysDesireC top level Card type. 
+     * @return signal if the Card is in the player hand who's being asked. 
+     */
     private boolean goFish(Card inPlaysDesireC) 
     {
         for (int i = 0; i < notInPlay.getHand().size(); i++) 
@@ -101,6 +136,12 @@ public class TurnManager {
         return true;
     }//End M:*
     
+    /**
+     * This method iterates for as long as a players ask was successful.
+     * it asks the not asking player for a card, checks their hand if it's there, 
+     * updates both players hands accordingly, and switches who's during the asking for next round. 
+     * @return signal to if the players turn was successful or not. 
+     */
     public boolean shouldKeepGoing()
     {
         boolean flag = true;
@@ -176,8 +217,12 @@ public class TurnManager {
         return false;      
     }//End M:*
     
-     //Define: gets value and suit as string and then maps it. 
-    //while loop overall strcuture with inner for loop and if.
+     /**
+      * Behavior for the unique way a human players asks for a Card.
+      * The human players implements their own strategy of which card they'll ask for
+      * to get as many four of a kinds they can.
+      * @return the card asked for of top level Card type. 
+      */
     private Card humanAskingForACard() 
     {
         boolean flag = true;
@@ -211,7 +256,14 @@ public class TurnManager {
         return null;
     }//End M:*
     
-    
+    /**
+     * A computer needs some strategy logic for which card they ask for. 
+     * We use several lists for the computers thought process. 
+     * The computer needs a Card list of duplicates determined from their hand as obvious ask options.
+     * We could create additional lists for keeping track of Cards the opponent asked for for more
+     * sophisticated strategy implementation by the AI. The AI could easily implement a card counting strategy.
+     * @return the Card asked for by the AI.
+     */
     private Card computerAskingForACard()
     {
         List<Card> dTemp = computer.getDesirableList();
@@ -264,44 +316,15 @@ public class TurnManager {
         return cTemp;
     }//End M:*
     
-    //Define: switch who's in play with help of special holder. 
+    /**
+     * Simple method for switching who's currently asking by assigning the Player to designated Player variable.
+     * Use a Player temp variable to facilitate the swapping of the in play versus not in play player.
+     */
     private void turnSwitcher()
     {
         Player temp = inPlay;
         inPlay = notInPlay;
         notInPlay = temp;  
-    }//End M:*
-    
-  
-    //Define: Deciding which player goes first 
-    public void coinToss(String guess) 
-    {
-        
-        //A: Create: the coin as string array.
-        String[] coin = {"heads", "tails"};
-        
-        ///B: simulate: the coin landing with value face up.
-        int decision = (int) (Math.random() * 2);
-        
-        //C: Get: store the result; either heads or tails.
-        String flipped = coin[decision];
-        
-        //C: Evaluate: 
-        if (guess.equals(flipped)) 
-        {
-            System.out.println("You're right. It was: " + flipped + " . It's your play");
-           this.inPlay = this.human;
-           this.notInPlay = computer;
-        } //End I:*
-        
-        else if(!guess.equals(flipped))
-        {
-            System.out.println("Sorry, it was: " + flipped);
-            this.inPlay = computer;
-            this.notInPlay = human;
-       
-        }//End E:*
-  
     }//End M:*
     
 }//End class 

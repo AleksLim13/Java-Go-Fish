@@ -13,6 +13,8 @@ import ca.sheridancollege.project.Cards.PseudoCard;
 import ca.sheridancollege.project.Players.CompPlayer;
 import ca.sheridancollege.project.Players.HumanPlayer;
 import ca.sheridancollege.project.Players.Player;
+import ca.sheridancollege.project.Start.GoFish;
+import ca.sheridancollege.project.Utility.Printer;
 import ca.sheridancollege.project.Utility.UInput;
 import java.util.List;
 
@@ -128,12 +130,14 @@ public class TurnManager {
                   this.classHand.getCardFromDeck(this.inPlay);
                   
                   System.out.println("");
+                  this.classHand.sort(inPlay, 'h');
                   System.out.println(this.inPlay.getName() + " In Play Hand:");
-                  System.out.println(this.inPlay.getHand().toString());
+                  Printer.printHand(this.inPlay.getHand());
                   
                   System.out.println("");
+                  this.classHand.sort(this.notInPlay, 'h');
                   System.out.println(this.notInPlay.getName() + " Not In Play Hand:");
-                  System.out.println(this.notInPlay.getHand().toString());
+                  Printer.printHand(this.notInPlay.getHand());
                   
                   System.out.println("");
                   System.out.println("Switching who's in play");
@@ -161,8 +165,9 @@ public class TurnManager {
                                                );
                    
                    System.out.println("");
+                   this.classHand.sort(this.inPlay, 'h');
                    System.out.println("[" + this.inPlay.getName() + "]" + " In Play Hand:");
-                   System.out.println(this.inPlay.getHand().toString());
+                   Printer.printHand(this.inPlay.getHand());
                 
                    this.classHand.updateHandDelete(
                                                    this.notInPlay, 
@@ -171,8 +176,9 @@ public class TurnManager {
                                                                               )//End G:*  
                                                     );//End M:*
                    System.out.println("");
+                   this.classHand.sort(this.notInPlay, 'h');
                    System.out.println("[" + this.notInPlay.getName() + "]" + " Not In Play Hand:");
-                   System.out.println(this.notInPlay.getHand().toString());
+                   Printer.printHand(this.notInPlay.getHand());
               }//End EI:*
         }//End W:*
               

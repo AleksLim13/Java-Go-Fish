@@ -6,26 +6,44 @@ package ca.sheridancollege.javagofish.Start;
 import ca.sheridancollege.javagofish.Turns.TurnManager;
 
 
-/************************************************************
- * @author AllyCat13 @ Sheridan High 2021
+/**
+ * Specific example of a Game. This is a Go Fish version of a Card game.
+ * @author AllyCat13 : Sheridan High 2021
  */
-/**CLASS OVERVIEW:
- * --------------
- *
- * 
- ***************************************************************/
+
 public class GoFish extends Game {
 
-   
+   /**
+    * Each instance of Go Fish needs a reference to TurnManager. 
+    * only one is needed and it's state never changes. 
+    * TurnManager contains the functionality for asking for Cards and switching who's
+    * being asked and who's asking. 
+    */
     private final TurnManager turnController;
    
-            
-    public GoFish(String hName, TurnManager tN) {
+    /**
+     * Creates a instance of Go Fish and initializes game name and turn manager. 
+     * @param hName String type.
+     * @param tN TurnMnager type. 
+     */
+    
+    /**
+     * Constructs a Go Fish instance and initializes name and turn manager.
+     * @param hName String type.
+     * @param tN TurnManager type. 
+     */
+    public GoFish(String hName, TurnManager tN) 
+    {
  
         this.turnController = tN;
        
         
     }//End C:*
+    
+    /**
+     * Constructs a instance of Go Fish and initializes TurnManager.
+     * @param turnController TurnManager type.
+     */
     public GoFish(
                   TurnManager turnController
                   ) 

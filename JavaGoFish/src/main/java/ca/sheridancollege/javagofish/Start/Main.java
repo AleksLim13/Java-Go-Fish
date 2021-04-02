@@ -9,11 +9,16 @@ import ca.sheridancollege.javagofish.Turns.TurnManager;
 import java.util.ArrayList;
 
 /**
- *
+ * The Main class with the main method for where the program starts.
  * @author aleks
  */
 public class Main 
 {
+    
+    /**
+     * The main method. Creates the RoundOne object. Calls the class RounOne play method.  
+     * @param args 
+     */
     public static void main(String[] args)
     {
         TurnManager tM = new TurnManager(

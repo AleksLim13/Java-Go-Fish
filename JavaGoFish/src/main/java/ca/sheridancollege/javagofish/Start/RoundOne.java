@@ -4,18 +4,32 @@ package ca.sheridancollege.javagofish.Start;
 import ca.sheridancollege.javagofish.Utility.Printer;
 
 /**
- *
+ * This class contains the steps for a full round of the Go Fish game. 
+ * This class extends the Start class and overrides the play method declared in Start.
  * @author AlllyCat13 @ Sheridan High 2021. 
  */
 public class RoundOne extends Start {
 
-    private Game game;
+    /**
+     * A reference to a top level Game example.
+     * Only one copy is needed and it's state determined once throughout the game.
+     */
+    
+    private final Game game;
 
+    /**
+     * Constructs a instance of RoundOne and initializes the Game field.
+     * @param game 
+     */
     public RoundOne(Game game) 
     {
         this.game = game;
     }//End C:*
 
+    /**
+     * Overrides Start play method per the unique steps of a GoFish round.
+     * This method creates hands, sets who's in play, and calls keep going method repeatedly. 
+     */
     @Override
     public void play() 
     {

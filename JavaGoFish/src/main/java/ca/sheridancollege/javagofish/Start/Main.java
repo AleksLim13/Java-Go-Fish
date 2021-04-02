@@ -27,7 +27,7 @@ public class Main
                                                        new ArrayList<>()
                                                        ), //End C:*
                                         new Hand(
-                                                 new Deck(),
+                                                 new Deck(new ArrayList<>()),
                                                  new ScoreBoard()
                                                 ), //End C:*
                                         new ScoreBoard()

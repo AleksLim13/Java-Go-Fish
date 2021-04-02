@@ -44,6 +44,7 @@ public class Hand {
 
         int posit = findPositPartialCard(notInPlay, inPlaysDesireC);
         Card cTemp = notInPlay.getHand().get(posit);
+        notInPlay.getHand().remove(posit);
         inPlay.getHand().add(cTemp);
 
         System.out.println("");
@@ -107,7 +108,8 @@ public class Hand {
             Player notInPlay,//Incl: list for C's.
             Card inPlaysDesireC//Incl: list for copies. 
     ) {
-        deleteCardFromHand(notInPlay, findPositFullCard(notInPlay, inPlaysDesireC));
+        int pTemp = findPositFullCard(notInPlay, inPlaysDesireC);
+        deleteCardFromHand(notInPlay, pTemp);
     }//End M:*
 
     //Define: ablility to remove target from other players hand. Calls delete method. 

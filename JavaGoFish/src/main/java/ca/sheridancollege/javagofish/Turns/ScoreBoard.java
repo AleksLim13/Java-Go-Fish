@@ -2,10 +2,9 @@
 package ca.sheridancollege.javagofish.Turns;
 
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This class contains the behavior for making calculations related to a Players hand.
+ * @author AllyCat13 
  */
 
 import ca.sheridancollege.javagofish.Cards.Card;
@@ -13,29 +12,26 @@ import ca.sheridancollege.javagofish.Players.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author AllyCat13 : Sheridan High 2021. 
- * 
- * ---------------------------------------------------------------------<
- * CLASS OVERVIEW:
- * ----------------
- * 
- * What is this class all about? Is it well designed? If so, how? 
- * So, show and tell. Tasks related to strategy. 
- * Tasks related to determining what to ask for. Determining based on the
- * content of a players hand. Many calculations performed here related to 
- * the advancement of the game. 
- * ----------------------------------------------------------------------<
- */
+
 public class ScoreBoard {
     //Declare:
+    
+    /**
+     * This is a field variable for storing the winner of the game. 
+     */
     private Player winner;
  
+    /**
+     * Default constructor for creating a ScoreBoard to be used in a aggregating class. 
+     */
     public ScoreBoard() 
     {
     }//End C:*
 
+    /**
+     * Construct a instance of ScoreBoard when the winner is known ahead of time. 
+     * @param winner top level Player type. 
+     */
     public ScoreBoard(Player winner) 
     {
         this.winner = winner;
@@ -51,6 +47,11 @@ public class ScoreBoard {
         this.winner = winner;
     }//End S:*
     
+    /**
+     * This method determines if a Player has a four of a kind and then records it.
+     * @param tNum top level Card type.
+     * @param player top level Player type. 
+     */
     public void calcBooks(
             Card tNum,
             Player player
@@ -89,7 +90,13 @@ public class ScoreBoard {
         }//End I:*  
     }//End M:*
      
-     public int findFirstIndex(
+    /**
+     * This method determines where Cards are located that need to be worked on.
+     * @param tNum top level Card type.
+     * @param tList Card list type.
+     * @return integer as position of the Card in the target Hand.
+     */
+     private int findFirstIndex(
             Card tNum,
             List<Card> tList
     ) {
@@ -105,8 +112,10 @@ public class ScoreBoard {
         return pos;
     }//End M:*
       
-       //Define: get a list of duplicate cards. Nested for loop structure with if check.
-     //Notice: don't use 1 field variable for dupes if this will be called for different players. 
+     /**
+      * This method creates a list of duplicates cards a Player has.
+      * @param player top level Player type. 
+      */
     public void getDupes(
                               Player player
                               ) 
@@ -136,7 +145,12 @@ public class ScoreBoard {
     
     
 
-    //Define: under construction...
+    /**
+     * 
+     * @param human top level Player type.
+     * @param computer top level Player type. 
+     * @return Player determined to be the one who made the most progress during the game.
+     */
     public Player determineWinner(Player human, Player computer) {
         if(human.getBooks().size() > computer.getBooks().size()){
             winner = human;

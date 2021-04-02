@@ -22,17 +22,20 @@ public class Hand {
     private final ScoreBoard scoreBoard;
     private Deck deck;
 
-    public Hand(Deck deck, ScoreBoard sb) {
+    public Hand(Deck deck, ScoreBoard sb) 
+    {
         this.deck = deck;
         this.scoreBoard = sb;
         this.deckSetup();
     }//End C:*
 
-    public Deck getDeck() {
+    public Deck getDeck() 
+    {
         return this.deck;
     }//End G:*
 
-    public void setDeck(Deck deck) {
+    public void setDeck(Deck deck) 
+    {
         this.deck = deck;
     }//End S:*
 
@@ -45,12 +48,11 @@ public class Hand {
 
         int posit = findPositPartialCard(notInPlay, inPlaysDesireC);
         Card cTemp = notInPlay.getHand().get(posit);
-        notInPlay.getHand().remove(posit);
+        updateHandDelete(notInPlay, cTemp);
         inPlay.getHand().add(cTemp);
 
         System.out.println("");
-        System.out.println("Calculating books on " + cTemp.toString());
-        this.scoreBoard.calcBooks(cTemp, inPlay);
+        
 
         System.out.println("");
         System.out.println("Calculating dupes for " + inPlay.getName());
@@ -71,31 +73,21 @@ public class Hand {
 
         notInPlay.getHand().remove(posit);
     }//End M:*
+    
+    //Define: opponent has card. Remove it after giving it to player in play. 
+    private void deleteCardFromDList(
+            Player notInPlay,
+            int posit
+    ) {
+
+        notInPlay.getDesirableList().remove(posit);
+    }//End M:*
 
     //Define: "sorry don't have that card dude." Allor, take a card from the deck.  
     public void getCardFromDeck(Player player) {
         player.getHand().add(createRandoCard());
         System.out.println("");
 
-        System.out.println("Calculating books on " + player
-                .getHand()
-                .get(
-                        player
-                                .getHand()
-                                .size() - 1
-                )//End G:*
-                .toString()
-        );//End M:*
-        this.scoreBoard.calcBooks(
-                player
-                        .getHand()
-                        .get(
-                                player
-                                        .getHand()
-                                        .size() - 1
-                        ), //End G:*
-                player
-        );//End M:*
 
         System.out.println("");
         System.out.println("Calculating dupes for " + player.getName());
@@ -110,8 +102,11 @@ public class Hand {
             Player notInPlay,//Incl: list for C's.
             Card inPlaysDesireC//Incl: list for copies. 
     ) {
-        int pTemp = findPositFullCard(notInPlay, inPlaysDesireC);
-        deleteCardFromHand(notInPlay, pTemp);
+        int pHTemp = findPositFullCard(notInPlay, inPlaysDesireC);
+        int pDTemp = findPositFullCardDList(notInPlay, inPlaysDesireC);
+        
+        deleteCardFromDList(notInPlay, pDTemp);
+        deleteCardFromHand(notInPlay, pHTemp);
     }//End M:*
 
     //Define: ablility to remove target from other players hand. Calls delete method. 
@@ -140,6 +135,23 @@ public class Hand {
         }//End F:*
         return posit;
     }//End M:*
+    
+ 
+
+    //Define: 
+    private int findPositFullCardDList(Player player, Card tCard) 
+    {
+        int posit = 0;
+        for (int i = 0; i < player.getDesirableList().size(); i++) 
+        {
+            if (player.getDesirableList().get(i).equals(tCard)) 
+            {
+                posit = i;
+                return posit;
+            }//End I:*
+        }//End F:*
+        return posit;
+    }//End M:*
 
     //Define: 
     private int findPositPartialCard(Player player, Card tCard) 
@@ -155,7 +167,6 @@ public class Hand {
         }//End F:*
         return posit;
     }//End M:*
-
     //Define: behavior for taking random card from deck after told to go fish. 
     private Card createRandoCard() 
     {

@@ -2,7 +2,8 @@
 package ca.sheridancollege.javagofish.Utility;
 
 /**
- *
+ * We need a class for encapsulating all the user input data.
+ * All methods are static because they should always be the same for every client. 
  * @author AllyCat13 @ Sheridan High 2021
  */
 
@@ -13,22 +14,32 @@ import java.util.Scanner;
 
 public final class UInput {
 
-    private static Scanner input = new Scanner(System.in); 
+    /**
+     * Field variable of Scanner type because wee need Scanners functionality. 
+     * Static because one copy can stay the same per any number of clients.
+     */
+    private static Scanner input; 
 
-    public UInput() {
-        UInput.input = new Scanner(System.in);
+    
+    public static void setInput(Scanner input){
+        UInput.input = input;
+    }//End M:*
+    
+    public UInput() 
+    {
+      
     }//End C:*
     
-    public UInput(Scanner input) {
-        // TODO Auto-generated constructor stub
-        UInput.input = input; 
-    }//End C:*
-
     public Scanner getInput() {
-        return input;
+        return UInput.input;
     }
     
-    public static double promptDoubleUser() {
+    /**
+     * When a decimal value is needed from the user.
+     * @return Double type result. 
+     */
+    public static double promptDoubleUser() 
+    {
         boolean continueInput = true;
         double userNum = 0.0;
 
@@ -49,6 +60,10 @@ public final class UInput {
         return userNum;
     }//End M:*
 
+    /**
+     * When a whole number is needed from the user.
+     * @return integer as the result. 
+     */
     public static int promptIntUser() {
         boolean continueInput = true;
         int userNum = 0;
@@ -72,6 +87,10 @@ public final class UInput {
         return userNum;
     }//End M:*
 
+    /**
+     * When we need a word or sentence from the user.
+     * @return String type as result. 
+     */
     public static String promptStringUser() {
         boolean continueInput = true;
         String userPrompt = " ";

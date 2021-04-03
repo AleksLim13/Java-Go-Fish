@@ -4,7 +4,7 @@ package ca.sheridancollege.javagofish.Turns;
 
 /**
  * This class contains the behavior for making calculations related to a Players hand.
- * @author AllyCat13 
+ * @author AllyCat13
  */
 
 import ca.sheridancollege.javagofish.Cards.Card;

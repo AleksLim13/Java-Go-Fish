@@ -12,6 +12,7 @@ import ca.sheridancollege.javagofish.Utility.Printer;
 import ca.sheridancollege.javagofish.Utility.UInput;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * This class has all the data and functionality needed for tasks that occur during a Players turn. 
@@ -232,6 +233,8 @@ public class TurnManager {
             //A.1: Get: 
             System.out.println("");
             System.out.println("Which card value do you want?");
+            
+            UInput.setInput(new Scanner(System.in));
             String cvDesire = UInput.promptStringUser();
             //A.2: Get: 
             //A.3: Create: 
@@ -276,6 +279,7 @@ public class TurnManager {
             System.out.println("");
             System.out.println("Computer is asking for: " + cTemp.getValue());
             System.out.println("Do you have any?");
+            UInput.setInput(new Scanner(System.in));
             String response = UInput.promptStringUser();
             if(response.equals("yes"))
             {
@@ -294,6 +298,7 @@ public class TurnManager {
             System.out.println("");
             System.out.println("Computer is asking for: " + cTemp.getValue());
             System.out.println("Do you have any?");
+            UInput.setInput(new Scanner(System.in));
             String response = UInput.promptStringUser();
             if(response.equals("yes"))
             {

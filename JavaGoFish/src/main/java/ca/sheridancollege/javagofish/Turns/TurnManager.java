@@ -5,7 +5,7 @@ import ca.sheridancollege.javagofish.Cards.ACard;
 import ca.sheridancollege.javagofish.Cards.ADeck;
 import ca.sheridancollege.javagofish.Cards.GoFishCard;
 import ca.sheridancollege.javagofish.Cards.GoFishDeck;
-import ca.sheridancollege.javagofish.Cards.Hand;
+import ca.sheridancollege.javagofish.Cards.AHand;
 import ca.sheridancollege.javagofish.Players.CompPlayer;
 import ca.sheridancollege.javagofish.Players.HumanPlayer;
 import ca.sheridancollege.javagofish.Players.Player;
@@ -63,7 +63,7 @@ import java.util.Scanner;
     /**
      * A reference to the Hand class for hand related tasks is required. 
      */
-    private final Hand classHand;
+    private final AHand classHand;
     /**
      * A reference to a scoreboard for strategy related tasks is required. 
      */
@@ -81,7 +81,7 @@ import java.util.Scanner;
     public TurnManager(
                         Player human,
                         Player computer,
-                        Hand hand,
+                        AHand hand,
                         AScoreBoard scoreBoard
                          ) 
     {
@@ -121,7 +121,7 @@ import java.util.Scanner;
         this.notInPlay = notInPlay;
     }//End S:*
 
-    public Hand getClassHand() 
+    public AHand getClassHand() 
     {
         return this.classHand;
     }//End G:*

@@ -8,7 +8,7 @@ package ca.sheridancollege.javagofish.Turns;
  */
 
 import ca.sheridancollege.javagofish.Cards.ACard;
-import ca.sheridancollege.javagofish.Players.Player;
+import ca.sheridancollege.javagofish.Players.APlayer;
 import java.util.List;
 
 
@@ -20,7 +20,7 @@ public abstract class AScoreBoard
     /**
      * This is a field variable for storing the winner of the game. 
      */
-    protected Player winner;
+    protected APlayer winner;
  
   
     /**
@@ -31,12 +31,12 @@ public abstract class AScoreBoard
         
     }//End C:*
 
-    public Player getWinner() 
+    public APlayer getWinner() 
     {
         return winner;
     }//End G:*
 
-    public void setWinner(Player winner) 
+    public void setWinner(APlayer winner) 
     {
         this.winner = winner;
     }//End S:*
@@ -48,7 +48,7 @@ public abstract class AScoreBoard
      */
     public abstract void calcBooks(
             ACard tNum,
-            Player player
+            APlayer player
     );
      
     /**
@@ -67,7 +67,7 @@ public abstract class AScoreBoard
       * @param player top level Player type. 
       */
     public abstract void getDupes(
-                              Player player
+                              APlayer player
                               ); 
     /**
      * 
@@ -75,6 +75,6 @@ public abstract class AScoreBoard
      * @param computer top level Player type. 
      * @return Player determined to be the one who made the most progress during the game.
      */
-    public abstract Player determineWinner(Player human, Player computer); 
+    public abstract APlayer determineWinner(APlayer human, APlayer computer); 
     
 }//End CL:*

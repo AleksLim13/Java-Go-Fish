@@ -3,8 +3,8 @@ package ca.sheridancollege.javagofish.Turns;
 
 import ca.sheridancollege.javagofish.Cards.ACard;
 import ca.sheridancollege.javagofish.Cards.ADeck;
-import ca.sheridancollege.javagofish.Cards.GoFishCard;
-import ca.sheridancollege.javagofish.Cards.GoFishDeck;
+import ca.sheridancollege.javagofish.Cards.CGoFishCard;
+import ca.sheridancollege.javagofish.Cards.CGoFishDeck;
 import ca.sheridancollege.javagofish.Cards.AHand;
 import ca.sheridancollege.javagofish.Players.CompPlayer;
 import ca.sheridancollege.javagofish.Players.HumanPlayer;
@@ -251,11 +251,11 @@ import java.util.Scanner;
             String cvDesire = UInput.promptStringUser();
             //A.2: Get: 
             //A.3: Create: 
-            GoFishCard cDesire = new GoFishCard(
+            CGoFishCard cDesire = new CGoFishCard(
                                                 cvDesire.toUpperCase()
                                             );
             //A.4: Initialize: 
-            ADeck deck = new GoFishDeck(new ArrayList<>());
+            ADeck deck = new CGoFishDeck(new ArrayList<>());
             deck.initDeck();
             //A.5: Repeat: 
             for (int i = 0; i < deck.getDeck().size(); i++) 
@@ -288,7 +288,7 @@ import java.util.Scanner;
         
         if(!dTemp.isEmpty())
         {
-            cTemp = new GoFishCard(dTemp.get(0).getValue());
+            cTemp = new CGoFishCard(dTemp.get(0).getValue());
             System.out.println("");
             System.out.println("Computer is asking for: " + cTemp.getValue());
             System.out.println("Do you have any?");
@@ -307,7 +307,7 @@ import java.util.Scanner;
        
         else if(!hTemp.isEmpty())
         {
-            cTemp = new GoFishCard(hTemp.get(0).getValue());
+            cTemp = new CGoFishCard(hTemp.get(0).getValue());
             System.out.println("");
             System.out.println("Computer is asking for: " + cTemp.getValue());
             System.out.println("Do you have any?");

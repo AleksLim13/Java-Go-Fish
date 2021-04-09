@@ -54,7 +54,7 @@ public abstract class AHand
      * This is a public getter interface for accessing the Deck field var of Hand instances.
      * @return the field variable of Deck type.
      */
-    public ADeck getDeck() 
+    public ADeck getClassDeck() 
     {
         return this.classDeck;
     }//End G:*
@@ -173,8 +173,6 @@ public abstract class AHand
         return posit;
     }//End M:*
     
- 
-
     /**
      * When the asked for Card is possessed by the asked player it needs to be remove from two places.
      * Cards match by exact suit and value facilitated by the overridden equals method in Card.

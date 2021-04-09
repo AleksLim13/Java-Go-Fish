@@ -4,7 +4,7 @@ import ca.sheridancollege.javagofish.Players.CompPlayer;
 import ca.sheridancollege.javagofish.Players.HumanPlayer;
 import ca.sheridancollege.javagofish.Cards.CGoFishDeck;
 import ca.sheridancollege.javagofish.Cards.CGoFishHand;
-import ca.sheridancollege.javagofish.Turns.GoFishScoreBoard;
+import ca.sheridancollege.javagofish.Turns.CGoFishScoreBoard;
 import ca.sheridancollege.javagofish.Turns.TurnManager;
 import java.util.ArrayList;
 
@@ -38,9 +38,9 @@ public class Main
                                                        ), //End C:*
                                         new CGoFishHand(
                                                  new CGoFishDeck(new ArrayList<>()),
-                                                 new GoFishScoreBoard()
+                                                 new CGoFishScoreBoard()
                                                 ), //End C:*
-                                        new GoFishScoreBoard()
+                                        new CGoFishScoreBoard()
                                         );
         
         RoundOne round1 = new RoundOne(

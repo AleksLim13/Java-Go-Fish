@@ -2,8 +2,8 @@ package ca.sheridancollege.javagofish.Start;
 
 import ca.sheridancollege.javagofish.Players.CompPlayer;
 import ca.sheridancollege.javagofish.Players.HumanPlayer;
-import ca.sheridancollege.javagofish.Cards.GoFishDeck;
-import ca.sheridancollege.javagofish.Cards.GoFishHand;
+import ca.sheridancollege.javagofish.Cards.CGoFishDeck;
+import ca.sheridancollege.javagofish.Cards.CGoFishHand;
 import ca.sheridancollege.javagofish.Turns.GoFishScoreBoard;
 import ca.sheridancollege.javagofish.Turns.TurnManager;
 import java.util.ArrayList;
@@ -36,8 +36,8 @@ public class Main
                                                        new ArrayList<>(), 
                                                        new ArrayList<>()
                                                        ), //End C:*
-                                        new GoFishHand(
-                                                 new GoFishDeck(new ArrayList<>()),
+                                        new CGoFishHand(
+                                                 new CGoFishDeck(new ArrayList<>()),
                                                  new GoFishScoreBoard()
                                                 ), //End C:*
                                         new GoFishScoreBoard()

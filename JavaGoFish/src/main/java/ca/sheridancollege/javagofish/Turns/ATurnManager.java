@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * TURNMANAGER CLASS:
+ * ATURNMANAGER ABSTRCT CLASS:
  * ------------------
  * 
  * 
@@ -47,27 +47,27 @@ import java.util.Scanner;
     /**
      * A reference to a Human player is required.
      */
-    private final APlayer human;
+    protected final APlayer human;
     /**
      * A reference to a computer player is required.
      */
-    private final APlayer computer;
+    protected final APlayer computer;
     /**
      * A reference to the player asking for cards is required.
      */
-    private APlayer inPlay;
+    protected APlayer inPlay;
     /**
      * A reference to the player being asked for cards is required.
      */
-    private APlayer notInPlay;
+    protected APlayer notInPlay;
     /**
      * A reference to the Hand class for hand related tasks is required. 
      */
-    private final AHand classHand;
+    protected final AHand classHand;
     /**
      * A reference to a scoreboard for strategy related tasks is required. 
      */
-    private final AScoreBoard scoreBoard;
+    protected final AScoreBoard scoreBoard;
 
     //Constructor 
     
@@ -138,17 +138,7 @@ import java.util.Scanner;
      * @param inPlaysDesireC top level Card type. 
      * @return signal if the Card is in the player hand who's being asked. 
      */
-    private boolean goFish(ACard inPlaysDesireC) 
-    {
-        for (int i = 0; i < notInPlay.getHand().size(); i++) 
-        {
-            if (notInPlay.getHand().get(i).getValue().equals(inPlaysDesireC.getValue())) 
-            {
-                return false;
-            }//End I:*
-        }//End F:*
-        return true;
-    }//End M:*
+    public abstract boolean goFish(ACard inPlaysDesireC) ;
     
     /**
      * This method iterates for as long as a players ask was successful.
@@ -156,80 +146,7 @@ import java.util.Scanner;
      * updates both players hands accordingly, and switches who's during the asking for next round. 
      * @return signal to if the players turn was successful or not. 
      */
-    public boolean shouldKeepGoing()
-    {
-        boolean flag = true;
-        while(flag)
-        {
-            ACard cTemp = null;
-              
-            if(this.inPlay instanceof CHumanPlayer)
-            {
-                  cTemp = humanAskingForACard();
-              }//End I:*
-              else if(this.inPlay instanceof CCompPlayer)
-              {
-                  cTemp = computerAskingForACard();
-              }//End EI:*
-              
-              boolean check = goFish(cTemp);
-              
-              if(check)
-              {
-                  System.out.println(this.notInPlay.getName() + " does not have " + cTemp.getValue());
-                  this.classHand.getCardFromDeck(this.inPlay);
-                  
-                  System.out.println("");
-                  this.classHand.sort(inPlay, 'h');
-                  System.out.println(this.inPlay.getName() + " In Play Hand:");
-                  Printer.printHand(this.inPlay.getHand());
-                  
-                  System.out.println("");
-                  this.classHand.sort(this.notInPlay, 'h');
-                  System.out.println(this.notInPlay.getName() + " Not In Play Hand:");
-                  Printer.printHand(this.notInPlay.getHand());
-                  
-                  System.out.println("");
-                  System.out.println("Switching who's in play");
-                  
-                  this.turnSwitcher();
-                  
-                  System.out.println("");
-                  System.out.println( "[" + this.inPlay.getName() + "]" + " In Play");
-                  
-                  System.out.println("");
-                  System.out.println(  "[" + this.notInPlay.getName() + "]" + " Not In Play");
-                  
-                  return false;
-              }//End I:*
-              
-              else if(!check)
-              {
-                   System.out.println("");
-                   System.out.println(this.notInPlay.getName() + " does have " + cTemp.getValue());
-                   
-                   this.classHand.updateHandAdd(
-                                                this.inPlay, 
-                                                cTemp, 
-                                                this.notInPlay
-                                               );
-                   
-                   System.out.println("");
-                   this.classHand.sort(this.inPlay, 'h');
-                   System.out.println("[" + this.inPlay.getName() + "]" + " In Play Hand:");
-                   Printer.printHand(this.inPlay.getHand());
-                
-                   //Notice: now deleting from class hand.
-                   
-                   System.out.println("");
-                   this.classHand.sort(this.notInPlay, 'h');
-                   System.out.println("[" + this.notInPlay.getName() + "]" + " Not In Play Hand:");
-                   Printer.printHand(this.notInPlay.getHand());
-              }//End EI:*
-        }//End W:*
-              
-        return false;      
-    }//End M:*
+    public abstract boolean shouldKeepGoing(); 
     
      /**
       * Behavior for the unique way a human players asks for a Card.
@@ -237,41 +154,7 @@ import java.util.Scanner;
       * to get as many four of a kinds they can.
       * @return the card asked for of top level Card type. 
       */
-    private ACard humanAskingForACard() 
-    {
-        boolean flag = true;
-        //A: Iterate: 
-        while (flag) 
-        {
-            //A.1: Get: 
-            System.out.println("");
-            System.out.println("Which card value do you want?");
-            
-            UInput.setInput(new Scanner(System.in));
-            String cvDesire = UInput.promptStringUser();
-            //A.2: Get: 
-            //A.3: Create: 
-            CGoFishCard cDesire = new CGoFishCard(
-                                                cvDesire.toUpperCase()
-                                            );
-            //A.4: Initialize: 
-            ADeck deck = new CGoFishDeck(new ArrayList<>());
-            deck.initDeck();
-            //A.5: Repeat: 
-            for (int i = 0; i < deck.getDeck().size(); i++) 
-            {
-                //A.6: Check: 
-                if (cDesire.getValue().equals(deck.getDeck().get(i).getValue())) 
-                {
-                    
-                    return cDesire;
-                }//End I:*
-            }//End F:*
-        }//End W:*
-        //A.10: Anticipate: 
-        return null;
-    }//End M:*
-    
+    public abstract ACard humanAskingForACard();
     /**
      * A computer needs some strategy logic for which card they ask for. 
      * We use several lists for the computers thought process. 
@@ -280,69 +163,11 @@ import java.util.Scanner;
      * sophisticated strategy implementation by the AI. The AI could easily implement a card counting strategy.
      * @return the Card asked for by the AI.
      */
-    private ACard computerAskingForACard()
-    {
-        List<ACard> dTemp = computer.getDesirableList();
-        List<ACard> hTemp = computer.getHand();
-        ACard cTemp = null;
-        
-        if(!dTemp.isEmpty())
-        {
-            cTemp = new CGoFishCard(dTemp.get(0).getValue());
-            System.out.println("");
-            System.out.println("Computer is asking for: " + cTemp.getValue());
-            System.out.println("Do you have any?");
-            UInput.setInput(new Scanner(System.in));
-            String response = UInput.promptStringUser();
-            if(response.equals("yes"))
-            {
-                System.out.println("Ok thanks for confirming");
-            }//End I:*
-            else if(response.equals("no"))
-            {
-                System.out.println("Ok, computer will go fish then");
-            }//End I:*
-            return cTemp;
-        }//End I:*
-       
-        else if(!hTemp.isEmpty())
-        {
-            cTemp = new CGoFishCard(hTemp.get(0).getValue());
-            System.out.println("");
-            System.out.println("Computer is asking for: " + cTemp.getValue());
-            System.out.println("Do you have any?");
-            UInput.setInput(new Scanner(System.in));
-            String response = UInput.promptStringUser();
-            if(response.equals("yes"))
-            {
-                System.out.println("Ok thanks for confirming");
-            }//End I:*
-            else if(response.equals("no"))
-            {
-                System.out.println("Ok, computer will go fish then");
-            }//End I:*
-            return cTemp;
-        }//End E:*
-        
-        else if(dTemp.isEmpty() && hTemp.isEmpty())
-        {
-            System.out.println("");
-            System.out.println("Computer has no cards left in their hand");
-            return null;
-        }//End E:*
-        
-        return cTemp;
-    }//End M:*
-    
+    public abstract ACard computerAskingForACard();
     /**
      * Simple method for switching who's currently asking by assigning the Player to designated Player variable.
      * Use a Player temp variable to facilitate the swapping of the in play versus not in play player.
      */
-    private void turnSwitcher()
-    {
-        APlayer temp = inPlay;
-        inPlay = notInPlay;
-        notInPlay = temp;  
-    }//End M:*
+    public abstract void turnSwitcher(); 
     
 }//End class 

@@ -43,8 +43,8 @@ public class Main
                                         new CGoFishScoreBoard()
                                         );
         
-        RoundOne round1 = new RoundOne(
-                                       new GoFish(
+        CRoundOne round1 = new CRoundOne(
+                                       new CGoFish(
                                                   "Aleks", 
                                                   tM)
                                        );

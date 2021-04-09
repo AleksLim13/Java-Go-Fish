@@ -12,7 +12,7 @@ import ca.sheridancollege.javagofish.Players.APlayer;
  *
  * @author aleks
  */
-public class CGoFishTurnManager extends TurnManager
+public class CGoFishTurnManager extends ATurnManager
 {
 
     public CGoFishTurnManager(APlayer human, APlayer computer, AHand hand, AScoreBoard scoreBoard) 

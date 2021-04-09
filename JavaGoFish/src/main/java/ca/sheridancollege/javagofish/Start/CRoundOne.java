@@ -105,7 +105,7 @@ public class CRoundOne extends AStart {
             while(!((CGoFish)game)
                                   .getTurnController()
                                   .getClassHand()
-                                  .getDeck()
+                                  .getClassDeck()
                                   .getDeck()
                                   .isEmpty()
                     )//End W:*

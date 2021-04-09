@@ -146,4 +146,83 @@ public class CGoFishHand extends AHand
         }//End Out F:*    
     }//End M:*
 
+    @Override
+    public void deleteCardFromHand(APlayer notInPlay, int posit) 
+    {
+        notInPlay.getHand().remove(posit);
+    }//End M:*
+
+    @Override
+    public void deleteCardFromDList(APlayer notInPlay, int posit) 
+    {
+        notInPlay.getDesirableList().remove(posit);
+    }//End M:*
+
+    @Override
+    public void getCardFromDeck(APlayer player) 
+    {
+        player.getHand().add(createRandoCard());
+        System.out.println("");
+
+        System.out.println("");
+        System.out.println("Calculating dupes for " + player.getName());
+        this.scoreBoard.getDupes(player);
+
+        System.out.println("");
+        System.out.println(player.getName() + " dupes: " + player.getDesirableList().toString());
+    }//End M:*
+
+    @Override
+    public void updateHandDelete(APlayer notInPlay, ACard inPlaysDesireC) 
+    {
+        int pHTemp = findPositFullCard(notInPlay, inPlaysDesireC);
+        int pDTemp = findPositFullCardDList(notInPlay, inPlaysDesireC);
+        
+        deleteCardFromDList(notInPlay, pDTemp);
+        deleteCardFromHand(notInPlay, pHTemp);
+    }//End M:*
+
+    @Override
+    public void updateHandAdd(APlayer inPlay, ACard inPlaysDesireC, APlayer notInPlay) 
+    {
+        addCardToHand(inPlay, inPlaysDesireC, notInPlay);
+    }//End M:*
+
+    @Override
+    public int findPositFullCard(APlayer player, ACard tCard) 
+    {
+        int posit = 0;
+        for (int i = 0; i < player.getHand().size(); i++) 
+        {
+            if (player.getHand().get(i).equals(tCard)) 
+            {
+                posit = i;
+                return posit;
+            }//End I:*
+        }//End F:*
+        return posit;
+    }//End M:*
+
+    @Override
+    public int findPositFullCardDList(APlayer player, ACard tCard) 
+    {
+        int posit = 0;
+        for (int i = 0; i < player.getDesirableList().size(); i++) 
+        {
+            if (player.getDesirableList().get(i).equals(tCard)) 
+            {
+                posit = i;
+                return posit;
+            }//End I:*
+        }//End F:*
+        return posit;
+    }//End M:*
+
+    @Override
+    public void deckSetup() 
+    {
+        this.classDeck.initDeck();
+        this.classDeck.shuffle();
+    }//End M:*
+
 }//End CL:*

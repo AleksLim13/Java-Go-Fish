@@ -19,20 +19,20 @@ import java.util.List;
  */
 
 
-    public class GoFishDeck extends Deck
+    public class GoFishDeck extends ADeck
 
 {//Start CL:*
 
-    public GoFishDeck(List<Card> deck) 
+    public GoFishDeck(List<ACard> deck) 
     {
         super(deck);
     }//End C:*
 
     @Override
     public void initDeck() {
-        for (String suitsRange : Card.suitsRange) 
+        for (String suitsRange : ACard.suitsRange) 
         {
-            for (String valuesRange : Card.valuesRange) 
+            for (String valuesRange : ACard.valuesRange) 
             {
                 this.deck.add(new GoFishCard(suitsRange, valuesRange));
             } //End Inner F:*
@@ -49,7 +49,7 @@ import java.util.List;
             //A: Create: 
             rando = (int) (Math.random() * this.deck.size());      
             //B: Get:
-            Card temp = this.deck.get(i);
+            ACard temp = this.deck.get(i);
             //C: Set: 
             this.deck.set(i, this.deck.get(rando));
             this.deck.set(rando, temp);         
@@ -57,7 +57,7 @@ import java.util.List;
     }
 
     @Override
-    public int findPosit(List<Card> hand, Card tCard) 
+    public int findPosit(List<ACard> hand, ACard tCard) 
     
     {
         int posit = 0;
@@ -73,7 +73,7 @@ import java.util.List;
     }///End M:*
 
     @Override
-    public List<Card> removeCard(Card card) 
+    public List<ACard> removeCard(ACard card) 
     {
         this.deck.remove(findPosit(this.deck, card));
         return this.deck;

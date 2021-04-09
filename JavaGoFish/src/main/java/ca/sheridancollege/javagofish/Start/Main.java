@@ -3,7 +3,7 @@ package ca.sheridancollege.javagofish.Start;
 import ca.sheridancollege.javagofish.Cards.Hand;
 import ca.sheridancollege.javagofish.Players.CompPlayer;
 import ca.sheridancollege.javagofish.Players.HumanPlayer;
-import ca.sheridancollege.javagofish.Cards.Deck;
+import ca.sheridancollege.javagofish.Cards.ADeck;
 import ca.sheridancollege.javagofish.Cards.GoFishDeck;
 import ca.sheridancollege.javagofish.Turns.ScoreBoard;
 import ca.sheridancollege.javagofish.Turns.TurnManager;

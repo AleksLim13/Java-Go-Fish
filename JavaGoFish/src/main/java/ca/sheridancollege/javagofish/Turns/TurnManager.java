@@ -1,8 +1,8 @@
 package ca.sheridancollege.javagofish.Turns;
 
 
-import ca.sheridancollege.javagofish.Cards.Card;
-import ca.sheridancollege.javagofish.Cards.Deck;
+import ca.sheridancollege.javagofish.Cards.ACard;
+import ca.sheridancollege.javagofish.Cards.ADeck;
 import ca.sheridancollege.javagofish.Cards.GoFishCard;
 import ca.sheridancollege.javagofish.Cards.GoFishDeck;
 import ca.sheridancollege.javagofish.Cards.Hand;
@@ -138,7 +138,7 @@ import java.util.Scanner;
      * @param inPlaysDesireC top level Card type. 
      * @return signal if the Card is in the player hand who's being asked. 
      */
-    private boolean goFish(Card inPlaysDesireC) 
+    private boolean goFish(ACard inPlaysDesireC) 
     {
         for (int i = 0; i < notInPlay.getHand().size(); i++) 
         {
@@ -161,7 +161,7 @@ import java.util.Scanner;
         boolean flag = true;
         while(flag)
         {
-            Card cTemp = null;
+            ACard cTemp = null;
               
             if(this.inPlay instanceof HumanPlayer)
             {
@@ -237,7 +237,7 @@ import java.util.Scanner;
       * to get as many four of a kinds they can.
       * @return the card asked for of top level Card type. 
       */
-    private Card humanAskingForACard() 
+    private ACard humanAskingForACard() 
     {
         boolean flag = true;
         //A: Iterate: 
@@ -255,7 +255,7 @@ import java.util.Scanner;
                                                 cvDesire.toUpperCase()
                                             );
             //A.4: Initialize: 
-            Deck deck = new GoFishDeck(new ArrayList<>());
+            ADeck deck = new GoFishDeck(new ArrayList<>());
             deck.initDeck();
             //A.5: Repeat: 
             for (int i = 0; i < deck.getDeck().size(); i++) 
@@ -280,11 +280,11 @@ import java.util.Scanner;
      * sophisticated strategy implementation by the AI. The AI could easily implement a card counting strategy.
      * @return the Card asked for by the AI.
      */
-    private Card computerAskingForACard()
+    private ACard computerAskingForACard()
     {
-        List<Card> dTemp = computer.getDesirableList();
-        List<Card> hTemp = computer.getHand();
-        Card cTemp = null;
+        List<ACard> dTemp = computer.getDesirableList();
+        List<ACard> hTemp = computer.getHand();
+        ACard cTemp = null;
         
         if(!dTemp.isEmpty())
         {

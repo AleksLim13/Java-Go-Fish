@@ -5,7 +5,7 @@
  */
 package ca.sheridancollege.javagofish.Cards;
 
-import ca.sheridancollege.javagofish.Players.Player;
+import ca.sheridancollege.javagofish.Players.APlayer;
 import ca.sheridancollege.javagofish.Turns.AScoreBoard;
 import ca.sheridancollege.javagofish.Utility.Printer;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class CGoFishHand extends AHand
     }//End C:*
 
     @Override
-    public void addCardToHand(Player inPlay, ACard inPlaysDesireC, Player notInPlay) 
+    public void addCardToHand(APlayer inPlay, ACard inPlaysDesireC, APlayer notInPlay) 
     {
         //A: Find: 
         int posit = findPositPartialCard(notInPlay, inPlaysDesireC);
@@ -54,7 +54,7 @@ public class CGoFishHand extends AHand
     }
 
     @Override
-    public int findPositPartialCard(Player player, ACard tCard) 
+    public int findPositPartialCard(APlayer player, ACard tCard) 
     {
         int posit = 0;
         for (int i = 0; i < player.getHand().size(); i++) 
@@ -97,7 +97,7 @@ public class CGoFishHand extends AHand
     }//End M:*
 
     @Override
-    public void createHand(int size, Player player) 
+    public void createHand(int size, APlayer player) 
     {
         player.setHand(new ArrayList<>());
 
@@ -108,7 +108,7 @@ public class CGoFishHand extends AHand
     }//End M:*
 
     @Override
-    public void sort(Player player, char option) 
+    public void sort(APlayer player, char option) 
     {
         List<ACard> optList = new ArrayList<>();
 

@@ -4,32 +4,39 @@ package ca.sheridancollege.javagofish.Cards;
 
 import ca.sheridancollege.javagofish.Players.Player;
 import ca.sheridancollege.javagofish.Turns.AScoreBoard;
-import ca.sheridancollege.javagofish.Utility.Printer;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * HAND ABSTRACT CLASS:
+ * --------------------
+ * 
+ * 
  * This class has all the functionality for tasks relating to a players hand.
  * Only one of these Hand objects need to be created during a games life cycle. 
  * It can be declared as a final field variable in the aggregating class. 
  * This class aggregates Deck and Scoreboard as it needs one of each along with their functionality.
- * @author AllyCat13:
- *
+ * 
+ * 
+ * 
+ * @author AllyCat13.
  */
-public class Hand {
+public abstract class Hand 
+
+{
 
     /**
      * A reference to scoreboard is needed for calculating duplicates of players hand.
      * Once a scoreboard object is created it's life cycle is complete.
      * A Hand instance will access scoreboard through a public getter interface.
      */
-    private final AScoreBoard scoreBoard;
+    protected final AScoreBoard scoreBoard;
     
     /**
      * A Hand instance needs a reference to a Deck instance to create hands and update the Deck. 
      * Only one copy is ever needed and needs to be created only once.
      */
-    private final ADeck deck;
+    protected final ADeck deck;
 
     /**
      * This constructs a Hand instance with a Deck and Scoreboard object as argument thereby initializing the field variables.
@@ -61,34 +68,12 @@ public class Hand {
      * @param inPlaysDesireC is is of top level Card type. 
      * @param notInPlay is of top level Player type. 
      */
-    private void addCardToHand(
+    
+    public abstract void addCardToHand(
             Player inPlay, //inplay
             ACard inPlaysDesireC, //in plays desire
             Player notInPlay //remove from
-    ) {
-
-        //A: Find: 
-        int posit = findPositPartialCard(notInPlay, inPlaysDesireC);
-        //B: Get:
-        ACard cTemp = notInPlay.getHand().get(posit);
-        //C: Remove: 
-        updateHandDelete(notInPlay, cTemp);
-        //D: Add: 
-        inPlay.getHand().add(cTemp);
-
-        //E: 
-        System.out.println("");
-        System.out.println("Calculating dupes for " + inPlay.getName());
-        //E.1: Calculate:
-        this.scoreBoard.getDupes(inPlay);
-        System.out.println("");
-        //E.2: Order: 
-        this.sort(inPlay, 'd');
-        System.out.println(inPlay.getName() + " dupes: ");
-        //E.3: Display: 
-        Printer.printHand(inPlay.getDesirableList());
-
-    }//End M:*
+    );
 
     /**
      * This method removes the target Card from the Player's hand who is being asked.
@@ -219,40 +204,14 @@ public class Hand {
      * @param tCard top level Card type. 
      * @return integer as position of target card in asked players hand.
      */
-    private int findPositPartialCard(Player player, ACard tCard) 
-    {
-        int posit = 0;
-        for (int i = 0; i < player.getHand().size(); i++) 
-        {
-            if (player.getHand().get(i).getValue().equals(tCard.getValue())) 
-            {
-                posit = i;
-                return posit;
-            }//End I:*
-        }//End F:*
-        return posit;
-    }//End M:*
+    public abstract int findPositPartialCard(Player player, ACard tCard);
     
     /**
      * To be used when a Player has to "Go Fish" because they asked for a Card the asked PLayer doesn't have.
      * It created a random number that could be any slot in the Card list deck. 
      * @return the random Card removed and deleted from the central deck. 
      */
-    private ACard createRandoCard() 
-    {
-        //A: create: ranges for random number to map against. 
-
-        //B: Create: the random numbers modelling suit and values. 
-        int valPossible = (int) (Math.random() * ACard.valuesRange.length) + 1;
-
-        //C: asssign: the values determined by a random number
-        ACard resCard = this.deck.getDeck().get(valPossible);
-
-        //D: create: the card object and copy it. 
-        this.deck.removeCard(resCard);
-
-        return resCard;
-    }//End M:*
+    public abstract ACard createRandoCard() ;
 
     //Methods:_________________________
     
@@ -271,30 +230,14 @@ public class Hand {
      * This method takes and deletes a Card from the central deck. 
      * @return 
      */
-    private ACard startDeal() 
-    {//Notice: end of line style looks better.
-        ACard card;
-        card = this.deck.getDeck().get(0);
-        //B: 
-        this.deck.getDeck().remove(0);
-        //C: 
-        return card;
-    }//End M:*
+    public abstract ACard startDeal() ;
 
     /**
      * Calls this classes start deal method and adds the return value per a desired amount of Cards to a Players hand.
      * @param size as integer for how many cards to include in a Hand.
      * @param player top level Player type. The Hand to add cards to. 
      */
-    public void createHand(int size, Player player) 
-    {
-        player.setHand(new ArrayList<>());
-
-        for (int i = 0; i < size; i++) 
-        {
-            player.getHand().add(this.startDeal());
-        }//End F:*         
-    }//End M:
+    public abstract void createHand(int size, Player player);
 
     /**
      * Two Player lists need to be sorted throughout the game for Players to make quick decisions based on their hand.
@@ -302,45 +245,6 @@ public class Hand {
      * @param player top level Player type. 
      * @param option char type indicating which Player list to work on.
      */
-    public void sort(Player player, char option) 
-    { 
-        
-        List<ACard> optList = new ArrayList<>();
-        
-        if(option == 'h')
-        {
-            optList = player.getHand();
-        }//End I:*
-        
-        else if (option == 'd')
-        {
-            optList = player.getDesirableList();
-        }//End EI:*
-        
-        //Notice: watch nested for loop structure. 
-        for (int i = 0; i < optList.size(); i++) 
-        {       
-            for (int j = i + 1; j < optList.size(); j++) 
-                
-            {
-                //Get: value of card and store it in String VAR.
-                String v1 = optList.get(i).getValue();
-                char cv1 = v1.charAt(0);
-                
-                String v2 = optList.get(j).getValue();
-                char cv2 = v2.charAt(0);
-                //Extract: use char at to get first letter of above step. 
-                             
-                ACard tmp = null;
-                
-                if ((int)cv1 > (int)cv2) 
-                {
-                    tmp = optList.get(i);
-                    optList.set(i, optList.get(j));
-                    optList.set(j, tmp);
-                }//End I:*
-            }//End In F:*
-        }//End Out F:*
-    }//End M:*
+    public abstract void sort(Player player, char option) ; 
 
 }//End CL:*

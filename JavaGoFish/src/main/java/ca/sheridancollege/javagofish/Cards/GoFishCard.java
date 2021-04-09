@@ -9,7 +9,7 @@ package ca.sheridancollege.javagofish.Cards;
  * 
  * @author AllyCat13 @ Sheridan High 2021
  */
-public class GoFishCard extends Card {
+public class GoFishCard extends ACard {
     
  /**
   * This constructor call's Cards default no argument constructor.

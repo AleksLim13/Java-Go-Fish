@@ -4,6 +4,7 @@ package ca.sheridancollege.javagofish.Turns;
 import ca.sheridancollege.javagofish.Cards.Card;
 import ca.sheridancollege.javagofish.Cards.Deck;
 import ca.sheridancollege.javagofish.Cards.GoFishCard;
+import ca.sheridancollege.javagofish.Cards.GoFishDeck;
 import ca.sheridancollege.javagofish.Cards.Hand;
 import ca.sheridancollege.javagofish.Players.CompPlayer;
 import ca.sheridancollege.javagofish.Players.HumanPlayer;
@@ -15,14 +16,26 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
+ * TURNMANAGER CLASS:
+ * ------------------
+ * 
+ * 
  * This class has all the data and functionality needed for tasks that occur during a Players turn. 
  * During a turn, a Players asking for cards is determined to be a success or failure.
  * Whether or not the player should keep asking needs to be determined. 
  * the way a computer and human each uniquely ask for cards needs to be defined. 
- * A way for the Players status as the one asking versus the one being asked needs to be defined. 
+ * A way for the Players status as the one asking versus the one being asked needs to be defined.
+ * 
+ * 
+ * 
+ * 
+ * 
  * @author AllyCat13 @ Sheridan High 2021.
  */
-public class TurnManager {
+    
+    public class TurnManager 
+
+{
 
     //Declare: fields: for keeping track. 
     //A: Declare: it's only a two player game. 
@@ -242,7 +255,7 @@ public class TurnManager {
                                                 cvDesire.toUpperCase()
                                             );
             //A.4: Initialize: 
-            Deck deck = new Deck(new ArrayList<>());
+            Deck deck = new GoFishDeck(new ArrayList<>());
             deck.initDeck();
             //A.5: Repeat: 
             for (int i = 0; i < deck.getDeck().size(); i++) 

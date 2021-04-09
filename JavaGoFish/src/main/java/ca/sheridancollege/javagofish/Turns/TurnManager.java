@@ -67,7 +67,7 @@ import java.util.Scanner;
     /**
      * A reference to a scoreboard for strategy related tasks is required. 
      */
-    private final ScoreBoard scoreBoard;
+    private final AScoreBoard scoreBoard;
 
     //Constructor 
     
@@ -82,7 +82,7 @@ import java.util.Scanner;
                         Player human,
                         Player computer,
                         Hand hand,
-                        ScoreBoard scoreBoard
+                        AScoreBoard scoreBoard
                          ) 
     {
         this.human = human;
@@ -127,7 +127,7 @@ import java.util.Scanner;
     }//End G:*
 
 
-    public ScoreBoard getScoreBoard() 
+    public AScoreBoard getScoreBoard() 
     {
         return this.scoreBoard;
     }//End G:*

@@ -77,10 +77,10 @@ public class CGoFishHand extends AHand
         int valPossible = (int) (Math.random() * ACard.valuesRange.length) + 1;
 
         //C: asssign: the values determined by a random number
-        ACard resCard = this.deck.getDeck().get(valPossible);
+        ACard resCard = this.classDeck.getDeck().get(valPossible);
 
         //D: create: the card object and copy it. 
-        this.deck.removeCard(resCard);
+        this.classDeck.removeCard(resCard);
 
         return resCard;
     }//End M:*
@@ -89,9 +89,9 @@ public class CGoFishHand extends AHand
     public ACard startDeal() 
     {
         ACard card;
-        card = this.deck.getDeck().get(0);
+        card = this.classDeck.getDeck().get(0);
         //B: 
-        this.deck.getDeck().remove(0);
+        this.classDeck.getDeck().remove(0);
         //C: 
         return card;
     }//End M:*

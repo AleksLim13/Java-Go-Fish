@@ -4,6 +4,7 @@ import ca.sheridancollege.javagofish.Cards.Hand;
 import ca.sheridancollege.javagofish.Players.CompPlayer;
 import ca.sheridancollege.javagofish.Players.HumanPlayer;
 import ca.sheridancollege.javagofish.Cards.Deck;
+import ca.sheridancollege.javagofish.Cards.GoFishDeck;
 import ca.sheridancollege.javagofish.Turns.ScoreBoard;
 import ca.sheridancollege.javagofish.Turns.TurnManager;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class Main
                                                        new ArrayList<>()
                                                        ), //End C:*
                                         new Hand(
-                                                 new Deck(new ArrayList<>()),
+                                                 new GoFishDeck(new ArrayList<>()),
                                                  new ScoreBoard()
                                                 ), //End C:*
                                         new ScoreBoard()

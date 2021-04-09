@@ -2,7 +2,7 @@ package ca.sheridancollege.javagofish.Players;
 
 //Imports:________________________________
 
-import ca.sheridancollege.javagofish.Cards.Card;
+import ca.sheridancollege.javagofish.Cards.ACard;
 import java.util.List;
 
 
@@ -18,7 +18,7 @@ public class CompPlayer extends Player {
      * @param books Card list data type.
      * @param dL card list data type. 
      */
-    public CompPlayer(List<Card> books, List<Card> dL) {
+    public CompPlayer(List<ACard> books, List<ACard> dL) {
         super("Computer", books, dL);//For visual understanding.
     }//End C:*
 

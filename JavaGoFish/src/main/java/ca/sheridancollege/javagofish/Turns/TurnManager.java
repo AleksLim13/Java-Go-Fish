@@ -33,7 +33,7 @@ import java.util.Scanner;
  * @author AllyCat13 @ Sheridan High 2021.
  */
     
-    public class TurnManager 
+    public abstract class TurnManager 
 
 {
 

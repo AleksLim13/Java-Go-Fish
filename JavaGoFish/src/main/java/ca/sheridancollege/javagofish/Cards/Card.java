@@ -3,13 +3,21 @@ package ca.sheridancollege.javagofish.Cards;
 import java.util.Objects;
 
 /**
+ * CARD ABSTRACT CLASS:
+ * --------------------
+ * 
+ * 
+ * 
  * This class models Card objects used in a Card game. 
  * Each card has a value and a suit. Both fields are string 
  * values. the range of values for each are stored in a 
  * static final array that's of public access allowance. 
- * @author AllyCat13. This is the most general category of what a
+ *  This is the most general category of what a
  * card can be and has. It's abstract and will be extended by classes
  * like Go Fish card or Black Jack Card. 
+ * 
+ * 
+ * @author AllyCat13.
  */
 public abstract class Card 
 {

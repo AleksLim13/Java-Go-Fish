@@ -3,7 +3,7 @@ package ca.sheridancollege.javagofish.Utility;
 
 
 //Imports:______________________
-import ca.sheridancollege.javagofish.Cards.Card;
+import ca.sheridancollege.javagofish.Cards.ACard;
 import java.util.List;
 
 /**
@@ -26,9 +26,9 @@ public final class Printer {
      * Static method for looping through a list and printing each item.
      * @param tHand Card list type.
      */
-    public static void printHand(List<Card> tHand) 
+    public static void printHand(List<ACard> tHand) 
     {
-        for (Card c: tHand) 
+        for (ACard c: tHand) 
         {
             System.out.println(c.toString());
         }//End F:*

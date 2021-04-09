@@ -3,7 +3,7 @@ package ca.sheridancollege.javagofish.Start;
 //Imports:__________________________
 
 
-import ca.sheridancollege.javagofish.Turns.TurnManager;
+import ca.sheridancollege.javagofish.Turns.ATurnManager;
 
 
 /**
@@ -19,7 +19,7 @@ public class CGoFish extends AGame {
     * TurnManager contains the functionality for asking for Cards and switching who's
     * being asked and who's asking. 
     */
-    private final TurnManager turnController;
+    private final ATurnManager turnController;
    
     /**
      * Creates a instance of Go Fish and initializes game name and turn manager. 
@@ -32,7 +32,7 @@ public class CGoFish extends AGame {
      * @param hName String type.
      * @param tN TurnManager type. 
      */
-    public CGoFish(String hName, TurnManager tN) 
+    public CGoFish(String hName, ATurnManager tN) 
     {
  
         this.turnController = tN;
@@ -45,7 +45,7 @@ public class CGoFish extends AGame {
      * @param turnController TurnManager type.
      */
     public CGoFish(
-                  TurnManager turnController
+                  ATurnManager turnController
                   ) 
     {
         this.turnController = turnController; 
@@ -53,7 +53,7 @@ public class CGoFish extends AGame {
     }//End C:*
 
   
-    public TurnManager getTurnController() {
+    public ATurnManager getTurnController() {
         return turnController;
     }
 

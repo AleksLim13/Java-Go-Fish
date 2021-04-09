@@ -2,7 +2,7 @@
 package ca.sheridancollege.javagofish.Cards;
 
 
-import ca.sheridancollege.javagofish.Players.Player;
+import ca.sheridancollege.javagofish.Players.APlayer;
 import ca.sheridancollege.javagofish.Turns.AScoreBoard;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,9 +70,9 @@ public abstract class AHand
      */
     
     public abstract void addCardToHand(
-            Player inPlay, //inplay
+            APlayer inPlay, //inplay
             ACard inPlaysDesireC, //in plays desire
-            Player notInPlay //remove from
+            APlayer notInPlay //remove from
     );
 
     /**
@@ -81,7 +81,7 @@ public abstract class AHand
      * @param posit is of integer type representing the position of the target Card.
      */
     private void deleteCardFromHand(
-            Player notInPlay,
+            APlayer notInPlay,
             int posit
     ) {
 
@@ -94,7 +94,7 @@ public abstract class AHand
      * @param posit integer type. 
      */
     private void deleteCardFromDList(
-            Player notInPlay,
+            APlayer notInPlay,
             int posit
     ) {
 
@@ -107,7 +107,7 @@ public abstract class AHand
      * This method calls another method from this class that chooses a value from a random slot in the deck. 
      * @param player is of top level Player type. 
      */  
-    public void getCardFromDeck(Player player) 
+    public void getCardFromDeck(APlayer player) 
     {
         player.getHand().add(createRandoCard());
         System.out.println("");
@@ -128,7 +128,7 @@ public abstract class AHand
      * @param inPlaysDesireC top level Card type.
      */
     public void updateHandDelete(
-            Player notInPlay,//Incl: list for C's.
+            APlayer notInPlay,//Incl: list for C's.
             ACard inPlaysDesireC//Incl: list for copies. 
     ) {
         int pHTemp = findPositFullCard(notInPlay, inPlaysDesireC);
@@ -146,9 +146,9 @@ public abstract class AHand
      * @param notInPlay  top level Player type.
      */
     public void updateHandAdd(
-            Player inPlay,//Incl: list for C's.
+            APlayer inPlay,//Incl: list for C's.
             ACard inPlaysDesireC,//Incl: list for copies. 
-            Player notInPlay
+            APlayer notInPlay
     ) 
     {
         addCardToHand(inPlay, inPlaysDesireC, notInPlay);
@@ -160,7 +160,7 @@ public abstract class AHand
      * @param tCard top level Card type. 
      * @return integer value as position in asked Players hand.
      */
-    private int findPositFullCard(Player player, ACard tCard) 
+    private int findPositFullCard(APlayer player, ACard tCard) 
     {
         int posit = 0;
         for (int i = 0; i < player.getHand().size(); i++) 
@@ -183,7 +183,7 @@ public abstract class AHand
      * @param tCard top level Card type. 
      * @return integer as position of target card in searched hand. 
      */
-    private int findPositFullCardDList(Player player, ACard tCard) 
+    private int findPositFullCardDList(APlayer player, ACard tCard) 
     {
         int posit = 0;
         for (int i = 0; i < player.getDesirableList().size(); i++) 
@@ -204,7 +204,7 @@ public abstract class AHand
      * @param tCard top level Card type. 
      * @return integer as position of target card in asked players hand.
      */
-    public abstract int findPositPartialCard(Player player, ACard tCard);
+    public abstract int findPositPartialCard(APlayer player, ACard tCard);
     
     /**
      * To be used when a Player has to "Go Fish" because they asked for a Card the asked PLayer doesn't have.
@@ -237,7 +237,7 @@ public abstract class AHand
      * @param size as integer for how many cards to include in a Hand.
      * @param player top level Player type. The Hand to add cards to. 
      */
-    public abstract void createHand(int size, Player player);
+    public abstract void createHand(int size, APlayer player);
 
     /**
      * Two Player lists need to be sorted throughout the game for Players to make quick decisions based on their hand.
@@ -245,6 +245,6 @@ public abstract class AHand
      * @param player top level Player type. 
      * @param option char type indicating which Player list to work on.
      */
-    public abstract void sort(Player player, char option) ; 
+    public abstract void sort(APlayer player, char option); 
 
 }//End CL:*

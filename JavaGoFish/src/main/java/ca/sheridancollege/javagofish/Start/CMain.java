@@ -6,7 +6,7 @@ import ca.sheridancollege.javagofish.Cards.CGoFishDeck;
 import ca.sheridancollege.javagofish.Cards.CGoFishHand;
 import ca.sheridancollege.javagofish.Turns.CGoFishScoreBoard;
 import ca.sheridancollege.javagofish.Turns.CGoFishTurnManager;
-import ca.sheridancollege.javagofish.Turns.TurnManager;
+import ca.sheridancollege.javagofish.Turns.ATurnManager;
 import java.util.ArrayList;
 
 /**
@@ -27,7 +27,7 @@ public class CMain
      */
     public static void main(String[] args)
     {
-        TurnManager tM = new CGoFishTurnManager(
+        ATurnManager tM = new CGoFishTurnManager(
                                         new CHumanPlayer(
                                                         "Aleks", 
                                                         new ArrayList<>(), 

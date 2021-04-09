@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author AllyCat13.
  */
-public class GoFishHand extends Hand 
+public class GoFishHand extends AHand 
 
 {
 

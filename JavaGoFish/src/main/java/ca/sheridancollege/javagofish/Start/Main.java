@@ -1,7 +1,7 @@
 package ca.sheridancollege.javagofish.Start;
 
-import ca.sheridancollege.javagofish.Players.CompPlayer;
-import ca.sheridancollege.javagofish.Players.HumanPlayer;
+import ca.sheridancollege.javagofish.Players.CCompPlayer;
+import ca.sheridancollege.javagofish.Players.CHumanPlayer;
 import ca.sheridancollege.javagofish.Cards.CGoFishDeck;
 import ca.sheridancollege.javagofish.Cards.CGoFishHand;
 import ca.sheridancollege.javagofish.Turns.CGoFishScoreBoard;
@@ -27,12 +27,12 @@ public class Main
     public static void main(String[] args)
     {
         TurnManager tM = new TurnManager(
-                                        new HumanPlayer(
+                                        new CHumanPlayer(
                                                         "Aleks", 
                                                         new ArrayList<>(), 
                                                         new ArrayList<>()
                                                          ),//End C:* 
-                                        new CompPlayer(
+                                        new CCompPlayer(
                                                        new ArrayList<>(), 
                                                        new ArrayList<>()
                                                        ), //End C:*

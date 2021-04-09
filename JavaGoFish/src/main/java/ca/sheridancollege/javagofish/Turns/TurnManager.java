@@ -6,9 +6,9 @@ import ca.sheridancollege.javagofish.Cards.ADeck;
 import ca.sheridancollege.javagofish.Cards.CGoFishCard;
 import ca.sheridancollege.javagofish.Cards.CGoFishDeck;
 import ca.sheridancollege.javagofish.Cards.AHand;
-import ca.sheridancollege.javagofish.Players.CompPlayer;
-import ca.sheridancollege.javagofish.Players.HumanPlayer;
-import ca.sheridancollege.javagofish.Players.Player;
+import ca.sheridancollege.javagofish.Players.CCompPlayer;
+import ca.sheridancollege.javagofish.Players.CHumanPlayer;
+import ca.sheridancollege.javagofish.Players.APlayer;
 import ca.sheridancollege.javagofish.Utility.Printer;
 import ca.sheridancollege.javagofish.Utility.UInput;
 import java.util.ArrayList;
@@ -47,19 +47,19 @@ import java.util.Scanner;
     /**
      * A reference to a Human player is required.
      */
-    private final Player human;
+    private final APlayer human;
     /**
      * A reference to a computer player is required.
      */
-    private final Player computer;
+    private final APlayer computer;
     /**
      * A reference to the player asking for cards is required.
      */
-    private Player inPlay;
+    private APlayer inPlay;
     /**
      * A reference to the player being asked for cards is required.
      */
-    private Player notInPlay;
+    private APlayer notInPlay;
     /**
      * A reference to the Hand class for hand related tasks is required. 
      */
@@ -79,8 +79,8 @@ import java.util.Scanner;
     * @param scoreBoard ScoreBoard class type. 
     */
     public TurnManager(
-                        Player human,
-                        Player computer,
+                        APlayer human,
+                        APlayer computer,
                         AHand hand,
                         AScoreBoard scoreBoard
                          ) 
@@ -91,32 +91,32 @@ import java.util.Scanner;
         this.scoreBoard = scoreBoard;
     }//End C:*
 
-    public Player getInPlay() 
+    public APlayer getInPlay() 
     {
         return inPlay;
     }//End G:*
 
-    public void setInPlay(Player inPlay) 
+    public void setInPlay(APlayer inPlay) 
     {
         this.inPlay = inPlay;
     }//End G:*
 
-    public Player getNotInPlay() 
+    public APlayer getNotInPlay() 
     {
         return notInPlay;
     }//End G:*
 
-    public Player getHuman() 
+    public APlayer getHuman() 
     {
         return human;
     }//End G:*
 
-    public Player getComputer() 
+    public APlayer getComputer() 
     {
         return computer;
     }//End G:*
     
-    public void setNotInPlay(Player notInPlay) 
+    public void setNotInPlay(APlayer notInPlay) 
     {
         this.notInPlay = notInPlay;
     }//End S:*
@@ -163,11 +163,11 @@ import java.util.Scanner;
         {
             ACard cTemp = null;
               
-            if(this.inPlay instanceof HumanPlayer)
+            if(this.inPlay instanceof CHumanPlayer)
             {
                   cTemp = humanAskingForACard();
               }//End I:*
-              else if(this.inPlay instanceof CompPlayer)
+              else if(this.inPlay instanceof CCompPlayer)
               {
                   cTemp = computerAskingForACard();
               }//End EI:*
@@ -340,7 +340,7 @@ import java.util.Scanner;
      */
     private void turnSwitcher()
     {
-        Player temp = inPlay;
+        APlayer temp = inPlay;
         inPlay = notInPlay;
         notInPlay = temp;  
     }//End M:*

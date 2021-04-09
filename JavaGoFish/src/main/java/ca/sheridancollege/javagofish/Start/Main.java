@@ -1,16 +1,21 @@
 package ca.sheridancollege.javagofish.Start;
 
-import ca.sheridancollege.javagofish.Cards.Hand;
 import ca.sheridancollege.javagofish.Players.CompPlayer;
 import ca.sheridancollege.javagofish.Players.HumanPlayer;
 import ca.sheridancollege.javagofish.Cards.GoFishDeck;
+import ca.sheridancollege.javagofish.Cards.GoFishHand;
 import ca.sheridancollege.javagofish.Turns.GoFishScoreBoard;
 import ca.sheridancollege.javagofish.Turns.TurnManager;
 import java.util.ArrayList;
 
 /**
+ * 
  * The Main class with the main method for where the program starts.
- * @author aleks
+ * 
+ * 
+ * 
+ * 
+ * @author AllyCat13. 
  */
 public class Main 
 {
@@ -31,7 +36,7 @@ public class Main
                                                        new ArrayList<>(), 
                                                        new ArrayList<>()
                                                        ), //End C:*
-                                        new Hand(
+                                        new GoFishHand(
                                                  new GoFishDeck(new ArrayList<>()),
                                                  new GoFishScoreBoard()
                                                 ), //End C:*

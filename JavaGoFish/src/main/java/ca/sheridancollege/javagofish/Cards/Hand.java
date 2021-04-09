@@ -29,7 +29,7 @@ public class Hand {
      * A Hand instance needs a reference to a Deck instance to create hands and update the Deck. 
      * Only one copy is ever needed and needs to be created only once.
      */
-    private final Deck deck;
+    private final ADeck deck;
 
     /**
      * This constructs a Hand instance with a Deck and Scoreboard object as argument thereby initializing the field variables.
@@ -37,7 +37,7 @@ public class Hand {
      * @param sb is of ScoreBoard type. 
      * This constructors calls this classes deck setup method to automatically initialize and shuffle the deck.
      */
-    public Hand(Deck deck, ScoreBoard sb) 
+    public Hand(ADeck deck, ScoreBoard sb) 
     {
         this.deck = deck;
         this.scoreBoard = sb;
@@ -48,7 +48,7 @@ public class Hand {
      * This is a public getter interface for accessing the Deck field var of Hand instances.
      * @return the field variable of Deck type.
      */
-    public Deck getDeck() 
+    public ADeck getDeck() 
     {
         return this.deck;
     }//End G:*
@@ -63,14 +63,14 @@ public class Hand {
      */
     private void addCardToHand(
             Player inPlay, //inplay
-            Card inPlaysDesireC, //in plays desire
+            ACard inPlaysDesireC, //in plays desire
             Player notInPlay //remove from
     ) {
 
         //A: Find: 
         int posit = findPositPartialCard(notInPlay, inPlaysDesireC);
         //B: Get:
-        Card cTemp = notInPlay.getHand().get(posit);
+        ACard cTemp = notInPlay.getHand().get(posit);
         //C: Remove: 
         updateHandDelete(notInPlay, cTemp);
         //D: Add: 
@@ -144,7 +144,7 @@ public class Hand {
      */
     public void updateHandDelete(
             Player notInPlay,//Incl: list for C's.
-            Card inPlaysDesireC//Incl: list for copies. 
+            ACard inPlaysDesireC//Incl: list for copies. 
     ) {
         int pHTemp = findPositFullCard(notInPlay, inPlaysDesireC);
         int pDTemp = findPositFullCardDList(notInPlay, inPlaysDesireC);
@@ -162,7 +162,7 @@ public class Hand {
      */
     public void updateHandAdd(
             Player inPlay,//Incl: list for C's.
-            Card inPlaysDesireC,//Incl: list for copies. 
+            ACard inPlaysDesireC,//Incl: list for copies. 
             Player notInPlay
     ) 
     {
@@ -175,7 +175,7 @@ public class Hand {
      * @param tCard top level Card type. 
      * @return integer value as position in asked Players hand.
      */
-    private int findPositFullCard(Player player, Card tCard) 
+    private int findPositFullCard(Player player, ACard tCard) 
     {
         int posit = 0;
         for (int i = 0; i < player.getHand().size(); i++) 
@@ -198,7 +198,7 @@ public class Hand {
      * @param tCard top level Card type. 
      * @return integer as position of target card in searched hand. 
      */
-    private int findPositFullCardDList(Player player, Card tCard) 
+    private int findPositFullCardDList(Player player, ACard tCard) 
     {
         int posit = 0;
         for (int i = 0; i < player.getDesirableList().size(); i++) 
@@ -219,7 +219,7 @@ public class Hand {
      * @param tCard top level Card type. 
      * @return integer as position of target card in asked players hand.
      */
-    private int findPositPartialCard(Player player, Card tCard) 
+    private int findPositPartialCard(Player player, ACard tCard) 
     {
         int posit = 0;
         for (int i = 0; i < player.getHand().size(); i++) 
@@ -238,15 +238,15 @@ public class Hand {
      * It created a random number that could be any slot in the Card list deck. 
      * @return the random Card removed and deleted from the central deck. 
      */
-    private Card createRandoCard() 
+    private ACard createRandoCard() 
     {
         //A: create: ranges for random number to map against. 
 
         //B: Create: the random numbers modelling suit and values. 
-        int valPossible = (int) (Math.random() * Card.valuesRange.length) + 1;
+        int valPossible = (int) (Math.random() * ACard.valuesRange.length) + 1;
 
         //C: asssign: the values determined by a random number
-        Card resCard = this.deck.getDeck().get(valPossible);
+        ACard resCard = this.deck.getDeck().get(valPossible);
 
         //D: create: the card object and copy it. 
         this.deck.removeCard(resCard);
@@ -271,9 +271,9 @@ public class Hand {
      * This method takes and deletes a Card from the central deck. 
      * @return 
      */
-    private Card startDeal() 
+    private ACard startDeal() 
     {//Notice: end of line style looks better.
-        Card card;
+        ACard card;
         card = this.deck.getDeck().get(0);
         //B: 
         this.deck.getDeck().remove(0);
@@ -305,7 +305,7 @@ public class Hand {
     public void sort(Player player, char option) 
     { 
         
-        List<Card> optList = new ArrayList<>();
+        List<ACard> optList = new ArrayList<>();
         
         if(option == 'h')
         {
@@ -331,7 +331,7 @@ public class Hand {
                 char cv2 = v2.charAt(0);
                 //Extract: use char at to get first letter of above step. 
                              
-                Card tmp = null;
+                ACard tmp = null;
                 
                 if ((int)cv1 > (int)cv2) 
                 {

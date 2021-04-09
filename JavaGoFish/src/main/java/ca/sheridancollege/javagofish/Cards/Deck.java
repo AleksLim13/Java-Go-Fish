@@ -73,20 +73,7 @@ public abstract class Deck
      * It steps through each slot in the deck list and swaps every
      * slot with a value from a random slot in the same deck list. 
      */
-    public void shuffle() 
-    {
-        int rando;
-        for (int i = 0; i < this.deck.size(); i++) 
-        {
-            //A: Create: 
-            rando = (int) (Math.random() * this.deck.size());      
-            //B: Get:
-            Card temp = this.deck.get(i);
-            //C: Set: 
-            this.deck.set(i, this.deck.get(rando));
-            this.deck.set(rando, temp);         
-        }//End Outer F:*
-    }//End M:*
+    public abstract void shuffle(); 
     
     /**
      * 
@@ -95,16 +82,7 @@ public abstract class Deck
      * @return a integer representing the Cards position in the hand. 
      * Use this method as a method parameter anywhere a integer is expected.
      */
-    private int findPosit(List<Card> hand, Card tCard) {
-        int posit = 0;
-        for (int i = 0; i < hand.size(); i++) {
-            if (hand.get(i).equals(tCard)) {
-                posit = i;
-                return posit;
-            }//End I:*
-        }//End F:*
-        return posit;
-    }//End M:*
+    public abstract int findPosit(List<Card> hand, Card tCard);
     
  
     /**
@@ -112,8 +90,5 @@ public abstract class Deck
      * @param card is of Card type and the target to be deleted.
      * @return a Card list representing the updated hand as the result. 
      */
-    public List<Card> removeCard(Card card){
-        this.deck.remove(findPosit(this.deck, card));
-        return this.deck;
-    }//End M:*
+    public abstract List<Card> removeCard(Card card); 
 } //End class:_______________________

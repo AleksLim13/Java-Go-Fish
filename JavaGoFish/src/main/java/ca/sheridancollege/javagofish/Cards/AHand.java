@@ -79,26 +79,20 @@ public abstract class AHand
      * @param notInPlay is of top level Player type. 
      * @param posit is of integer type representing the position of the target Card.
      */
-    private void deleteCardFromHand(
+    public abstract void deleteCardFromHand(
             APlayer notInPlay,
             int posit
-    ) {
-
-        notInPlay.getHand().remove(posit);
-    }//End M:*
+    );
     
     /**
      * The game has a need to remove a Card from duplicate list when the opponent asks for it and the asked person has it.
      * @param notInPlay top level Player type.
      * @param posit integer type. 
      */
-    private void deleteCardFromDList(
+    public  abstract void deleteCardFromDList(
             APlayer notInPlay,
             int posit
-    ) {
-
-        notInPlay.getDesirableList().remove(posit);
-    }//End M:*
+    );
 
     /**
      * This method is for when a Players asks for a Card and the asked player doesn't have it
@@ -106,19 +100,7 @@ public abstract class AHand
      * This method calls another method from this class that chooses a value from a random slot in the deck. 
      * @param player is of top level Player type. 
      */  
-    public void getCardFromDeck(APlayer player) 
-    {
-        player.getHand().add(createRandoCard());
-        System.out.println("");
-
-
-        System.out.println("");
-        System.out.println("Calculating dupes for " + player.getName());
-        this.scoreBoard.getDupes(player);
-
-        System.out.println("");
-        System.out.println(player.getName() + " dupes: " + player.getDesirableList().toString());
-    }//End M:*
+    public abstract void getCardFromDeck(APlayer player); 
 
     /**
      * This is the public interface for removing the Card from the asked players hand.
@@ -126,16 +108,10 @@ public abstract class AHand
      * @param notInPlay top level Player type.
      * @param inPlaysDesireC top level Card type.
      */
-    public void updateHandDelete(
+    public abstract void updateHandDelete(
             APlayer notInPlay,//Incl: list for C's.
             ACard inPlaysDesireC//Incl: list for copies. 
-    ) {
-        int pHTemp = findPositFullCard(notInPlay, inPlaysDesireC);
-        int pDTemp = findPositFullCardDList(notInPlay, inPlaysDesireC);
-        
-        deleteCardFromDList(notInPlay, pDTemp);
-        deleteCardFromHand(notInPlay, pHTemp);
-    }//End M:*
+    ); 
 
     /**
      * public interface for adding a Card to the Player who asked for it if it's also possessed by asked player.
@@ -144,14 +120,11 @@ public abstract class AHand
      * @param inPlaysDesireC top level card type.
      * @param notInPlay  top level Player type.
      */
-    public void updateHandAdd(
+    public abstract void updateHandAdd(
             APlayer inPlay,//Incl: list for C's.
             ACard inPlaysDesireC,//Incl: list for copies. 
             APlayer notInPlay
-    ) 
-    {
-        addCardToHand(inPlay, inPlaysDesireC, notInPlay);
-    }//End M:*
+    ); 
 
     /**
      * This finds the index value of the target Card that matches by exact suit and value.
@@ -159,19 +132,7 @@ public abstract class AHand
      * @param tCard top level Card type. 
      * @return integer value as position in asked Players hand.
      */
-    private int findPositFullCard(APlayer player, ACard tCard) 
-    {
-        int posit = 0;
-        for (int i = 0; i < player.getHand().size(); i++) 
-        {
-            if (player.getHand().get(i).equals(tCard)) 
-            {
-                posit = i;
-                return posit;
-            }//End I:*
-        }//End F:*
-        return posit;
-    }//End M:*
+    public abstract int findPositFullCard(APlayer player, ACard tCard); 
     
     /**
      * When the asked for Card is possessed by the asked player it needs to be remove from two places.
@@ -180,19 +141,7 @@ public abstract class AHand
      * @param tCard top level Card type. 
      * @return integer as position of target card in searched hand. 
      */
-    private int findPositFullCardDList(APlayer player, ACard tCard) 
-    {
-        int posit = 0;
-        for (int i = 0; i < player.getDesirableList().size(); i++) 
-        {
-            if (player.getDesirableList().get(i).equals(tCard)) 
-            {
-                posit = i;
-                return posit;
-            }//End I:*
-        }//End F:*
-        return posit;
-    }//End M:*
+    public abstract int findPositFullCardDList(APlayer player, ACard tCard); 
 
     /**
      * Players as for a Card by value only. Players ask by value and not by value and suit.
@@ -217,11 +166,7 @@ public abstract class AHand
      * This method performs routine tasks for the deck that occur once per game.
      * It initializes the deck and shuffles it. 
      */
-    private void deckSetup() 
-    {
-        this.classDeck.initDeck();
-        this.classDeck.shuffle();
-    }//End M:*
+    public abstract void deckSetup(); 
 
     /**
      * This method takes and deletes a Card from the central deck. 

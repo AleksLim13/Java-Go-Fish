@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author AlllyCat13.
  */
-public class GoFishScoreBoard extends ScoreBoard {
+public class GoFishScoreBoard extends AScoreBoard {
 
     public GoFishScoreBoard() {
         super();

@@ -2,7 +2,7 @@ package ca.sheridancollege.javagofish.Players;
 
 
 //Imports:_______________________________
-import ca.sheridancollege.javagofish.Cards.Card;
+import ca.sheridancollege.javagofish.Cards.ACard;
 import java.util.*;
 
 /**
@@ -23,7 +23,7 @@ public abstract class Player {
     /**
      * Every Player needs a Card list to hold their Hand.
      */
-    protected List<Card> hand;
+    protected List<ACard> hand;
     
     /**
      * This variable keeps track of number of Players created to set Ids automatically. 
@@ -38,12 +38,12 @@ public abstract class Player {
     /**
      * Each player needs a Card list variable to store their number of four of a kinds.
      */
-    protected List<Card> books;
+    protected List<ACard> books;
     
     /**
      * Each Player needs a Card list to store their duplicates to know what to ask for. 
      */
-    protected List<Card> desirableList;
+    protected List<ACard> desirableList;
 
     //Constructors:______________________________
     
@@ -55,8 +55,8 @@ public abstract class Player {
      */
     public Player(
                   String name, 
-                  List<Card> books, 
-                  List<Card> dL
+                  List<ACard> books, 
+                  List<ACard> dL
                   ) 
     {
         this.name = name;
@@ -72,7 +72,7 @@ public abstract class Player {
         this.name = newName;
     }//End S:*
 
-    public void setHand(List<Card> newHand) 
+    public void setHand(List<ACard> newHand) 
     {
         this.hand = newHand;
     }//End S:*
@@ -82,7 +82,7 @@ public abstract class Player {
         return name;
     }//End G:*
 
-    public List<Card> getHand() 
+    public List<ACard> getHand() 
     {
         return hand;
     }//End G:*
@@ -112,22 +112,22 @@ public abstract class Player {
         this.playerId = playerId;
     }
 
-    public List<Card> getDesirableList() 
+    public List<ACard> getDesirableList() 
     {
         return desirableList;
     }
 
-    public void setDesirableList(List<Card> desirableList) 
+    public void setDesirableList(List<ACard> desirableList) 
     {
         this.desirableList = desirableList;
     } 
 
-    public List<Card> getBooks() 
+    public List<ACard> getBooks() 
     {
         return books;
     }
 
-    public void setBooks(List<Card> books) 
+    public void setBooks(List<ACard> books) 
     {
         this.books = books;
     }

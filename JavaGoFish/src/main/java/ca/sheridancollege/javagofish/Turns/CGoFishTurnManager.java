@@ -20,8 +20,10 @@ import java.util.Scanner;
 import java.util.List;
 
 /**
- * GOFISHTURNMANAGER CONCRETE CLASS: ---------------------------------
- *
+ * CGOFISHTURNMANAGER CONCRETE CLASS: 
+ * ---------------------------------
+ * 
+ * C is for concrete class. 
  *
  *
  *

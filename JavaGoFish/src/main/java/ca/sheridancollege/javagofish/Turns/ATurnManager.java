@@ -2,18 +2,9 @@ package ca.sheridancollege.javagofish.Turns;
 
 
 import ca.sheridancollege.javagofish.Cards.ACard;
-import ca.sheridancollege.javagofish.Cards.ADeck;
-import ca.sheridancollege.javagofish.Cards.CGoFishCard;
-import ca.sheridancollege.javagofish.Cards.CGoFishDeck;
 import ca.sheridancollege.javagofish.Cards.AHand;
-import ca.sheridancollege.javagofish.Players.CCompPlayer;
-import ca.sheridancollege.javagofish.Players.CHumanPlayer;
 import ca.sheridancollege.javagofish.Players.APlayer;
-import ca.sheridancollege.javagofish.Utility.Printer;
-import ca.sheridancollege.javagofish.Utility.UInput;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+
 
 /**
  * ATURNMANAGER ABSTRCT CLASS:

@@ -35,7 +35,7 @@ public abstract class AHand
      * A Hand instance needs a reference to a Deck instance to create hands and update the Deck. 
      * Only one copy is ever needed and needs to be created only once.
      */
-    protected final ADeck deck;
+    protected final ADeck classDeck;
 
     /**
      * This constructs a Hand instance with a Deck and Scoreboard object as argument thereby initializing the field variables.
@@ -45,7 +45,7 @@ public abstract class AHand
      */
     public AHand(ADeck deck, AScoreBoard sb) 
     {
-        this.deck = deck;
+        this.classDeck = deck;
         this.scoreBoard = sb;
         this.deckSetup();
     }//End C:*
@@ -56,7 +56,7 @@ public abstract class AHand
      */
     public ADeck getDeck() 
     {
-        return this.deck;
+        return this.classDeck;
     }//End G:*
 
     
@@ -221,8 +221,8 @@ public abstract class AHand
      */
     private void deckSetup() 
     {
-        this.deck.initDeck();
-        this.deck.shuffle();
+        this.classDeck.initDeck();
+        this.classDeck.shuffle();
     }//End M:*
 
     /**

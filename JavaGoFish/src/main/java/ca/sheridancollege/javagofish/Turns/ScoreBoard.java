@@ -7,7 +7,7 @@ package ca.sheridancollege.javagofish.Turns;
  * @author AllyCat13
  */
 
-import ca.sheridancollege.javagofish.Cards.Card;
+import ca.sheridancollege.javagofish.Cards.ACard;
 import ca.sheridancollege.javagofish.Players.Player;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class ScoreBoard {
      * @param player top level Player type. 
      */
     public void calcBooks(
-            Card tNum,
+            ACard tNum,
             Player player
     ) {
         int ilCount = 0;
@@ -97,8 +97,8 @@ public class ScoreBoard {
      * @return integer as position of the Card in the target Hand.
      */
      private int findFirstIndex(
-            Card tNum,
-            List<Card> tList
+            ACard tNum,
+            List<ACard> tList
     ) {
         int pos = 0;
         for (int i = 0; i < tList.size(); i++) 

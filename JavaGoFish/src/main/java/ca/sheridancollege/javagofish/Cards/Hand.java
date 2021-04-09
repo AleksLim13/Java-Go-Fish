@@ -3,7 +3,7 @@ package ca.sheridancollege.javagofish.Cards;
 
 
 import ca.sheridancollege.javagofish.Players.Player;
-import ca.sheridancollege.javagofish.Turns.ScoreBoard;
+import ca.sheridancollege.javagofish.Turns.AScoreBoard;
 import ca.sheridancollege.javagofish.Utility.Printer;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class Hand {
      * Once a scoreboard object is created it's life cycle is complete.
      * A Hand instance will access scoreboard through a public getter interface.
      */
-    private final ScoreBoard scoreBoard;
+    private final AScoreBoard scoreBoard;
     
     /**
      * A Hand instance needs a reference to a Deck instance to create hands and update the Deck. 
@@ -37,7 +37,7 @@ public class Hand {
      * @param sb is of ScoreBoard type. 
      * This constructors calls this classes deck setup method to automatically initialize and shuffle the deck.
      */
-    public Hand(ADeck deck, ScoreBoard sb) 
+    public Hand(ADeck deck, AScoreBoard sb) 
     {
         this.deck = deck;
         this.scoreBoard = sb;

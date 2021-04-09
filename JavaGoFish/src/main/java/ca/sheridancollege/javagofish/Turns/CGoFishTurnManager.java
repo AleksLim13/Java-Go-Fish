@@ -9,8 +9,13 @@ import ca.sheridancollege.javagofish.Cards.AHand;
 import ca.sheridancollege.javagofish.Players.APlayer;
 
 /**
- *
- * @author aleks
+ * GOFISHTURNMANAGER CONCRETE CLASS:
+ * ---------------------------------
+ * 
+ * 
+ * 
+ * 
+ * @author AllyCat13.
  */
 public class CGoFishTurnManager extends ATurnManager
 {

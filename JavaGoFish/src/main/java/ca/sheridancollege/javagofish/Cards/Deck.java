@@ -15,7 +15,9 @@ import java.util.List;
  * There usually is 13 values and 4 types of suit. 
  * @author AllyCat13 @ Sheridan High 2021
  */
-public class Deck {
+public abstract class Deck 
+
+{//Start CL:*
     
     //Fields:________________________
     
@@ -26,7 +28,7 @@ public class Deck {
      * Only one copy is desirable and a requirement.
      */
     
-    private final List<Card> deck; 
+    protected final List<Card> deck; 
     
     //Constructors:______________________
     
@@ -35,7 +37,8 @@ public class Deck {
      * Pass empty array list for constructor dependency injection. 
      * This constructs a instance of a Deck. 
      */
-    public Deck(List<Card> deck) {     
+    public Deck(List<Card> deck) 
+    {     
         this.deck = deck; 
     }//End C:*
     
@@ -60,16 +63,7 @@ public class Deck {
      * Lastly, it will make a whole values range of spades.
      */
        
-    public void initDeck() 
-    {  
-        for (String suitsRange : Card.suitsRange) 
-        {
-            for (String valuesRange : Card.valuesRange) 
-            {
-                this.deck.add(new GoFishCard(suitsRange, valuesRange));
-            } //End Inner F:*
-        } //end outter for   
-    }//End M:*
+    public abstract void initDeck();
    
     /**
      * This method repeats it's body of statements 52 times.
@@ -79,7 +73,8 @@ public class Deck {
      * It steps through each slot in the deck list and swaps every
      * slot with a value from a random slot in the same deck list. 
      */
-    public void shuffle() {
+    public void shuffle() 
+    {
         int rando;
         for (int i = 0; i < this.deck.size(); i++) 
         {

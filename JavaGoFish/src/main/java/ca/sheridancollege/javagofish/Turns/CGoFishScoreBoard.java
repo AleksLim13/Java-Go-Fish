@@ -6,7 +6,7 @@
 package ca.sheridancollege.javagofish.Turns;
 
 import ca.sheridancollege.javagofish.Cards.ACard;
-import ca.sheridancollege.javagofish.Players.Player;
+import ca.sheridancollege.javagofish.Players.APlayer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class CGoFishScoreBoard extends AScoreBoard {
     }//End C:*
 
     @Override
-    public void calcBooks(ACard tNum, Player player) {
+    public void calcBooks(ACard tNum, APlayer player) {
         int ilCount = 0;
         //Repeat: set outer loop. 
 
@@ -70,7 +70,7 @@ public class CGoFishScoreBoard extends AScoreBoard {
     }//End M:*
 
     @Override
-    public void getDupes(Player player) {
+    public void getDupes(APlayer player) {
         player.getDesirableList().clear();
 
         //A: main for loop: compare each card to every other card in hand.
@@ -95,7 +95,7 @@ public class CGoFishScoreBoard extends AScoreBoard {
     }//End M:*
 
     @Override
-    public Player determineWinner(Player human, Player computer) 
+    public APlayer determineWinner(APlayer human, APlayer computer) 
     {
         if (human.getBooks().size() > computer.getBooks().size()) 
         {

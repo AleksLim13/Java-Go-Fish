@@ -21,7 +21,7 @@ import java.util.List;
 
     public class GoFishDeck extends Deck
 
-{
+{//Start CL:*
 
     public GoFishDeck(List<Card> deck) 
     {
@@ -38,6 +38,46 @@ import java.util.List;
             } //End Inner F:*
         } //end outter for   
     }
+
+    @Override
+    public void shuffle() 
+    
+    {
+        int rando;
+        for (int i = 0; i < this.deck.size(); i++) 
+        {
+            //A: Create: 
+            rando = (int) (Math.random() * this.deck.size());      
+            //B: Get:
+            Card temp = this.deck.get(i);
+            //C: Set: 
+            this.deck.set(i, this.deck.get(rando));
+            this.deck.set(rando, temp);         
+        }//End Outer F:*
+    }
+
+    @Override
+    public int findPosit(List<Card> hand, Card tCard) 
+    
+    {
+        int posit = 0;
+        for (int i = 0; i < hand.size(); i++) 
+        {
+            if (hand.get(i).equals(tCard)) 
+            {
+                posit = i;
+                return posit;
+            }//End I:*
+        }//End F:*
+        return posit;
+    }///End M:*
+
+    @Override
+    public List<Card> removeCard(Card card) 
+    {
+        this.deck.remove(findPosit(this.deck, card));
+        return this.deck;
+    }//End M:*
         
     
 }//End CL:*

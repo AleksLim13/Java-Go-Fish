@@ -10,9 +10,14 @@ import ca.sheridancollege.javagofish.Turns.ATurnManager;
 import java.util.ArrayList;
 
 /**
+ * CMAIN CONCRETE CLASS:
+ * ---------------------
  * 
  * The Main class with the main method for where the program starts.
- * 
+ * This class is a stand alone class. It does not extend any class nor
+ * will it be extending by another class. It's sole purpose is to be a class for
+ * the main method the run time system looks for. We dedicate a class for this
+ * method for the sake of clarity. 
  * 
  * 
  * 

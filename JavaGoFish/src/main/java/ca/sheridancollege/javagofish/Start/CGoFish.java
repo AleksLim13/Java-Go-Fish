@@ -10,8 +10,11 @@ import ca.sheridancollege.javagofish.Turns.ATurnManager;
  * CGOFISH CONCRETE CLASS:
  * -----------------------
  *
- * Specific example of a Game. This is a Go Fish version of a Card game.
- * 
+ * This is a specific example of a Game that test a players logic and recall. This is a Go Fish version 
+ * of a Card game. This class will inherit the reference to a Turn Manager field from it's parent class.
+ * A game example may need more data and functionality down the road. May a reference to a timer object.
+ * Maybe we want to time rounds or display overall time of the game at the end when a winner has been
+ * determined. 
  * 
  * 
  * @author AllyCat13 : Sheridan High 2021
@@ -59,5 +62,5 @@ public class CGoFish extends AGame
     }//End C:*
 
  
-}//End Class:________________+
+}//End CL:*
 

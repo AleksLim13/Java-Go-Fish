@@ -1,5 +1,7 @@
 package ca.sheridancollege.javagofish.Start;
 
+import ca.sheridancollege.javagofish.Turns.ATurnManager;
+
 /**
  * AGAME ABSTRACT CLASS:
  * ---------------------
@@ -19,15 +21,27 @@ package ca.sheridancollege.javagofish.Start;
     public abstract class AGame 
 
 {
+        /**
+         * A game needs a Turn Manager who directs all components.
+         */
+        protected final ATurnManager tM;
     
     /**
      * Basic constructor for creating a game example. 
+     * @param tM
      */
-    public AGame()
+        
+        
+    public AGame(ATurnManager tM)
     {
-   
+        this.tM = tM;
     }//End C:*
+
+    public ATurnManager getTM() 
+    {
+        return tM;
+    }//End G:*
+    
     
    
-    
-}//end class
+}//End class

@@ -8,7 +8,9 @@ import ca.sheridancollege.javagofish.Utility.Printer;
  * This class extends the Start class and overrides the play method declared in Start.
  * @author AlllyCat13 @ Sheridan High 2021. 
  */
-public class CRoundOne extends AStart {
+public class CRoundOne extends AStart 
+
+{
 
     /**
      * A reference to a top level Game example.
@@ -41,17 +43,17 @@ public class CRoundOne extends AStart {
             System.out.println("Creating Hands:");
         
             ((CGoFish)game)
-                          .getTurnController()
+                          .getTM()
                           .getClassHand()
                           .createHand(7,  ((CGoFish)game)
-                                                         .getTurnController()
+                                                         .getTM()
                                                          .getHuman());
          
              ((CGoFish)game)
-                           .getTurnController()
+                           .getTM()
                            .getClassHand()
                            .createHand(7,  ((CGoFish)game)
-                                                         .getTurnController()
+                                                         .getTM()
                                                          .getComputer());
          
             
@@ -61,19 +63,19 @@ public class CRoundOne extends AStart {
             System.out.println("Creating Duplicate Lists:");
             
             ((CGoFish)game)
-                         .getTurnController()
+                         .getTM()
                          .getScoreBoard()
                          .getDupes(((CGoFish)game)
-                                                 .getTurnController()
+                                                 .getTM()
                                                  .getHuman());
             
            
             
             ((CGoFish)game)
-                          .getTurnController()
+                          .getTM()
                           .getScoreBoard()
                           .getDupes(((CGoFish)game)
-                                                  .getTurnController()
+                                                  .getTM()
                                                   .getComputer());  
              
         
@@ -83,16 +85,16 @@ public class CRoundOne extends AStart {
             System.out.println("");
             System.out.println("Setting who goes first");
              ((CGoFish)game)
-                          .getTurnController()
+                          .getTM()
                           .setInPlay(((CGoFish)game)
-                                                   .getTurnController()
+                                                   .getTM()
                                                    .getHuman()
                           );//End S:*
 
             ((CGoFish)game)
-                          .getTurnController()
+                          .getTM()
                           .setNotInPlay(((CGoFish)game)
-                                                      .getTurnController()
+                                                      .getTM()
                                                       .getComputer()
                           );//End S:*
           
@@ -103,7 +105,7 @@ public class CRoundOne extends AStart {
                     
             //Define: main while loop control structure. Per if deck still had cards.
             while(!((CGoFish)game)
-                                  .getTurnController()
+                                  .getTM()
                                   .getClassHand()
                                   .getClassDeck()
                                   .getDeck()
@@ -113,105 +115,105 @@ public class CRoundOne extends AStart {
             
             System.out.println("");
             System.out.println( "[" + ((CGoFish)game) 
-                                                    .getTurnController()
+                                                    .getTM()
                                                     .getInPlay()
                                                     .getName() + "]" + " -In Play Hand:");
 
             
             
             ((CGoFish)game)
-                          .getTurnController()
+                          .getTM()
                           .getClassHand()
                           .sort(((CGoFish)game)
-                                             .getTurnController()
+                                             .getTM()
                                               .getInPlay(), 'h');
             
             Printer.printHand(((CGoFish)game)
-                                             .getTurnController()
+                                             .getTM()
                                              .getInPlay()
                                              .getHand()
                                              );
           
             System.out.println("");
             System.out.println("[" + ((CGoFish)game)
-                                                   .getTurnController()
+                                                   .getTM()
                                                    .getInPlay()
                                                    .getName() + "]" + " -In Play Desirable List:");
             
           ((CGoFish)game)
-                          .getTurnController()
+                          .getTM()
                           .getClassHand()
                           .sort(((CGoFish)game)
-                                             .getTurnController()
+                                             .getTM()
                                               .getInPlay(), 'd');
             Printer.printHand(((CGoFish)game)
-                                             .getTurnController()
+                                             .getTM()
                                              .getInPlay()
                                              .getDesirableList()
                                              );
             System.out.println("");
             System.out.println("[" + ((CGoFish)game)
-                                                   .getTurnController()
+                                                   .getTM()
                                                    .getNotInPlay()
                                                    .getName() + "]" + " -Not In Play Hand:");
 
             
           ((CGoFish)game)
-                          .getTurnController()
+                          .getTM()
                           .getClassHand()
                           .sort(((CGoFish)game)
-                                             .getTurnController()
+                                             .getTM()
                                               .getNotInPlay(), 'h');
             Printer.printHand(((CGoFish)game)
-                                             .getTurnController()
+                                             .getTM()
                                              .getNotInPlay()
                                              .getHand()
                                              );
 
             System.out.println("");
             System.out.println("[" + ((CGoFish)game)
-                                                   .getTurnController()
+                                                   .getTM()
                                                    .getNotInPlay()
                                                    .getName() + "]" + " -Not In Play Desirable List:");
             ((CGoFish)game)
-                          .getTurnController()
+                          .getTM()
                           .getClassHand()
                           .sort(((CGoFish)game)
-                                             .getTurnController()
+                                             .getTM()
                                               .getNotInPlay(), 'd');
          
             Printer.printHand(((CGoFish)game)
-                                             .getTurnController()
+                                             .getTM()
                                              .getNotInPlay()
                                              .getDesirableList()
                                              );
                 ((CGoFish)game)
-                           .getTurnController()
+                           .getTM()
                            .shouldKeepGoing();
                 
             System.out.println("");
                System.out.println("Calculating books for " + ((CGoFish)game)
-                           .getTurnController()
+                           .getTM()
                            .getNotInPlay().getName());
                
                
            for(int i = 0; i < ((CGoFish)game)
-                                            .getTurnController()
+                                            .getTM()
                                             .getNotInPlay()
                                                         .getDesirableList()
                                                              .size(); i++)
            {
                
                ((CGoFish)game)
-                           .getTurnController()
+                           .getTM()
                            .getScoreBoard()
                            .calcBooks(((CGoFish)game)
-                                                    .getTurnController()
+                                                    .getTM()
                                                     .getNotInPlay()
                                                     .getDesirableList()
                                                     .get(i), 
                                                      ((CGoFish)game)
-                                                                   .getTurnController()
+                                                                   .getTM()
                                                                    .getNotInPlay());
            }//End F:*
             }//End W:*

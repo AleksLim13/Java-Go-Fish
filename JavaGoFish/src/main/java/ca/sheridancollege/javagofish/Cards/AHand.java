@@ -48,7 +48,6 @@ public abstract class AHand
     {
         this.classDeck = deck;
         this.scoreBoard = sb;
-        this.deckSetup();
     }//End C:*
 
     /**
@@ -60,6 +59,29 @@ public abstract class AHand
         return this.classDeck;
     }//End G:*
 
+    //Methods:_________________________
+    
+ 
+    /**
+     * This method performs routine tasks for the deck that occur once per game.
+     * It initializes the deck and shuffles it. 
+     */
+    public abstract void deckSetup(); 
+
+    /**
+     * This method takes and deletes a Card from the central deck. 
+     * @return 
+     */
+     public abstract ACard createRandoCard() ;
+     
+    /**
+     * To be used when a Player has to "Go Fish" because they asked for a Card the asked PLayer doesn't have.
+     * It created a random number that could be any slot in the Card list deck. 
+     * @return the random Card removed and deleted from the central deck. 
+     */
+   
+    
+    public abstract ACard startDeal() ;
     
     /**
      * This method removes the Card asked for by the opponent from the asked players hand.
@@ -90,7 +112,7 @@ public abstract class AHand
      * @param notInPlay top level Player type.
      * @param posit integer type. 
      */
-    public  abstract void deleteCardFromDList(
+    public abstract void deleteCardFromDList(
             APlayer notInPlay,
             int posit
     );
@@ -153,27 +175,7 @@ public abstract class AHand
      */
     public abstract int findPositPartialCard(APlayer player, ACard tCard);
     
-    /**
-     * To be used when a Player has to "Go Fish" because they asked for a Card the asked PLayer doesn't have.
-     * It created a random number that could be any slot in the Card list deck. 
-     * @return the random Card removed and deleted from the central deck. 
-     */
-    public abstract ACard createRandoCard() ;
-
-    //Methods:_________________________
     
-    
-    /**
-     * This method performs routine tasks for the deck that occur once per game.
-     * It initializes the deck and shuffles it. 
-     */
-    public abstract void deckSetup(); 
-
-    /**
-     * This method takes and deletes a Card from the central deck. 
-     * @return 
-     */
-    public abstract ACard startDeal() ;
 
     /**
      * Calls this classes start deal method and adds the return value per a desired amount of Cards to a Players hand.

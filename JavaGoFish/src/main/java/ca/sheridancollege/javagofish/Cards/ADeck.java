@@ -75,20 +75,8 @@ public abstract class ADeck
      */
     public abstract void shuffle(); 
     
-    /**
-     * 
-     * @param hand is a Card list type. The players hand to be searched.
-     * @param tCard is of Card type. The position of this card in the hand is wanted. 
-     * @return a integer representing the Cards position in the hand. 
-     * Use this method as a method parameter anywhere a integer is expected.
-     */
-    public abstract int findPosit(List<ACard> hand, ACard tCard);
+    
     
  
-    /**
-     * This method is for removing a Card from a players hand after they've handed it to a opponent.
-     * @param card is of Card type and the target to be deleted.
-     * @return a Card list representing the updated hand as the result. 
-     */
-    public abstract List<ACard> removeCard(ACard card); 
+  
 } //End class:_______________________

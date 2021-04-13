@@ -4,6 +4,7 @@ package ca.sheridancollege.javagofish.Cards;
 
 import ca.sheridancollege.javagofish.Players.APlayer;
 import ca.sheridancollege.javagofish.Turns.AScoreBoard;
+import java.util.List;
 
 
 /**
@@ -188,5 +189,22 @@ public abstract class AHand
      * @param option char type indicating which Player list to work on.
      */
     public abstract void sort(APlayer player, char option); 
+    
+    /**
+     * 
+     * @param hand is a Card list type. The players hand to be searched.
+     * @param tCard is of Card type. The position of this card in the hand is wanted. 
+     * @return a integer representing the Cards position in the hand. 
+     * Use this method as a method parameter anywhere a integer is expected.
+     */
+    public abstract int findPosit(List<ACard> hand, ACard tCard);
+    
+     /**
+     * This method is for removing a Card from a players hand after they've handed it to a opponent.
+     * @param card is of Card type and the target to be deleted.
+     * @param tHand
+     * 
+     */
+    public abstract void removeCard(ACard card, List<ACard> tHand); 
 
 }//End CL:*

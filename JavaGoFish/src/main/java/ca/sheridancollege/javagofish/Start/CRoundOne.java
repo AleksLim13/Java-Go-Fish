@@ -218,7 +218,17 @@ public class CRoundOne extends AStart
            }//End F:*
             }//End W:*
             
-
+            System.out.println("Deck is empty. Determining winner now");
+            ((CGoFish)game)
+                           .getTM()
+                           .getScoreBoard()
+                           .determineWinner(
+                                             ((CGoFish)game)
+                                                .getTM()
+                                                .getHuman(), ((CGoFish)game)
+                                                                .getTM()
+                                                                .getComputer());
+            
 
         }//End I:*
 

@@ -1,5 +1,7 @@
 package ca.sheridancollege.javagofish.Cards;
 
+import java.util.Objects;
+
 
 /**
  * This class is an extension of the Card class. 
@@ -9,7 +11,9 @@ package ca.sheridancollege.javagofish.Cards;
  * 
  * @author AllyCat13 @ Sheridan High 2021
  */
-public class CGoFishCard extends ACard {
+   public class CGoFishCard extends ACard 
+
+{
     
  /**
   * This constructor call's Cards default no argument constructor.
@@ -42,9 +46,41 @@ public class CGoFishCard extends ACard {
      * Overrides Objects toString for custom printing of these Card instances.
      * @return the String value of the Cards suit and value values.
      */
+    
     @Override
-    public String toString() {   
-     return value + " of " + suit; 
+    public String toString() 
+    {   
+         return value + " of " + suit; 
     }//End M:*
 
-}//End Class:__________________+
+    @Override
+    public boolean equals(Object o) 
+    
+    {
+            if (this == o) 
+            {
+                return true;
+            }//End I:*
+            
+            if (o == null || getClass() != o.getClass()) 
+            {
+                return false;
+            }//End I:*
+            
+            ACard theCard = (ACard) o;
+            
+            return 
+                    value.equals(theCard.value) &&
+                    suit.equals(theCard.suit);
+    }//End M:*
+
+    @Override
+    public int hashCode() 
+    {
+         int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.suit);
+        hash = 67 * hash + Objects.hashCode(this.value);
+        return hash;
+    }//End M:*
+
+}//End CL:*

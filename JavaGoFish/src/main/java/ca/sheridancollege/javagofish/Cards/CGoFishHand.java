@@ -26,6 +26,7 @@ public class CGoFishHand extends AHand
     public CGoFishHand(ADeck deck, AScoreBoard sb) 
     {
         super(deck, sb);
+        this.deckSetup();
     }//End C:*
 
     @Override
@@ -51,7 +52,7 @@ public class CGoFishHand extends AHand
         System.out.println(inPlay.getName() + " dupes: ");
         //E.3: Display: 
         Printer.printHand(inPlay.getDesirableList());
-    }
+    }//End M:*
 
     @Override
     public int findPositPartialCard(APlayer player, ACard tCard) 
@@ -82,6 +83,7 @@ public class CGoFishHand extends AHand
         //D: create: the card object and copy it. 
         this.removeCard(resCard, this.classDeck.getDeck());
 
+        //E: Remember:
         return resCard;
     }//End M:*
 

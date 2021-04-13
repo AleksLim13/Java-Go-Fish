@@ -17,7 +17,7 @@ public class CRoundOne extends AStart
      * Only one copy is needed and it's state determined once throughout the game.
      */
     
-    private final AGame game;
+    
 
     /**
      * Constructs a instance of RoundOne and initializes the Game field.
@@ -25,7 +25,7 @@ public class CRoundOne extends AStart
      */
     public CRoundOne(AGame game) 
     {
-        this.game = game;
+        super(game);
     }//End C:*
 
     /**

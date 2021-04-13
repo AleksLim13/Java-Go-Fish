@@ -33,6 +33,53 @@ public class CGoFishScoreBoard extends AScoreBoard
     {
         super();
     }//End C:*
+    
+    @Override
+    public void getDupes(APlayer player) 
+    {
+        player.getDesirableList().clear();
+
+        //A: main for loop: compare each card to every other card in hand.
+        for (int i = 0; i < player.getHand().size(); i++) 
+        {
+            int lCount = 0;
+            //A.1: par two of compare each card to every other card in hand.
+            //----
+            for (int j = 0; j < player.getHand().size(); j++) 
+            {
+                //Notice: duplicates determined only by card value.
+                if (player.getHand().get(i).getValue().equals(player.getHand().get(j).getValue())) 
+                {
+                    //A.1.1: increase counter if they are equal. 
+                    lCount++;
+                }//End I:*
+            }//End F:*
+            //A.2: counter > 1 means theres duplicates.
+            //-----
+            //Check: 
+            if (lCount > 1) 
+            {
+                player.getDesirableList().add(player.getHand().get(i));
+            }//End I:*
+        }//End F:*    
+    }//End M:*
+
+    @Override
+    public int findFirstIndex(ACard tNum, List<ACard> tList) 
+    {
+        int pos = 0;
+        for (int i = 0; i < tList.size(); i++) 
+        {
+            if (tNum.getValue().equals(tList.get(i).getValue())) 
+            {
+                pos = i;
+                return pos;
+            }//End I:*
+        }//End F:*
+        return pos;
+
+    }//End M:*
+
 
     @Override
     public void calcBooks(ACard tNum, APlayer player) 
@@ -71,52 +118,8 @@ public class CGoFishScoreBoard extends AScoreBoard
         }//End I:*     
     }//End M:*
 
-    @Override
-    public int findFirstIndex(ACard tNum, List<ACard> tList) 
-    {
-        int pos = 0;
-        for (int i = 0; i < tList.size(); i++) 
-        {
-            if (tNum.getValue().equals(tList.get(i).getValue())) 
-            {
-                pos = i;
-                return pos;
-            }//End I:*
-        }//End F:*
-        return pos;
-
-    }//End M:*
-
-    @Override
-    public void getDupes(APlayer player) 
-    {
-        player.getDesirableList().clear();
-
-        //A: main for loop: compare each card to every other card in hand.
-        for (int i = 0; i < player.getHand().size(); i++) 
-        {
-            int lCount = 0;
-            //A.1: par two of compare each card to every other card in hand.
-            //----
-            for (int j = 0; j < player.getHand().size(); j++) 
-            {
-                //Notice: duplicates determined only by card value.
-                if (player.getHand().get(i).getValue().equals(player.getHand().get(j).getValue())) 
-                {
-                    //A.1.1: increase counter if they are equal. 
-                    lCount++;
-                }//End I:*
-            }//End F:*
-            //A.2: counter > 1 means theres duplicates.
-            //-----
-            //Check: 
-            if (lCount > 1) 
-            {
-                player.getDesirableList().add(player.getHand().get(i));
-            }//End I:*
-        }//End F:*    
-    }//End M:*
-
+    
+    
     @Override
     public APlayer determineWinner(APlayer human, APlayer computer) 
     {

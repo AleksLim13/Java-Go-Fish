@@ -80,7 +80,7 @@ public class CGoFishHand extends AHand
         ACard resCard = this.classDeck.getDeck().get(valPossible);
 
         //D: create: the card object and copy it. 
-        this.classDeck.removeCard(resCard);
+        this.removeCard(resCard, this.classDeck.getDeck());
 
         return resCard;
     }//End M:*
@@ -224,5 +224,28 @@ public class CGoFishHand extends AHand
         this.classDeck.initDeck();
         this.classDeck.shuffle();
     }//End M:*
+    
+     @Override
+    public void removeCard(ACard card, List<ACard> tHand) 
+    {
+        tHand.remove(findPosit(tHand, card));
+        
+    }//End M:*
+
+     @Override
+    public int findPosit(List<ACard> hand, ACard tCard) 
+    
+    {
+        int posit = 0;
+        for (int i = 0; i < hand.size(); i++) 
+        {
+            if (hand.get(i).equals(tCard)) 
+            {
+                posit = i;
+                return posit;
+            }//End I:*
+        }//End F:*
+        return posit;
+    }///End M:*
 
 }//End CL:*

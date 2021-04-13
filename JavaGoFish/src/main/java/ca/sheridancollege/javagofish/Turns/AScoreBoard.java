@@ -41,6 +41,14 @@ public abstract class AScoreBoard
         this.winner = winner;
     }//End S:*
     
+     /**
+      * This method creates a list of duplicates cards a Player has.
+      * @param player top level Player type. 
+      */
+    public abstract void getDupes(
+                              APlayer player
+                              ); 
+    
     /**
      * This method determines if a Player has a four of a kind and then records it.
      * @param tNum top level Card type.
@@ -62,13 +70,7 @@ public abstract class AScoreBoard
             List<ACard> tList
      );
       
-     /**
-      * This method creates a list of duplicates cards a Player has.
-      * @param player top level Player type. 
-      */
-    public abstract void getDupes(
-                              APlayer player
-                              ); 
+    
     /**
      * 
      * @param human top level Player type.

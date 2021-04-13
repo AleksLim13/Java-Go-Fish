@@ -129,7 +129,7 @@ import ca.sheridancollege.javagofish.Players.APlayer;
      * @param inPlaysDesireC top level Card type. 
      * @return signal if the Card is in the player hand who's being asked. 
      */
-    public abstract boolean goFish(ACard inPlaysDesireC) ;
+    public abstract boolean goFish(ACard inPlaysDesireC);
     
     /**
      * This method iterates for as long as a players ask was successful.

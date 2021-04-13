@@ -11,7 +11,9 @@ import java.util.*;
  *
  * @author AllyCat13 @ Sheridan High 2021.
  */
-public abstract class APlayer {
+    public abstract class APlayer 
+
+{
 
     //Fields:_______________________
     

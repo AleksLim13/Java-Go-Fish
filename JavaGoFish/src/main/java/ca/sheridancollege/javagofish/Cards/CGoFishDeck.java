@@ -29,7 +29,8 @@ import java.util.List;
     }//End C:*
 
     @Override
-    public void initDeck() {
+    public void initDeck() 
+    {
         for (String suitsRange : ACard.suitsRange) 
         {
             for (String valuesRange : ACard.valuesRange) 
@@ -37,7 +38,7 @@ import java.util.List;
                 this.deck.add(new CGoFishCard(suitsRange, valuesRange));
             } //End Inner F:*
         } //end outter for   
-    }
+    }//End M:*
 
     @Override
     public void shuffle() 
@@ -54,30 +55,7 @@ import java.util.List;
             this.deck.set(i, this.deck.get(rando));
             this.deck.set(rando, temp);         
         }//End Outer F:*
-    }
-
-    @Override
-    public int findPosit(List<ACard> hand, ACard tCard) 
-    
-    {
-        int posit = 0;
-        for (int i = 0; i < hand.size(); i++) 
-        {
-            if (hand.get(i).equals(tCard)) 
-            {
-                posit = i;
-                return posit;
-            }//End I:*
-        }//End F:*
-        return posit;
-    }///End M:*
-
-    @Override
-    public List<ACard> removeCard(ACard card) 
-    {
-        this.deck.remove(findPosit(this.deck, card));
-        return this.deck;
     }//End M:*
-        
+
     
 }//End CL:*

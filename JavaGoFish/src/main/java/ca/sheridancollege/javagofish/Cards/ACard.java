@@ -85,7 +85,8 @@ public abstract class ACard
          * No parameters passed in. Sets Cards suit and 
          * value to default values. Ace of Hearts. 
          */
-        public ACard(){
+        public ACard()
+        {
             suit = suitsRange[0];
             value = valuesRange[0];
         }//End C:*
@@ -151,32 +152,9 @@ public abstract class ACard
      * @return true or false value depending if suits and values match. 
      */
       @Override
-        public boolean equals(Object o) 
-        {
-            if (this == o) 
-            {
-                return true;
-            }
-            if (o == null || getClass() != o.getClass()) 
-            {
-                return false;
-            }
-            ACard theCard = (ACard) o;
-            
-            return 
-                    value.equals(theCard.value) &&
-                    suit.equals(theCard.suit);
-        }//End M:*
+        public abstract boolean equals(Object o); 
 
     @Override
-    public int hashCode() 
-    {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.suit);
-        hash = 67 * hash + Objects.hashCode(this.value);
-        return hash;
-    }
+    public abstract int hashCode();
     
-    
-    
-}//End Class:_______________________+
+}//End CL:*

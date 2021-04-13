@@ -29,16 +29,27 @@ import java.util.List;
  *
  * @author AllyCat13.
  */
-public class CGoFishTurnManager extends ATurnManager {
+    public class CGoFishTurnManager extends ATurnManager 
 
-    public CGoFishTurnManager(APlayer human, APlayer computer, AHand hand, AScoreBoard scoreBoard) {
+{
+
+    public CGoFishTurnManager(
+                              APlayer human, 
+                              APlayer computer, 
+                              AHand hand, 
+                              AScoreBoard scoreBoard
+                             ) 
+    {
         super(human, computer, hand, scoreBoard);
     }//End M:*
 
     @Override
-    public boolean goFish(ACard inPlaysDesireC) {
-        for (int i = 0; i < notInPlay.getHand().size(); i++) {
-            if (notInPlay.getHand().get(i).getValue().equals(inPlaysDesireC.getValue())) {
+    public boolean goFish(ACard inPlaysDesireC) 
+    {
+        for (int i = 0; i < notInPlay.getHand().size(); i++) 
+        {
+            if (notInPlay.getHand().get(i).getValue().equals(inPlaysDesireC.getValue())) 
+            {
                 return false;
             }//End I:*
         }//End F:*
@@ -46,21 +57,27 @@ public class CGoFishTurnManager extends ATurnManager {
     }//End M:*
 
     @Override
-    public boolean shouldKeepGoing() {
+    public boolean shouldKeepGoing() 
+    {
         boolean flag = true;
-        while (flag) {
+        while (flag) 
+        
+        {
             ACard cTemp = null;
 
-            if (this.inPlay instanceof CHumanPlayer) {
+            if (this.inPlay instanceof CHumanPlayer) 
+            {
                 cTemp = humanAskingForACard();
             }//End I:*
-            else if (this.inPlay instanceof CCompPlayer) {
+            else if (this.inPlay instanceof CCompPlayer) 
+            {
                 cTemp = computerAskingForACard();
             }//End EI:*
 
             boolean check = goFish(cTemp);
 
-            if (check) {
+            if (check) 
+            {
                 System.out.println(this.notInPlay.getName() + " does not have " + cTemp.getValue());
                 this.classHand.getCardFromDeck(this.inPlay);
 
@@ -87,7 +104,8 @@ public class CGoFishTurnManager extends ATurnManager {
 
                 return false;
             }//End I:*
-            else if (!check) {
+            else if (!check) 
+            {
                 System.out.println("");
                 System.out.println(this.notInPlay.getName() + " does have " + cTemp.getValue());
 
@@ -115,10 +133,12 @@ public class CGoFishTurnManager extends ATurnManager {
     }//End M:*
 
     @Override
-    public ACard humanAskingForACard() {
+    public ACard humanAskingForACard() 
+    {
         boolean flag = true;
         //A: Iterate: 
-        while (flag) {
+        while (flag) 
+        {
             //A.1: Get: 
             System.out.println("");
             System.out.println("Which card value do you want?");
@@ -134,17 +154,18 @@ public class CGoFishTurnManager extends ATurnManager {
             ADeck deck = new CGoFishDeck(new ArrayList<>());
             deck.initDeck();
             //A.5: Repeat: 
-            for (int i = 0; i < deck.getDeck().size(); i++) {
+            for (int i = 0; i < deck.getDeck().size(); i++) 
+            {
                 //A.6: Check: 
-                if (cDesire.getValue().equals(deck.getDeck().get(i).getValue())) {
-
+                if (cDesire.getValue().equals(deck.getDeck().get(i).getValue())) 
+                {
                     return cDesire;
                 }//End I:*
             }//End F:*
         }//End W:*
         //A.10: Anticipate: 
         return null;
-    }
+    }//End M:*
 
     @Override
     public ACard computerAskingForACard() 

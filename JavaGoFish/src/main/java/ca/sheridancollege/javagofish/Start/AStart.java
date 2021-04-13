@@ -21,6 +21,12 @@ public abstract class AStart
 
 {
      //Define: programs starting point.
+    protected final AGame game;
+
+    public AStart(AGame game) 
+    {
+        this.game = game;
+    }
     
     /**
      * This method is where the programs overall steps will be defined.

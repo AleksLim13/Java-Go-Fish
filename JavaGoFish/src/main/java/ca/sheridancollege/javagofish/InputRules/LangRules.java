@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *Input validations in DashBoardController is dependent on this class. There is 5 different
+ * Clients that validate input will depend on this class. There is 5 different
  *ranges of acceptable character sets in here modeled as List constructs. This lets us use the
  *contains Collections method on each character in the input that is stored in the Text Fields.
  *There's a space included in Lower bet and Upper bet because you can provide a full name with
@@ -60,6 +60,7 @@ import java.util.List;
     								);
 
     //Recall: calls contains method when checking user input.
+    //Notice: 46 in nummber for period or decimal. Rest are 0-9.
     public final static List<Integer> numberBet = Arrays.asList(
 								46, 48, 49, 50, 51, 52, 53,
 						                54, 55, 56, 57

@@ -113,8 +113,11 @@ public class CGoFishScoreBoard extends AScoreBoard {
             }//End I:*     
 
         }//End TRY:*
-        catch (IllegalArgumentException e) {
-            System.out.println("Null values in hand, desirable list, books, or player" + e);
+        catch (IllegalArgumentException | IndexOutOfBoundsException e) 
+        {
+            System.out.println("Null values in hand, desirable list, books, or player");
+            System.out.println("It coul be a index out of bounds exception");
+            System.out.println(e);
         }//End CAT:*
 
     }//End M:*

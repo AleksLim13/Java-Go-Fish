@@ -25,26 +25,34 @@ import java.util.List;
  *
  * @author AlllyCat13.
  */
-public class CGoFishScoreBoard extends AScoreBoard {
+    public class CGoFishScoreBoard extends AScoreBoard 
 
-    public CGoFishScoreBoard() {
+{
+
+    public CGoFishScoreBoard() 
+    {
         super();
     }//End C:*
 
     @Override
-    public void getDupes(APlayer player) {
+    public void getDupes(APlayer player) 
+    
+    {
         try {
 
             player.getDesirableList().clear();
 
             //A: main for loop: compare each card to every other card in hand.
-            for (int i = 0; i < player.getHand().size(); i++) {
+            for (int i = 0; i < player.getHand().size(); i++) 
+            {
                 int lCount = 0;
                 //A.1: par two of compare each card to every other card in hand.
                 //----
-                for (int j = 0; j < player.getHand().size(); j++) {
+                for (int j = 0; j < player.getHand().size(); j++) 
+                {
                     //Notice: duplicates determined only by card value.
-                    if (player.getHand().get(i).getValue().equals(player.getHand().get(j).getValue())) {
+                    if (player.getHand().get(i).getValue().equals(player.getHand().get(j).getValue())) 
+                    {
                         //A.1.1: increase counter if they are equal. 
                         lCount++;
                     }//End I:*
@@ -52,61 +60,77 @@ public class CGoFishScoreBoard extends AScoreBoard {
                 //A.2: counter > 1 means theres duplicates.
                 //-----
                 //Check: 
-                if (lCount > 1) {
+                if (lCount > 1) 
+                {
                     player.getDesirableList().add(player.getHand().get(i));
                 }//End I:*
             }//End F:*    
         }//End TRY:*
-        catch (IllegalArgumentException e) {
+        
+        catch (IllegalArgumentException e) 
+        {
             System.out.println("Player, Player hand, or both are null " + e);
         }//End CAT:*
 
     }//End M:*
 
     @Override
-    public int findFirstIndex(ACard tNum, List<ACard> tList) {
-        if (tNum == null || tList == null) {
-            throw new IllegalArgumentException();
-        }//End I:*
-
-        int pos = 0;
-        for (int i = 0; i < tList.size(); i++) {
-            if (tNum.getValue().equals(tList.get(i).getValue())) {
+    public int findFirstIndex(ACard tNum, List<ACard> tList) 
+    {
+       try
+       {
+           int pos = 0;
+        for (int i = 0; i < tList.size(); i++) 
+        {
+            if (tNum.getValue().equals(tList.get(i).getValue())) 
+            {
                 pos = i;
                 return pos;
             }//End I:*
         }//End F:*
         return pos;
-
+       }
+       catch(IllegalArgumentException e)
+       {
+           System.out.println("Could be a bull card, List or both " + e);
+       }//End CAT:*
+       return -1; 
     }//End M:*
 
     @Override
-    public void calcBooks(ACard tNum, APlayer player) {
+    public void calcBooks(ACard tNum, APlayer player) 
+    {
 
-        try {
+        try 
+        {
             int ilCount = 0;
             //Repeat: set outer loop. 
 
             player.setBooks(new ArrayList<>());
 
-            for (int i = 0; i < player.getDesirableList().size(); i++) {
+            for (int i = 0; i < player.getDesirableList().size(); i++) 
+            {
                 //A.3.1: Check:
-                if (tNum.getValue().equals(player.getDesirableList().get(i).getValue())) {
+                if (tNum.getValue().equals(player.getDesirableList().get(i).getValue())) 
+                {
                     //Increment: counter if already in duplicate list. 
                     ilCount++;
                 }//End I:*                    
             }//End F:*
 
-            if (ilCount == 4) {
+            if (ilCount == 4) 
+            {
                 //Add: 
                 player.getBooks().add(tNum);
                 //Notice: should only ever be four of a kind. E.g., standard deck format. 
-                for (int j = 0; j < 4; j++) {
+                for (int j = 0; j < 4; j++) 
+                {
                     int pTemp = findFirstIndex(tNum, player.getHand());
                     player.getHand().remove(pTemp);
                 }//End I:*  
 
-                for (int j = 0; j < 4; j++) {
+                for (int j = 0; j < 4; j++) 
+                {
                     int pTemp = findFirstIndex(tNum, player.getDesirableList());
                     player.getDesirableList().remove(pTemp);
                 }//End I:*  

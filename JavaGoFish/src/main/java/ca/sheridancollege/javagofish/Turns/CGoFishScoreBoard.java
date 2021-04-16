@@ -37,8 +37,13 @@ public class CGoFishScoreBoard extends AScoreBoard
     @Override
     public void getDupes(APlayer player) 
     {
+        if(player == null || player.getDesirableList() == null || player.getHand() == null)
+        {
+            throw new IllegalArgumentException();
+        }//End I:*
+        
         player.getDesirableList().clear();
-
+        
         //A: main for loop: compare each card to every other card in hand.
         for (int i = 0; i < player.getHand().size(); i++) 
         {

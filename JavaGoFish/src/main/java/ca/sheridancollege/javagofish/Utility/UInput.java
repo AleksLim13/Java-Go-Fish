@@ -91,6 +91,7 @@ public final class UInput
                 userNum = input.nextInt();
                 continueInput = false;
             } //End TR:*
+            
             catch (InputMismatchException e) 
             {
                 System.out.println("Not a Integer!");
@@ -98,6 +99,7 @@ public final class UInput
             }//End CAT:*
 
         } //End D:*
+        
         while (continueInput);
         
         //Copy: 
@@ -126,13 +128,15 @@ public final class UInput
                 continueInput = false;
             } //End TR:*
             
-            catch (InputMismatchException ex) 
+            catch (InputMismatchException | IllegalStateException e) 
             {
                 System.out.println("Not a String!");
+                System.out.println(e);
                 input.nextLine();
             }//End CAT:*
 
         } //End D:*
+        
         while (continueInput);
         //Copy: 
         return userPrompt;

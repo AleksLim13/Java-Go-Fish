@@ -12,7 +12,9 @@ package ca.sheridancollege.javagofish.Utility;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public final class UInput {
+public final class UInput 
+
+{
 
     /**
      * Field variable of Scanner type because wee need Scanners functionality. 
@@ -21,7 +23,9 @@ public final class UInput {
     private static Scanner input; 
 
     
-    public static void setInput(Scanner input){
+    public static void setInput(Scanner input)
+    
+    {
         UInput.input = input;
     }//End M:*
     
@@ -30,7 +34,8 @@ public final class UInput {
       
     }//End C:*
     
-    public Scanner getInput() {
+    public Scanner getInput() 
+    {
         return UInput.input;
     }
     
@@ -44,19 +49,24 @@ public final class UInput {
         double userNum = 0.0;
 
         do {
-            try {
+            try 
+            {
 
                 System.out.println("Enter a double like 0.0");
                 userNum = input.nextDouble();
                 continueInput = false;
             } //End TR:*
             
-            catch (InputMismatchException ex) {
+            catch (InputMismatchException ex) 
+            {
                 System.out.println("Not a double!");
                 input.nextLine();
             }//End CAT:*
 
-        } while (continueInput);
+        }//End DO:*
+        
+        while (continueInput);
+        
         return userNum;
     }//End M:*
 
@@ -64,18 +74,25 @@ public final class UInput {
      * When a whole number is needed from the user.
      * @return integer as the result. 
      */
-    public static int promptIntUser() {
+    public static int promptIntUser() 
+    
+    {
         boolean continueInput = true;
         int userNum = 0;
 
-        do {
-            try {
+        do 
+        
+        {
+            try 
+            
+            {
 
                 System.out.println("Enter a integer like 3");
                 userNum = input.nextInt();
                 continueInput = false;
             } //End TR:*
-            catch (InputMismatchException ex) {
+            catch (InputMismatchException e) 
+            {
                 System.out.println("Not a Integer!");
                 input.nextLine();
             }//End CAT:*
@@ -91,20 +108,26 @@ public final class UInput {
      * When we need a word or sentence from the user.
      * @return String type as result. 
      */
-    public static String promptStringUser() {
+    public static String promptStringUser() 
+    
+    {
         boolean continueInput = true;
         String userPrompt = " ";
 
-        do {
+        do  
+        {
             
-            try {
+            try 
+            
+            {
 
                 System.out.println("Enter a String: ");
                 userPrompt = input.next();
                 continueInput = false;
             } //End TR:*
             
-            catch (InputMismatchException ex) {
+            catch (InputMismatchException ex) 
+            {
                 System.out.println("Not a String!");
                 input.nextLine();
             }//End CAT:*

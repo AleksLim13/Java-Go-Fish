@@ -20,10 +20,9 @@ import java.util.Scanner;
 import java.util.List;
 
 /**
- * CGOFISHTURNMANAGER CONCRETE CLASS: 
- * ---------------------------------
- * 
- * C is for concrete class. 
+ * CGOFISHTURNMANAGER CONCRETE CLASS: ---------------------------------
+ *
+ * C is for concrete class.
  *
  *
  *
@@ -34,34 +33,46 @@ import java.util.List;
 {
 
     public CGoFishTurnManager(
-                              APlayer human, 
-                              APlayer computer, 
-                              AHand hand, 
-                              AScoreBoard scoreBoard
-                             ) 
-    {
+            APlayer human,
+            APlayer computer,
+            AHand hand,
+            AScoreBoard scoreBoard
+    ) {
         super(human, computer, hand, scoreBoard);
     }//End M:*
 
     @Override
     public boolean goFish(ACard inPlaysDesireC) 
     {
-        for (int i = 0; i < notInPlay.getHand().size(); i++) 
+        try 
         {
-            if (notInPlay.getHand().get(i).getValue().equals(inPlaysDesireC.getValue())) 
+            for (int i = 0; i < notInPlay.getHand().size(); i++) 
             {
-                return false;
-            }//End I:*
-        }//End F:*
+                if (notInPlay.getHand().get(i).getValue().equals(inPlaysDesireC.getValue())) 
+                {
+                    return false;
+                }//End I:*
+            }//End F:*
+            return true;
+        }//End TRY:*
+        catch (IllegalArgumentException | NullPointerException e) 
+        {
+            System.out.println("Could be a null not in player hand or the card passed in " + e);
+        }//End CAT:*
         return true;
     }//End M:*
 
     @Override
     public boolean shouldKeepGoing() 
+    
     {
+        
+        try
+        
+        {//Start TRY:*
+        
         boolean flag = true;
         while (flag) 
-        
         {
             ACard cTemp = null;
 
@@ -69,6 +80,7 @@ import java.util.List;
             {
                 cTemp = humanAskingForACard();
             }//End I:*
+            
             else if (this.inPlay instanceof CCompPlayer) 
             {
                 cTemp = computerAskingForACard();
@@ -77,6 +89,7 @@ import java.util.List;
             boolean check = goFish(cTemp);
 
             if (check) 
+            
             {
                 System.out.println(this.notInPlay.getName() + " does not have " + cTemp.getValue());
                 this.classHand.getCardFromDeck(this.inPlay);
@@ -105,6 +118,7 @@ import java.util.List;
                 return false;
             }//End I:*
             else if (!check) 
+            
             {
                 System.out.println("");
                 System.out.println(this.notInPlay.getName() + " does have " + cTemp.getValue());
@@ -129,16 +143,23 @@ import java.util.List;
         }//End W:*
 
         return false;
-
+        }//End TRY:*
+        
+        catch (Exception e)
+        {
+            System.out.println("" + e);
+        }//End CAT:*
+       
+        return false;
     }//End M:*
 
     @Override
     public ACard humanAskingForACard() 
+    
     {
         boolean flag = true;
         //A: Iterate: 
-        while (flag) 
-        {
+        while (flag) {
             //A.1: Get: 
             System.out.println("");
             System.out.println("Which card value do you want?");
@@ -154,11 +175,9 @@ import java.util.List;
             ADeck deck = new CGoFishDeck(new ArrayList<>());
             deck.initDeck();
             //A.5: Repeat: 
-            for (int i = 0; i < deck.getDeck().size(); i++) 
-            {
+            for (int i = 0; i < deck.getDeck().size(); i++) {
                 //A.6: Check: 
-                if (cDesire.getValue().equals(deck.getDeck().get(i).getValue())) 
-                {
+                if (cDesire.getValue().equals(deck.getDeck().get(i).getValue())) {
                     return cDesire;
                 }//End I:*
             }//End F:*
@@ -173,8 +192,8 @@ import java.util.List;
         List<ACard> dTemp = computer.getDesirableList();
         List<ACard> hTemp = computer.getHand();
         ACard cTemp = null;
-        
-        if(!dTemp.isEmpty())
+
+        if (!dTemp.isEmpty()) 
         {
             cTemp = new CGoFishCard(dTemp.get(0).getValue());
             System.out.println("");
@@ -182,21 +201,20 @@ import java.util.List;
             System.out.println("Do you have any?");
             UInput.setInput(new Scanner(System.in));
             String response = UInput.promptStringUser();
-            
-            if(response.equals("yes"))
+
+            if (response.equals("yes")) 
             {
                 System.out.println("Ok thanks for confirming");
             }//End I:*
-            
-            else if(response.equals("no"))
+            else if (response.equals("no")) 
             {
                 System.out.println("Ok, computer will go fish then");
             }//End I:*
-            
+
             return cTemp;
         }//End I:*
-       
-        else if(!hTemp.isEmpty())
+        
+        else if (!hTemp.isEmpty()) 
         {
             cTemp = new CGoFishCard(hTemp.get(0).getValue());
             System.out.println("");
@@ -204,24 +222,23 @@ import java.util.List;
             System.out.println("Do you have any?");
             UInput.setInput(new Scanner(System.in));
             String response = UInput.promptStringUser();
-            if(response.equals("yes"))
+            if (response.equals("yes")) 
             {
                 System.out.println("Ok thanks for confirming");
             }//End I:*
-            else if(response.equals("no"))
+            else if (response.equals("no")) 
             {
                 System.out.println("Ok, computer will go fish then");
             }//End I:*
             return cTemp;
         }//End E:*
-        
-        else if(dTemp.isEmpty() && hTemp.isEmpty())
+        else if (dTemp.isEmpty() && hTemp.isEmpty()) 
         {
             System.out.println("");
             System.out.println("Computer has no cards left in their hand");
             return null;
         }//End E:*
-        
+
         return cTemp;
     }//End M:*
 

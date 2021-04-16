@@ -157,38 +157,62 @@ import java.util.List;
     public ACard humanAskingForACard() 
     
     {
+        try
+        
+        {//Start TRY:*
+            
         boolean flag = true;
         //A: Iterate: 
-        while (flag) {
+        while (flag) 
+        
+        {
             //A.1: Get: 
             System.out.println("");
             System.out.println("Which card value do you want?");
 
+            //A.2: Get: 
             UInput.setInput(new Scanner(System.in));
             String cvDesire = UInput.promptStringUser();
-            //A.2: Get: 
+                  
             //A.3: Create: 
-            CGoFishCard cDesire = new CGoFishCard(
-                    cvDesire.toUpperCase()
-            );
+            CGoFishCard cDesire = new CGoFishCard(cvDesire.toUpperCase());
+            
             //A.4: Initialize: 
             ADeck deck = new CGoFishDeck(new ArrayList<>());
             deck.initDeck();
+            
             //A.5: Repeat: 
-            for (int i = 0; i < deck.getDeck().size(); i++) {
+            for (int i = 0; i < deck.getDeck().size(); i++) 
+            {
                 //A.6: Check: 
-                if (cDesire.getValue().equals(deck.getDeck().get(i).getValue())) {
+                if (cDesire.getValue().equals(deck.getDeck().get(i).getValue())) 
+                {
                     return cDesire;
                 }//End I:*
             }//End F:*
         }//End W:*
+        
         //A.10: Anticipate: 
+        return null;
+        
+        }//End TRY:*
+        
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }//End CAT:*
+        
         return null;
     }//End M:*
 
     @Override
     public ACard computerAskingForACard() 
     {
+        
+        try
+            
+        {//STRT:*
+            
         List<ACard> dTemp = computer.getDesirableList();
         List<ACard> hTemp = computer.getHand();
         ACard cTemp = null;
@@ -206,40 +230,60 @@ import java.util.List;
             {
                 System.out.println("Ok thanks for confirming");
             }//End I:*
+            
             else if (response.equals("no")) 
             {
                 System.out.println("Ok, computer will go fish then");
             }//End I:*
 
             return cTemp;
+            
         }//End I:*
         
         else if (!hTemp.isEmpty()) 
         {
             cTemp = new CGoFishCard(hTemp.get(0).getValue());
+            
             System.out.println("");
             System.out.println("Computer is asking for: " + cTemp.getValue());
             System.out.println("Do you have any?");
-            UInput.setInput(new Scanner(System.in));
+            
+            UInput.setInput(new Scanner(System.in));    
             String response = UInput.promptStringUser();
+            
             if (response.equals("yes")) 
             {
                 System.out.println("Ok thanks for confirming");
             }//End I:*
+            
             else if (response.equals("no")) 
             {
                 System.out.println("Ok, computer will go fish then");
             }//End I:*
+            
+            //Leave: 
             return cTemp;
         }//End E:*
+        
         else if (dTemp.isEmpty() && hTemp.isEmpty()) 
         {
             System.out.println("");
             System.out.println("Computer has no cards left in their hand");
+            
+            //Leave: 
             return null;
         }//End E:*
 
         return cTemp;
+        }//End TRY:*
+        
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }//End CAT:*
+        
+       //Leave: 
+       return null;
     }//End M:*
 
     @Override

@@ -38,7 +38,9 @@ import java.util.List;
     public void getDupes(APlayer player) 
     
     {
-        try {
+        try 
+        
+        {
 
             player.getDesirableList().clear();
 

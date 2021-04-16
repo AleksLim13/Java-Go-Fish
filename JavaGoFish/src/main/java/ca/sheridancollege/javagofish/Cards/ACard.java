@@ -1,6 +1,5 @@
 package ca.sheridancollege.javagofish.Cards;
 
-import java.util.Objects;
 
 /**
  * CARD ABSTRACT CLASS:

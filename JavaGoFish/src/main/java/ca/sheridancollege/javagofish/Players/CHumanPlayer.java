@@ -14,7 +14,9 @@ import java.util.List;
  * This class inherits data and functionality from Player. 
  * @author alllyCat13 @ Sheridan High 2021
  */
-public class CHumanPlayer extends APlayer{
+public class CHumanPlayer extends APlayer
+
+{
     
  /**
   * Constructs a Player and initializes name, books, and duplicate list.
@@ -22,7 +24,8 @@ public class CHumanPlayer extends APlayer{
   * @param books card list type.
   * @param dL Card list type. 
   */
-    public CHumanPlayer(String name, List<ACard> books, List<ACard> dL){
+    public CHumanPlayer(String name, List<ACard> books, List<ACard> dL)
+    {
         super(name, books, dL);
     }//End C:*
     

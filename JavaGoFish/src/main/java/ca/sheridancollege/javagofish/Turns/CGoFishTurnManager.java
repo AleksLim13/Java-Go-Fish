@@ -58,7 +58,7 @@ import java.util.List;
             }//End F:*
             return true;
         }//End TRY:*
-        catch (IllegalArgumentException | NullPointerException e) 
+        catch (IllegalArgumentException | NullPointerException | IndexOutOfBoundsException e) 
         {
             System.out.println("Could be a null not in player hand or the card passed in " + e);
         }//End CAT:*

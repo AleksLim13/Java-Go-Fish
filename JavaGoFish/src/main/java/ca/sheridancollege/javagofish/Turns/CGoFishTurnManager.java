@@ -20,9 +20,12 @@ import java.util.Scanner;
 import java.util.List;
 
 /**
- * CGOFISHTURNMANAGER CONCRETE CLASS: ---------------------------------
+ * CGOFISHTURNMANAGER CONCRETE CLASS: 
+ * ---------------------------------
  *
- * C is for concrete class.
+ * C is for concrete class. This is a specific example of ATurnManager. We're building a Go Fish
+ * game so this is a Go Fish Turn Manager. Methods include a try catch safety net for best and
+ * worst case scenarios. 
  *
  *
  *
@@ -145,7 +148,7 @@ import java.util.List;
         return false;
         }//End TRY:*
         
-        catch (Exception e)
+        catch (Exception | StackOverflowError e)
         {
             System.out.println("" + e);
         }//End CAT:*
@@ -197,7 +200,7 @@ import java.util.List;
         
         }//End TRY:*
         
-        catch(Exception e)
+        catch(Exception | StackOverflowError e)
         {
             System.out.println(e);
         }//End CAT:*
@@ -277,7 +280,7 @@ import java.util.List;
         return cTemp;
         }//End TRY:*
         
-        catch(Exception e)
+        catch(Exception | StackOverflowError e)
         {
             System.out.println(e);
         }//End CAT:*

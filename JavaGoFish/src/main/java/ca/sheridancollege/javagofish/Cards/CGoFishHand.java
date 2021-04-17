@@ -135,121 +135,164 @@ public class CGoFishHand extends AHand {
     }//End M:*
 
     @Override
-    public void createHand(int size, APlayer player) 
-    
-    {
-        try 
-        {
+    public void createHand(int size, APlayer player) {
+        try {
             player.setHand(new ArrayList<>());
 
-            for (int i = 0; i < size; i++) 
-            {
+            for (int i = 0; i < size; i++) {
                 player.getHand().add(this.startDeal());
             }//End F:*  
-            
+
         }//End TRY:*
-        
-        catch (NullPointerException | BufferOverflowException e) 
-        {
+        catch (NullPointerException | BufferOverflowException e) {
             System.out.println("" + e);
         }//End CAT:*
-        
+
     }//End M:*
 
     @Override
-    public void sort(APlayer player, char option) 
-    
-    {
-        List<ACard> optList = new ArrayList<>();
+    public void sort(APlayer player, char option) {
+        try {
+            List<ACard> optList = new ArrayList<>();
 
-        if (option == 'h') 
-        {
-            optList = player.getHand();
-        }//End I:*
-        else if (option == 'd') 
-        {
-            optList = player.getDesirableList();
-        }//End EI:*
+            if (option == 'h') {
+                optList = player.getHand();
+            }//End I:*
+            else if (option == 'd') {
+                optList = player.getDesirableList();
+            }//End EI:*
 
-        //Notice: watch nested for loop structure. 
-        for (int i = 0; i < optList.size(); i++) 
-        {
-            for (int j = i + 1; j < optList.size(); j++) 
-            {
-                //Get: value of card and store it in String VAR.
-                String v1 = optList.get(i).getValue();
-                char cv1 = v1.charAt(0);
+            //Notice: watch nested for loop structure. 
+            for (int i = 0; i < optList.size(); i++) {
+                for (int j = i + 1; j < optList.size(); j++) {
+                    //Get: value of card and store it in String VAR.
+                    String v1 = optList.get(i).getValue();
+                    char cv1 = v1.charAt(0);
 
-                String v2 = optList.get(j).getValue();
-                char cv2 = v2.charAt(0);
-                //Extract: use char at to get first letter of above step. 
+                    String v2 = optList.get(j).getValue();
+                    char cv2 = v2.charAt(0);
+                    //Extract: use char at to get first letter of above step. 
 
-                ACard tmp = null;
+                    ACard tmp = null;
 
-                if ((int) cv1 > (int) cv2) 
-                {
-                    tmp = optList.get(i);
-                    optList.set(i, optList.get(j));
-                    optList.set(j, tmp);
-                }//End I:*
-            }//End In F:*
-        }//End Out F:*    
+                    if ((int) cv1 > (int) cv2) {
+                        tmp = optList.get(i);
+                        optList.set(i, optList.get(j));
+                        optList.set(j, tmp);
+                    }//End I:*
+                }//End In F:*
+            }//End Out F:*    
+        }//End TRY:*
+        catch (Exception e) {
+            System.out.println(e);
+        }//End CAT:*
     }//End M:*
 
     @Override
     public void deleteCardFromHand(APlayer notInPlay, int posit) {
-        notInPlay.getHand().remove(posit);
+        try {
+            notInPlay.getHand().remove(posit);
+        }//End TRY:*
+        catch (ArrayIndexOutOfBoundsException | StackOverflowError e) {
+            System.out.println(e);
+        }//End CAT:*
+
     }//End M:*
 
     @Override
     public void deleteCardFromDList(APlayer notInPlay, int posit) {
-        notInPlay.getDesirableList().remove(posit);
+        try {
+            notInPlay.getDesirableList().remove(posit);
+        } catch (ArrayIndexOutOfBoundsException | StackOverflowError e) {
+            System.out.println(e);
+        }//End CAT:*
+
     }//End M:*
 
     @Override
     public void getCardFromDeck(APlayer player) {
-        player.getHand().add(createRandoCard());
-        System.out.println("");
+        try {
+            player.getHand().add(createRandoCard());
+            System.out.println("");
 
-        System.out.println("");
-        System.out.println("Calculating dupes for " + player.getName());
-        this.scoreBoard.getDupes(player);
+            System.out.println("");
+            System.out.println("Calculating dupes for " + player.getName());
+            this.scoreBoard.getDupes(player);
 
-        System.out.println("");
-        System.out.println(player.getName() + " dupes: " + player.getDesirableList().toString());
+            System.out.println("");
+            System.out.println(player.getName() + " dupes: " + player.getDesirableList().toString());
+        }//End TRY:*
+        catch (Exception e) {
+            System.out.println(e);
+        }//End CAT:*
+
     }//End M:*
 
     @Override
-    public void updateHandDelete(APlayer notInPlay, ACard inPlaysDesireC) {
-        int pHTemp = findPositFullCard(notInPlay, inPlaysDesireC);
-        int pDTemp = findPositFullCardDList(notInPlay, inPlaysDesireC);
+    public void updateHandDelete(APlayer notInPlay, ACard inPlaysDesireC) 
+    {
+        try 
+        {
+            int pHTemp = findPositFullCard(notInPlay, inPlaysDesireC);
+            int pDTemp = findPositFullCardDList(notInPlay, inPlaysDesireC);
 
-        deleteCardFromDList(notInPlay, pDTemp);
-        deleteCardFromHand(notInPlay, pHTemp);
+            deleteCardFromDList(notInPlay, pDTemp);
+            deleteCardFromHand(notInPlay, pHTemp);
+        }//End TRY:*
+        
+        catch (Exception e) 
+        {
+            System.out.println(e);
+        }//End CAT:*
+
     }//End M:*
 
     @Override
-    public void updateHandAdd(APlayer inPlay, ACard inPlaysDesireC, APlayer notInPlay) {
-        addCardToHand(inPlay, inPlaysDesireC, notInPlay);
+    public void updateHandAdd(APlayer inPlay, ACard inPlaysDesireC, APlayer notInPlay) 
+    {
+        try
+        {
+            addCardToHand(inPlay, inPlaysDesireC, notInPlay);
+        }//End TRY:*
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }//end CAT:*
+        
     }//End M:*
 
     @Override
-    public int findPositFullCard(APlayer player, ACard tCard) {
+    public int findPositFullCard(APlayer player, ACard tCard) 
+    {
+        try
+        {
         int posit = 0;
-        for (int i = 0; i < player.getHand().size(); i++) {
-            if (player.getHand().get(i).equals(tCard)) {
+        for (int i = 0; i < player.getHand().size(); i++) 
+        {
+            if (player.getHand().get(i).equals(tCard)) 
+            {
                 posit = i;
                 return posit;
             }//End I:*
         }//End F:*
         return posit;
+        }//End TRY:*
+        
+        catch(NullPointerException | ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println(e);
+        }//End CAT:*
+        return -1;
     }//End M:*
 
     @Override
-    public int findPositFullCardDList(APlayer player, ACard tCard) {
+    public int findPositFullCardDList(APlayer player, ACard tCard) 
+    {
         int posit = 0;
-        for (int i = 0; i < player.getDesirableList().size(); i++) {
-            if (player.getDesirableList().get(i).equals(tCard)) {
+        for (int i = 0; i < player.getDesirableList().size(); i++) 
+        {
+            if (player.getDesirableList().get(i).equals(tCard)) 
+            {
                 posit = i;
                 return posit;
             }//End I:*

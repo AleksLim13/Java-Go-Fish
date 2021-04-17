@@ -229,75 +229,66 @@ public class CGoFishHand extends AHand {
     }//End M:*
 
     @Override
-    public void updateHandDelete(APlayer notInPlay, ACard inPlaysDesireC) 
-    {
-        try 
-        {
+    public void updateHandDelete(APlayer notInPlay, ACard inPlaysDesireC) {
+        try {
             int pHTemp = findPositFullCard(notInPlay, inPlaysDesireC);
             int pDTemp = findPositFullCardDList(notInPlay, inPlaysDesireC);
 
             deleteCardFromDList(notInPlay, pDTemp);
             deleteCardFromHand(notInPlay, pHTemp);
         }//End TRY:*
-        
-        catch (Exception e) 
-        {
+        catch (Exception e) {
             System.out.println(e);
         }//End CAT:*
 
     }//End M:*
 
     @Override
-    public void updateHandAdd(APlayer inPlay, ACard inPlaysDesireC, APlayer notInPlay) 
-    {
-        try
-        {
+    public void updateHandAdd(APlayer inPlay, ACard inPlaysDesireC, APlayer notInPlay) {
+        try {
             addCardToHand(inPlay, inPlaysDesireC, notInPlay);
         }//End TRY:*
-        catch(Exception e)
-        {
+        catch (Exception e) {
             System.out.println(e);
         }//end CAT:*
-        
+
     }//End M:*
 
     @Override
-    public int findPositFullCard(APlayer player, ACard tCard) 
-    {
-        try
-        {
-        int posit = 0;
-        for (int i = 0; i < player.getHand().size(); i++) 
-        {
-            if (player.getHand().get(i).equals(tCard)) 
-            {
-                posit = i;
-                return posit;
-            }//End I:*
-        }//End F:*
-        return posit;
+    public int findPositFullCard(APlayer player, ACard tCard) {
+        try {
+            int posit = 0;
+            for (int i = 0; i < player.getHand().size(); i++) {
+                if (player.getHand().get(i).equals(tCard)) {
+                    posit = i;
+                    return posit;
+                }//End I:*
+            }//End F:*
+            return posit;
         }//End TRY:*
-        
-        catch(NullPointerException | ArrayIndexOutOfBoundsException e)
-        {
+        catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
             System.out.println(e);
         }//End CAT:*
         return -1;
     }//End M:*
 
     @Override
-    public int findPositFullCardDList(APlayer player, ACard tCard) 
-    {
-        int posit = 0;
-        for (int i = 0; i < player.getDesirableList().size(); i++) 
-        {
-            if (player.getDesirableList().get(i).equals(tCard)) 
-            {
-                posit = i;
-                return posit;
-            }//End I:*
-        }//End F:*
-        return posit;
+    public int findPositFullCardDList(APlayer player, ACard tCard) {
+        try {
+            int posit = 0;
+            for (int i = 0; i < player.getDesirableList().size(); i++) {
+                if (player.getDesirableList().get(i).equals(tCard)) {
+                    posit = i;
+                    return posit;
+                }//End I:*
+            }//End F:*
+            return posit;
+        }//End TRY:*
+        catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
+            System.out.println("player could be null, card could be null, index might be out of bounds " + e);
+        }//End CAT:*
+
+        return -1;
     }//End M:*
 
     @Override
@@ -308,20 +299,32 @@ public class CGoFishHand extends AHand {
 
     @Override
     public void removeCard(ACard card, List<ACard> tHand) {
-        tHand.remove(findPosit(tHand, card));
+        try {
+            tHand.remove(findPosit(tHand, card));
+        }//End TRY:*
+        catch (Exception e) {
+            System.out.println(e);
+        }//End CAT:*
 
     }//End M:*
 
     @Override
     public int findPosit(List<ACard> hand, ACard tCard) {
-        int posit = 0;
-        for (int i = 0; i < hand.size(); i++) {
-            if (hand.get(i).equals(tCard)) {
-                posit = i;
-                return posit;
-            }//End I:*
-        }//End F:*
-        return posit;
+        try {
+            int posit = 0;
+            for (int i = 0; i < hand.size(); i++) {
+                if (hand.get(i).equals(tCard)) {
+                    posit = i;
+                    return posit;
+                }//End I:*
+            }//End F:*
+            return posit;
+        }//End tRY:*
+        catch (NullPointerException | ArrayIndexOutOfBoundsException e) 
+        {
+            System.out.println(e);
+        }//End CAT:*
+        return -1;
     }///End M:*
 
 }//End CL:*

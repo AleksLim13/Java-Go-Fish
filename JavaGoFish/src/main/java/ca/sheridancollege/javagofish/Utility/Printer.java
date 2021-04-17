@@ -16,7 +16,9 @@ import java.util.List;
 
     /**
      * We don't need to create a instance of Printer because we have simple
-     * static display methods.
+     * static display methods. We have no data to track for. No data related to
+     * instances of these objects that change dynamically based on input and state
+     * changes.
      */
     public Printer() 
     {

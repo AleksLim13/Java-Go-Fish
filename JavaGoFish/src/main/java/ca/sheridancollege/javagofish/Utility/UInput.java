@@ -123,6 +123,7 @@ public final class UInput
             
             {
 
+                //Notice: this ensures inputs is from a-z only. 
                 System.out.println("Enter a String: ");
                 userPrompt = input.next();
                 continueInput = false;

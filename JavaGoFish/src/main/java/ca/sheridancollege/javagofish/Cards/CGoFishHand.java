@@ -8,109 +8,157 @@ package ca.sheridancollege.javagofish.Cards;
 import ca.sheridancollege.javagofish.Players.APlayer;
 import ca.sheridancollege.javagofish.Turns.AScoreBoard;
 import ca.sheridancollege.javagofish.Utility.Printer;
+import java.nio.BufferOverflowException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * CGOFISHHAND CLASS:
  *
- *
- *
+ * This is a concrete version of AHand. This models hands for a hand made up of
+ * Go Fish cards and what needs to happen to them throughout a game.
  *
  *
  * @author AllyCat13.
  */
-public class CGoFishHand extends AHand 
+public class CGoFishHand extends AHand {
 
-{
-
-    public CGoFishHand(ADeck deck, AScoreBoard sb) 
-    {
+    public CGoFishHand(ADeck deck, AScoreBoard sb) {
         super(deck, sb);
         this.deckSetup();
     }//End C:*
 
     @Override
-    public void addCardToHand(APlayer inPlay, ACard inPlaysDesireC, APlayer notInPlay) 
-    {
-        //A: Find: 
-        int posit = findPositPartialCard(notInPlay, inPlaysDesireC);
-        //B: Get:
-        ACard cTemp = notInPlay.getHand().get(posit);
-        //C: Remove: 
-        updateHandDelete(notInPlay, cTemp);
-        //D: Add: 
-        inPlay.getHand().add(cTemp);
+    public void addCardToHand(APlayer inPlay, ACard inPlaysDesireC, APlayer notInPlay) {
+        try {//STRT TRY:*
 
-        //E: 
-        System.out.println("");
-        System.out.println("Calculating dupes for " + inPlay.getName());
-        //E.1: Calculate:
-        this.scoreBoard.getDupes(inPlay);
-        System.out.println("");
-        //E.2: Order: 
-        this.sort(inPlay, 'd');
-        System.out.println(inPlay.getName() + " dupes: ");
-        //E.3: Display: 
-        Printer.printHand(inPlay.getDesirableList());
+            //A: Find: 
+            int posit = findPositPartialCard(notInPlay, inPlaysDesireC);
+
+            //B: Get:
+            ACard cTemp = notInPlay.getHand().get(posit);
+
+            //C: Remove: 
+            updateHandDelete(notInPlay, cTemp);
+
+            //D: Add: 
+            inPlay.getHand().add(cTemp);
+
+            //E: 
+            System.out.println("");
+            System.out.println("Calculating dupes for " + inPlay.getName());
+
+            //E.1: Calculate:
+            this.scoreBoard.getDupes(inPlay);
+
+            System.out.println("");
+            //E.2: Order: 
+            this.sort(inPlay, 'd');
+
+            System.out.println(inPlay.getName() + " dupes: ");
+            //E.3: Display: 
+            Printer.printHand(inPlay.getDesirableList());
+
+        }//End TRY:*
+        catch (Exception e) {
+            System.out.println("Players could be null or hands being updated: " + e);
+        }//End CAT:*
+
     }//End M:*
 
     @Override
-    public int findPositPartialCard(APlayer player, ACard tCard) 
-    {
-        int posit = 0;
-        for (int i = 0; i < player.getHand().size(); i++) 
-        {
-            if (player.getHand().get(i).getValue().equals(tCard.getValue())) 
-            {
-                posit = i;
-                return posit;
-            }//End I:*
-        }//End F:*
-        return posit;
+    public int findPositPartialCard(APlayer player, ACard tCard) {
+        try {
+
+            int posit = 0;
+            for (int i = 0; i < player.getHand().size(); i++) {
+                if (player.getHand().get(i).getValue().equals(tCard.getValue())) {
+                    posit = i;
+                    return posit;
+                }//End I:*
+
+            }//End F:*
+
+            return posit;
+        }//End TRY:*
+        catch (Exception e) {
+            System.out.println(e);
+        }//End CAT:*
+
+        return -1;
     }//End M:*
 
     @Override
-    public ACard createRandoCard() 
-    {
-        //A: create: ranges for random number to map against. 
+    public ACard createRandoCard() {
+        try {
+            //A: create: ranges for random number to map against. 
+            //Notice: this is the best case scenario.
 
-        //B: Create: the random numbers modelling suit and values. 
-        int valPossible = (int) (Math.random() * ACard.valuesRange.length) + 1;
+            //B: Create: the random numbers modelling suit and values. 
+            int valPossible = (int) (Math.random() * ACard.valuesRange.length) + 1;
 
-        //C: asssign: the values determined by a random number
-        ACard resCard = this.classDeck.getDeck().get(valPossible);
+            //C: asssign: the values determined by a random number
+            ACard resCard = this.classDeck.getDeck().get(valPossible);
 
-        //D: create: the card object and copy it. 
-        this.removeCard(resCard, this.classDeck.getDeck());
+            //D: create: the card object and copy it. 
+            this.removeCard(resCard, this.classDeck.getDeck());
 
-        //E: Remember:
-        return resCard;
+            //E: Remember:
+            return resCard;
+
+        }//End TRY:*
+        catch (NullPointerException | IndexOutOfBoundsException e) {
+            System.out.println(e);
+        }//End CAT:*
+
+        //Leave: worst case scenario. 
+        return null;
     }//End M:*
 
     @Override
-    public ACard startDeal() 
-    {
-        ACard card;
-        card = this.classDeck.getDeck().get(0);
-        //B: 
-        this.classDeck.getDeck().remove(0);
-        //C: 
-        return card;
+    public ACard startDeal() {
+        try {
+
+            ACard card;
+            card = this.classDeck.getDeck().get(0);
+            //B: 
+            this.classDeck.getDeck().remove(0);
+            //C: 
+            return card;
+        }//End TRY:*
+        catch (NullPointerException | IndexOutOfBoundsException e) {
+            System.out.println("ADeck field could be null or deck index is incorrect " + e);
+        }//End CAT:*
+
+        //Leave: worst case scenario. 
+        return null;
     }//End M:*
 
     @Override
     public void createHand(int size, APlayer player) 
+    
     {
-        player.setHand(new ArrayList<>());
-
-        for (int i = 0; i < size; i++) 
+        try 
         {
-            player.getHand().add(this.startDeal());
-        }//End F:*         
+            player.setHand(new ArrayList<>());
+
+            for (int i = 0; i < size; i++) 
+            {
+                player.getHand().add(this.startDeal());
+            }//End F:*  
+            
+        }//End TRY:*
+        
+        catch (NullPointerException | BufferOverflowException e) 
+        {
+            System.out.println("" + e);
+        }//End CAT:*
+        
     }//End M:*
 
     @Override
     public void sort(APlayer player, char option) 
+    
     {
         List<ACard> optList = new ArrayList<>();
 
@@ -149,20 +197,17 @@ public class CGoFishHand extends AHand
     }//End M:*
 
     @Override
-    public void deleteCardFromHand(APlayer notInPlay, int posit) 
-    {
+    public void deleteCardFromHand(APlayer notInPlay, int posit) {
         notInPlay.getHand().remove(posit);
     }//End M:*
 
     @Override
-    public void deleteCardFromDList(APlayer notInPlay, int posit) 
-    {
+    public void deleteCardFromDList(APlayer notInPlay, int posit) {
         notInPlay.getDesirableList().remove(posit);
     }//End M:*
 
     @Override
-    public void getCardFromDeck(APlayer player) 
-    {
+    public void getCardFromDeck(APlayer player) {
         player.getHand().add(createRandoCard());
         System.out.println("");
 
@@ -175,29 +220,24 @@ public class CGoFishHand extends AHand
     }//End M:*
 
     @Override
-    public void updateHandDelete(APlayer notInPlay, ACard inPlaysDesireC) 
-    {
+    public void updateHandDelete(APlayer notInPlay, ACard inPlaysDesireC) {
         int pHTemp = findPositFullCard(notInPlay, inPlaysDesireC);
         int pDTemp = findPositFullCardDList(notInPlay, inPlaysDesireC);
-        
+
         deleteCardFromDList(notInPlay, pDTemp);
         deleteCardFromHand(notInPlay, pHTemp);
     }//End M:*
 
     @Override
-    public void updateHandAdd(APlayer inPlay, ACard inPlaysDesireC, APlayer notInPlay) 
-    {
+    public void updateHandAdd(APlayer inPlay, ACard inPlaysDesireC, APlayer notInPlay) {
         addCardToHand(inPlay, inPlaysDesireC, notInPlay);
     }//End M:*
 
     @Override
-    public int findPositFullCard(APlayer player, ACard tCard) 
-    {
+    public int findPositFullCard(APlayer player, ACard tCard) {
         int posit = 0;
-        for (int i = 0; i < player.getHand().size(); i++) 
-        {
-            if (player.getHand().get(i).equals(tCard)) 
-            {
+        for (int i = 0; i < player.getHand().size(); i++) {
+            if (player.getHand().get(i).equals(tCard)) {
                 posit = i;
                 return posit;
             }//End I:*
@@ -206,13 +246,10 @@ public class CGoFishHand extends AHand
     }//End M:*
 
     @Override
-    public int findPositFullCardDList(APlayer player, ACard tCard) 
-    {
+    public int findPositFullCardDList(APlayer player, ACard tCard) {
         int posit = 0;
-        for (int i = 0; i < player.getDesirableList().size(); i++) 
-        {
-            if (player.getDesirableList().get(i).equals(tCard)) 
-            {
+        for (int i = 0; i < player.getDesirableList().size(); i++) {
+            if (player.getDesirableList().get(i).equals(tCard)) {
                 posit = i;
                 return posit;
             }//End I:*
@@ -221,28 +258,22 @@ public class CGoFishHand extends AHand
     }//End M:*
 
     @Override
-    public void deckSetup() 
-    {
+    public void deckSetup() {
         this.classDeck.initDeck();
         this.classDeck.shuffle();
     }//End M:*
-    
-     @Override
-    public void removeCard(ACard card, List<ACard> tHand) 
-    {
+
+    @Override
+    public void removeCard(ACard card, List<ACard> tHand) {
         tHand.remove(findPosit(tHand, card));
-        
+
     }//End M:*
 
-     @Override
-    public int findPosit(List<ACard> hand, ACard tCard) 
-    
-    {
+    @Override
+    public int findPosit(List<ACard> hand, ACard tCard) {
         int posit = 0;
-        for (int i = 0; i < hand.size(); i++) 
-        {
-            if (hand.get(i).equals(tCard)) 
-            {
+        for (int i = 0; i < hand.size(); i++) {
+            if (hand.get(i).equals(tCard)) {
                 posit = i;
                 return posit;
             }//End I:*

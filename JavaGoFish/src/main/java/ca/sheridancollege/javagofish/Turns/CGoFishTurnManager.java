@@ -7,7 +7,7 @@ package ca.sheridancollege.javagofish.Turns;
 
 import ca.sheridancollege.javagofish.Cards.ACard;
 import ca.sheridancollege.javagofish.Cards.ADeck;
-import ca.sheridancollege.javagofish.Cards.AHand;
+import ca.sheridancollege.javagofish.Cards.ADealer;
 import ca.sheridancollege.javagofish.Cards.CGoFishCard;
 import ca.sheridancollege.javagofish.Cards.CGoFishDeck;
 import ca.sheridancollege.javagofish.Players.APlayer;
@@ -38,7 +38,7 @@ import java.util.List;
     public CGoFishTurnManager(
             APlayer human,
             APlayer computer,
-            AHand hand,
+            ADealer hand,
             AScoreBoard scoreBoard
     ) {
         super(human, computer, hand, scoreBoard);

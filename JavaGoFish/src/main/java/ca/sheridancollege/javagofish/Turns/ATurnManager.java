@@ -2,7 +2,7 @@ package ca.sheridancollege.javagofish.Turns;
 
 
 import ca.sheridancollege.javagofish.Cards.ACard;
-import ca.sheridancollege.javagofish.Cards.AHand;
+import ca.sheridancollege.javagofish.Cards.ADealer;
 import ca.sheridancollege.javagofish.Players.APlayer;
 
 
@@ -54,7 +54,7 @@ import ca.sheridancollege.javagofish.Players.APlayer;
     /**
      * A reference to the Hand class for hand related tasks is required. 
      */
-    protected final AHand classHand;
+    protected final ADealer classHand;
     /**
      * A reference to a scoreboard for strategy related tasks is required. 
      */
@@ -72,7 +72,7 @@ import ca.sheridancollege.javagofish.Players.APlayer;
     public ATurnManager(
                         APlayer human,
                         APlayer computer,
-                        AHand hand,
+                        ADealer hand,
                         AScoreBoard scoreBoard
                          ) 
     {
@@ -112,7 +112,7 @@ import ca.sheridancollege.javagofish.Players.APlayer;
         this.notInPlay = notInPlay;
     }//End S:*
 
-    public AHand getClassHand() 
+    public ADealer getClassHand() 
     {
         return this.classHand;
     }//End G:*

@@ -3,7 +3,7 @@ package ca.sheridancollege.javagofish.Start;
 import ca.sheridancollege.javagofish.Players.CCompPlayer;
 import ca.sheridancollege.javagofish.Players.CHumanPlayer;
 import ca.sheridancollege.javagofish.Cards.CGoFishDeck;
-import ca.sheridancollege.javagofish.Cards.CGoFishHand;
+import ca.sheridancollege.javagofish.Cards.CGoFishDealer;
 import ca.sheridancollege.javagofish.Turns.CGoFishScoreBoard;
 import ca.sheridancollege.javagofish.Turns.CGoFishTurnManager;
 import ca.sheridancollege.javagofish.Turns.ATurnManager;
@@ -42,7 +42,7 @@ public class CMain
                                                        new ArrayList<>(), 
                                                        new ArrayList<>()
                                                        ), //End C:*
-                                        new CGoFishHand(
+                                        new CGoFishDealer(
                                                  new CGoFishDeck(new ArrayList<>()),
                                                  new CGoFishScoreBoard()
                                                 ), //End C:*
